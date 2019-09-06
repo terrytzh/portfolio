@@ -1,10 +1,10 @@
 # ITP 380 Labs - Fall 2019 #
 
 ### EDIT BELOW ###
-Name: Tommy Trojan
+Name: Zihang Tang
 
-Email: ttrojan@usc.edu
+Email: terrytan@usc.edu
 
-Section: T/Th [TIME SLOT]
+Section: T/Th [5:00pm - 6:50pm]
 
-Platform: [PC/MAC]
+Platform: [PC and MAC]
