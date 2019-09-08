@@ -18,6 +18,10 @@ protected:
     SDL_Window* window;
     SDL_Renderer* renderer;
     bool isRunning;
+    
+    // Score
+    int bounce_count = 0;
+    
     unsigned int pre_time = 0;
     
     
@@ -29,14 +33,19 @@ protected:
     
     SDL_Point pad_pos = SDL_Point();
     SDL_Point ball_pos = SDL_Point();
+    SDL_Point ball_speed = SDL_Point();
     
     const int WALL_THICKNESS = 20;
     const int WINDOW_WIDTH = 1024;
     const int WINDOW_HEIGHT = 768;
     const int PADDLE_HEIGHT = 100;
     const int PADDLE_WIDTH = 20;
+    const int PADDLE_SPEED = 500;
     const int BALL_WIDTH = 6;
-    const int PADDLE_SPEED = 350;
+    
+    //Initial Speed
+    const int BALL_X_SPEED = 300;
+    const int BALL_Y_SPEED = 300;
     
     
 
@@ -52,6 +61,8 @@ bool Game::Initialize(){
         
         ball_pos.x = WINDOW_WIDTH/2;
         ball_pos.y = WINDOW_HEIGHT/2;
+        ball_speed.x = BALL_X_SPEED;
+        ball_speed.y = BALL_Y_SPEED;
         pre_time = SDL_GetTicks();
         return true;
     }
@@ -157,6 +168,8 @@ void Game::UpdateGame(){
     if(delta_time>33)
         delta_time = 33;
     
+    
+    // Move Paddle
     switch (direction) {
         case 1:
             pad_pos.y -= static_cast<int>(static_cast<float>(delta_time) / 1000 * PADDLE_SPEED);
@@ -175,8 +188,54 @@ void Game::UpdateGame(){
     
     direction = MOVE_IDLE;
     
-    //SDL_Log("%i", delta_time);
     
+    // Move Ball
+    ball_pos.x += static_cast<int>(static_cast<float>(delta_time) / 1000 * ball_speed.x);
+    ball_pos.y += static_cast<int>(static_cast<float>(delta_time) / 1000 * ball_speed.y);
+    
+    //Detect bounce
+    if(ball_pos.x > WINDOW_WIDTH - WALL_THICKNESS){
+        ball_pos.x = WINDOW_WIDTH - WALL_THICKNESS;
+        bounce_count++;
+        ball_speed.x = -ball_speed.x;
+        if(ball_speed.x < 0)
+            ball_speed.x -= static_cast<int>(static_cast<float>(BALL_X_SPEED) / 20);
+        else
+            ball_speed.x += static_cast<int>(static_cast<float>(BALL_X_SPEED) / 20);
+    }
+    else if(ball_pos.x < WALL_THICKNESS*2 && ball_pos.y < pad_pos.y+PADDLE_HEIGHT/2 && ball_pos.y > pad_pos.y-PADDLE_HEIGHT/2){
+        ball_pos.x = WALL_THICKNESS*2;
+        bounce_count++;
+        ball_speed.x = -ball_speed.x;
+        if(ball_speed.x < 0)
+            ball_speed.x -= static_cast<int>(static_cast<float>(BALL_X_SPEED) / 20);
+        else
+            ball_speed.x += static_cast<int>(static_cast<float>(BALL_X_SPEED) / 20);
+    }
+    
+    if(ball_pos.y > WINDOW_HEIGHT - WALL_THICKNESS){
+        ball_pos.y = WINDOW_HEIGHT - WALL_THICKNESS;
+        bounce_count++;
+        ball_speed.y = -ball_speed.y;
+        if(ball_speed.y < 0)
+            ball_speed.y -= static_cast<int>(static_cast<float>(BALL_Y_SPEED) / 20);
+        else
+            ball_speed.y += static_cast<int>(static_cast<float>(BALL_Y_SPEED) / 20);
+    }
+    else if(ball_pos.y < WALL_THICKNESS){
+        ball_pos.y = WALL_THICKNESS;
+        bounce_count++;
+        ball_speed.y = -ball_speed.y;
+        if(ball_speed.y < 0)
+            ball_speed.y -= static_cast<int>(static_cast<float>(BALL_Y_SPEED) / 20);
+        else
+            ball_speed.y += static_cast<int>(static_cast<float>(BALL_Y_SPEED) / 20);
+    }
+    
+    //Detect if lost
+    if(ball_pos.x < 0){
+        isRunning = false;
+    }
 }
 
 #endif
