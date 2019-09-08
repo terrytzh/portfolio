@@ -18,9 +18,17 @@ protected:
     SDL_Window* window;
     SDL_Renderer* renderer;
     bool isRunning;
+    unsigned int pre_time = 0;
     
-    SDL_Point pad_pos;
-    SDL_Point ball_pos;
+    
+    const int MOVE_IDLE = 0;
+    const int MOVE_UP = 1;
+    const int MOVE_DOWN = 2;
+    int direction = 0;
+    
+    
+    SDL_Point pad_pos = SDL_Point();
+    SDL_Point ball_pos = SDL_Point();
     
     const int WALL_THICKNESS = 20;
     const int WINDOW_WIDTH = 1024;
@@ -28,6 +36,7 @@ protected:
     const int PADDLE_HEIGHT = 100;
     const int PADDLE_WIDTH = 20;
     const int BALL_WIDTH = 6;
+    const int PADDLE_SPEED = 350;
     
     
 
@@ -36,15 +45,14 @@ protected:
 
 bool Game::Initialize(){
     if(SDL_Init(SDL_INIT_AUDIO|SDL_INIT_VIDEO) == 0){
-        window = SDL_CreateWindow("MAIN_GAME_WINDOW", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+        window = SDL_CreateWindow("PONG", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
-        pad_pos = SDL_Point();
         pad_pos.x = PADDLE_WIDTH*3/2;
         pad_pos.y = WINDOW_HEIGHT/2;
         
-        ball_pos = SDL_Point();
         ball_pos.x = WINDOW_WIDTH/2;
         ball_pos.y = WINDOW_HEIGHT/2;
+        pre_time = SDL_GetTicks();
         return true;
     }
     else
@@ -82,6 +90,12 @@ void Game::ProcessInput(){
     const Uint8* state = SDL_GetKeyboardState(NULL);
     if(state[SDL_SCANCODE_ESCAPE]){
         isRunning = false;
+    }
+    else if (state[SDL_SCANCODE_UP]){
+        direction = MOVE_UP;
+    }
+    else if (state[SDL_SCANCODE_DOWN]){
+        direction = MOVE_DOWN;
     }
 }
 
@@ -131,6 +145,37 @@ void Game::GenerateOutput(){
 }
 
 void Game::UpdateGame(){
+    unsigned int delta_time;
+    unsigned int current_time;
+    do{
+        current_time = SDL_GetTicks();
+        delta_time = current_time - pre_time;
+    }
+    while(delta_time < 16);
+    pre_time = current_time;
+    
+    if(delta_time>33)
+        delta_time = 33;
+    
+    switch (direction) {
+        case 1:
+            pad_pos.y -= static_cast<int>(static_cast<float>(delta_time) / 1000 * PADDLE_SPEED);
+            break;
+        
+        case 2:
+            pad_pos.y += static_cast<int>(static_cast<float>(delta_time) / 1000 * PADDLE_SPEED);
+            
+        default:
+            break;
+    }
+    if(pad_pos.y < PADDLE_HEIGHT/2+WALL_THICKNESS)
+        pad_pos.y = PADDLE_HEIGHT/2+WALL_THICKNESS;
+    else if(pad_pos.y > WINDOW_HEIGHT-WALL_THICKNESS-PADDLE_HEIGHT/2)
+        pad_pos.y = WINDOW_HEIGHT-WALL_THICKNESS-PADDLE_HEIGHT/2;
+    
+    direction = MOVE_IDLE;
+    
+    //SDL_Log("%i", delta_time);
     
 }
 
