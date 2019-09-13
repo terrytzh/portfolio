@@ -7,11 +7,16 @@
 //
 
 #include "Game.h"
+#include "Actor.h"
+#include "SpriteComponent.h"
 
 bool Game::Initialize(){
     if(SDL_Init(SDL_INIT_AUDIO|SDL_INIT_VIDEO) == 0){
-        window = SDL_CreateWindow("PONG", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+        window = SDL_CreateWindow("MAIN_WINDOW", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
+        IMG_Init(IMG_INIT_PNG);
+        isRunning = true;
+        LoadData();
         pre_time = SDL_GetTicks();
         return true;
     }
@@ -20,6 +25,8 @@ bool Game::Initialize(){
 }
 
 void Game::Shutdown(){
+    UnloadData();
+    IMG_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -47,6 +54,7 @@ void Game::ProcessInput(){
         }
     }
     
+    //Process Keyboard Input
     const Uint8* state = SDL_GetKeyboardState(NULL);
     if(state[SDL_SCANCODE_ESCAPE]){
         isRunning = false;
@@ -57,6 +65,11 @@ void Game::ProcessInput(){
     else if (state[SDL_SCANCODE_DOWN]){
         direction = MOVE_DOWN;
     }
+    
+    std::vector<Actor*> temp = actors;
+    for(std::vector<Actor*>::iterator i = temp.begin(); i != temp.end(); i++)
+        (*i)->ProcessInput(state);
+    
 }
 
 void Game::GenerateOutput(){
@@ -86,6 +99,10 @@ void Game::GenerateOutput(){
     SDL_RenderFillRect(renderer, &r_right);
     SDL_RenderFillRect(renderer, &r_down);
     
+    for(std::vector<SpriteComponent*>::iterator i = sprites.begin(); i != sprites.end(); i++){
+        if((*i)->IsVisible())
+            (*i)->Draw(renderer);
+    }
     
     SDL_RenderPresent(renderer);
 }
@@ -103,6 +120,88 @@ void Game::UpdateGame(){
     if(delta_time>33)
         delta_time = 33;
     
+    std::vector<Actor*> a = actors;
+    for(std::vector<Actor*>::iterator i = a.begin(); i != a.end(); i++)
+        (*i)->Update(delta_time);
+    std::vector<Actor*> removeList;
+    for(std::vector<Actor*>::iterator i = a.begin(); i != a.end(); i++)
+        if((*i)->GetState() == ActorState::Destroy)
+            removeList.push_back(*i);
+    for(std::vector<Actor*>::iterator i = removeList.begin(); i != removeList.end(); i++)
+        delete *i;
+    
+}
+
+void Game::AddActor(class Actor* actor){
+    actors.push_back(actor);
+}
+
+void Game::RemoveActor(class Actor *actor){
+    std::vector<class Actor*>::iterator i = std::find(actors.begin(), actors.end(), actor);
+    if(i!=actors.end())
+        actors.erase(i);
+}
+
+void Game::AddSprite(class SpriteComponent* sprite){
+    sprites.push_back(sprite);
+    std::sort(sprites.begin(), sprites.end(), [](SpriteComponent* a, SpriteComponent* b){
+        return a->GetDrawOrder() < b->GetDrawOrder();
+    });
+}
+
+void Game::RemoveSprite(class SpriteComponent* sprite){
+    std::vector<SpriteComponent*>::iterator temp = std::find(sprites.begin(), sprites.end(), sprite);
+    if(temp != sprites.end())
+        sprites.erase(temp);
+}
+
+void Game::LoadData(){
+    Actor* ship = new Actor(this);
+    ship->SetPosition(Vector2(WINDOW_WIDTH/2,WINDOW_HEIGHT/2));
+    SpriteComponent* s1 = new SpriteComponent(ship);
+    s1->SetTexture(GetTexture("Assets/Ship.png"));
+    
+    Actor* laser = new Actor(this);
+    laser->SetPosition(Vector2(100,200));
+    SpriteComponent* s2 = new SpriteComponent(laser);
+    s2->SetTexture(GetTexture("Assets/Laser.png"));
+    
+    Actor* thrust = new Actor(this);
+    thrust->SetPosition(Vector2(200,200));
+    thrust->SetRotation(Math::PiOver2);
+    SpriteComponent* s3 = new SpriteComponent(thrust);
+    s3->SetTexture(GetTexture("Assets/ShipThrust.png"));
+    
+    Actor* stars = new Actor(this);
+    stars->SetPosition(Vector2(512,384));
+    SpriteComponent* s4 = new SpriteComponent(stars,0);
+    s4->SetTexture(GetTexture("Assets/Stars.png"));
+    
+}
+
+void Game::UnloadData(){
+    while(!actors.empty())
+        delete actors.back();
+    for(std::unordered_map<std::string, SDL_Texture*>::iterator i = texture_map.begin(); i != texture_map.end(); i++)
+        SDL_DestroyTexture((*i).second);
+    texture_map.clear();
+}
+
+SDL_Texture* Game::GetTexture(std::string filename){
+    if(texture_map.find(filename) == texture_map.end()){
+        SDL_Surface* sur  = IMG_Load(filename.c_str());
+        if(sur == nullptr){
+            SDL_Log("[ERROR] Failed to load %s", filename.c_str());
+            return nullptr;
+        }
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, sur);
+        SDL_FreeSurface(sur);
+        texture_map.insert(std::pair<std::string, SDL_Texture*>(filename, texture));
+        return texture;
+    }
+    else{
+        return texture_map[filename];
+    }
 }
 
 // TODO

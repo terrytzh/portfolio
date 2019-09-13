@@ -3,6 +3,7 @@
 #include <SDL/SDL_stdinc.h>
 #include "Math.h"
 
+
 enum class ActorState
 {
 	Active,

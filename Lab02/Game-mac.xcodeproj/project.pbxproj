@@ -14,6 +14,8 @@
 		92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92924F9A1EDF6DC800A740A7 /* Game.cpp */; };
 		92D324FD1B697428005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FC1B697428005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		9694DFD7232B18CE0076E11A /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFD6232B18CE0076E11A /* MoveComponent.cpp */; };
+		9694DFDA232B18E50076E11A /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFD9232B18E50076E11A /* SpriteComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		92D324FC1B697428005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		9694DFD6232B18CE0076E11A /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cpp; sourceTree = "<group>"; };
+		9694DFD8232B18DD0076E11A /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
+		9694DFD9232B18E50076E11A /* SpriteComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteComponent.cpp; sourceTree = "<group>"; };
+		9694DFDB232B18EB0076E11A /* SpriteComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,12 @@
 				927612BE1F466FA50069B824 /* Actor.h */,
 				927612BF1F466FA50069B824 /* Component.cpp */,
 				927612C01F466FA50069B824 /* Component.h */,
-				92924F9A1EDF6DC800A740A7 /* Game.cpp */,
 				92924F9B1EDF6DC800A740A7 /* Game.h */,
+				92924F9A1EDF6DC800A740A7 /* Game.cpp */,
+				9694DFDB232B18EB0076E11A /* SpriteComponent.h */,
+				9694DFD9232B18E50076E11A /* SpriteComponent.cpp */,
+				9694DFD8232B18DD0076E11A /* MoveComponent.h */,
+				9694DFD6232B18CE0076E11A /* MoveComponent.cpp */,
 				92924F981EDF6AC900A740A7 /* Main.cpp */,
 				927612C11F466FA50069B824 /* Math.cpp */,
 				927612C21F466FA50069B824 /* Math.h */,
@@ -145,6 +155,8 @@
 			files = (
 				927612C31F466FA50069B824 /* Actor.cpp in Sources */,
 				927612C41F466FA50069B824 /* Component.cpp in Sources */,
+				9694DFD7232B18CE0076E11A /* MoveComponent.cpp in Sources */,
+				9694DFDA232B18E50076E11A /* SpriteComponent.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
 				927612C51F466FA50069B824 /* Math.cpp in Sources */,
