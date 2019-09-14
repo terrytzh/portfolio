@@ -9,9 +9,14 @@
 #include "Game.h"
 #include "Actor.h"
 #include "SpriteComponent.h"
+#include "MoveComponent.h"
+#include "Ship.h"
+#include "Asteroid.h"
+#include "Random.h"
 
 bool Game::Initialize(){
     if(SDL_Init(SDL_INIT_AUDIO|SDL_INIT_VIDEO) == 0){
+        Random::Init();
         window = SDL_CreateWindow("MAIN_WINDOW", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
         IMG_Init(IMG_INIT_PNG);
@@ -108,17 +113,19 @@ void Game::GenerateOutput(){
 }
 
 void Game::UpdateGame(){
-    unsigned int delta_time;
+    unsigned int temp;
     unsigned int current_time;
     do{
         current_time = SDL_GetTicks();
-        delta_time = current_time - pre_time;
+        temp = current_time - pre_time;
     }
-    while(delta_time < 16);
+    while(temp < 16);
     pre_time = current_time;
     
-    if(delta_time>33)
-        delta_time = 33;
+    if(temp>33)
+        temp = 33;
+    
+    float delta_time = static_cast<float>(temp) / 1000.0;
     
     std::vector<Actor*> a = actors;
     for(std::vector<Actor*>::iterator i = a.begin(); i != a.end(); i++)
@@ -155,28 +162,32 @@ void Game::RemoveSprite(class SpriteComponent* sprite){
         sprites.erase(temp);
 }
 
+void Game::AddAsteroid(class Asteroid *as){
+    asteroids.push_back(as);
+}
+
+void Game::RemoveAsteroid(class Asteroid *as){
+    std::vector<class Asteroid*>::iterator i = std::find(asteroids.begin(), asteroids.end(), as);
+    if(i!=asteroids.end())
+        asteroids.erase(i);
+}
+
 void Game::LoadData(){
-    Actor* ship = new Actor(this);
-    ship->SetPosition(Vector2(WINDOW_WIDTH/2,WINDOW_HEIGHT/2));
-    SpriteComponent* s1 = new SpriteComponent(ship);
-    s1->SetTexture(GetTexture("Assets/Ship.png"));
-    
-    Actor* laser = new Actor(this);
-    laser->SetPosition(Vector2(100,200));
-    SpriteComponent* s2 = new SpriteComponent(laser);
-    s2->SetTexture(GetTexture("Assets/Laser.png"));
-    
-    Actor* thrust = new Actor(this);
-    thrust->SetPosition(Vector2(200,200));
-    thrust->SetRotation(Math::PiOver2);
-    SpriteComponent* s3 = new SpriteComponent(thrust);
-    s3->SetTexture(GetTexture("Assets/ShipThrust.png"));
-    
+    // Background
     Actor* stars = new Actor(this);
     stars->SetPosition(Vector2(512,384));
     SpriteComponent* s4 = new SpriteComponent(stars,0);
     s4->SetTexture(GetTexture("Assets/Stars.png"));
     
+    Ship* s = new Ship(this);
+    s->SetPosition(Vector2(WINDOW_WIDTH/2, WINDOW_HEIGHT/2));
+    s->move->SetAngularSpeed(0);
+    s->move->SetForwardSpeed(100);
+    
+    Asteroid* a;
+    for(int i = 0; i < 10; i++){
+        a = new Asteroid(this);
+    }
 }
 
 void Game::UnloadData(){

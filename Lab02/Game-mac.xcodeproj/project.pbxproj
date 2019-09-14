@@ -16,6 +16,10 @@
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
 		9694DFD7232B18CE0076E11A /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFD6232B18CE0076E11A /* MoveComponent.cpp */; };
 		9694DFDA232B18E50076E11A /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFD9232B18E50076E11A /* SpriteComponent.cpp */; };
+		9694DFDE232B89830076E11A /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFDC232B89830076E11A /* Ship.cpp */; };
+		9694DFE1232C353A0076E11A /* Asteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFDF232C353A0076E11A /* Asteroid.cpp */; };
+		9694DFE4232C366C0076E11A /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFE3232C366B0076E11A /* Random.cpp */; };
+		9694DFE7232C3C3B0076E11A /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9694DFE5232C3C3B0076E11A /* Laser.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,14 @@
 		9694DFD8232B18DD0076E11A /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
 		9694DFD9232B18E50076E11A /* SpriteComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteComponent.cpp; sourceTree = "<group>"; };
 		9694DFDB232B18EB0076E11A /* SpriteComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
+		9694DFDC232B89830076E11A /* Ship.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ship.cpp; sourceTree = "<group>"; };
+		9694DFDD232B89830076E11A /* Ship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
+		9694DFDF232C353A0076E11A /* Asteroid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Asteroid.cpp; sourceTree = "<group>"; };
+		9694DFE0232C353A0076E11A /* Asteroid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Asteroid.h; sourceTree = "<group>"; };
+		9694DFE2232C366B0076E11A /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		9694DFE3232C366B0076E11A /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		9694DFE5232C3C3B0076E11A /* Laser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Laser.cpp; sourceTree = "<group>"; };
+		9694DFE6232C3C3B0076E11A /* Laser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +65,14 @@
 		92E46DEE1B634EA30035CD21 = {
 			isa = PBXGroup;
 			children = (
+				9694DFE3232C366B0076E11A /* Random.cpp */,
+				9694DFE2232C366B0076E11A /* Random.h */,
+				9694DFE5232C3C3B0076E11A /* Laser.cpp */,
+				9694DFE6232C3C3B0076E11A /* Laser.h */,
+				9694DFDF232C353A0076E11A /* Asteroid.cpp */,
+				9694DFE0232C353A0076E11A /* Asteroid.h */,
+				9694DFDC232B89830076E11A /* Ship.cpp */,
+				9694DFDD232B89830076E11A /* Ship.h */,
 				927612BD1F466FA50069B824 /* Actor.cpp */,
 				927612BE1F466FA50069B824 /* Actor.h */,
 				927612BF1F466FA50069B824 /* Component.cpp */,
@@ -158,7 +178,11 @@
 				9694DFD7232B18CE0076E11A /* MoveComponent.cpp in Sources */,
 				9694DFDA232B18E50076E11A /* SpriteComponent.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
+				9694DFE7232C3C3B0076E11A /* Laser.cpp in Sources */,
+				9694DFDE232B89830076E11A /* Ship.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
+				9694DFE1232C353A0076E11A /* Asteroid.cpp in Sources */,
+				9694DFE4232C366C0076E11A /* Random.cpp in Sources */,
 				927612C51F466FA50069B824 /* Math.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
