@@ -19,10 +19,28 @@ bool Game::Initialize(){
         ball_pos.y = WINDOW_HEIGHT/2;
         ball_speed.x = BALL_X_SPEED;
         ball_speed.y = BALL_Y_SPEED;
+        
+        r_up.x = 0;
+        r_up.y = 0;
+        r_up.w = WINDOW_WIDTH;
+        r_up.h = WALL_THICKNESS;
+        
+        r_right.x = WINDOW_WIDTH-WALL_THICKNESS;
+        r_right.y = 0;
+        r_right.w = WALL_THICKNESS;
+        r_right.h = WINDOW_HEIGHT;
+        
+        r_down.x = 0;
+        r_down.y = WINDOW_HEIGHT-WALL_THICKNESS;
+        r_down.w = WINDOW_WIDTH;
+        r_down.h = WALL_THICKNESS;
+        
+        isRunning = true;
         pre_time = SDL_GetTicks();
         return true;
     }
     else
+        Shutdown();
         return false;
 }
 
@@ -72,22 +90,6 @@ void Game::GenerateOutput(){
     
     //Draw Wall
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    
-    SDL_Rect r_up, r_right, r_down;
-    r_up.x = 0;
-    r_up.y = 0;
-    r_up.w = WINDOW_WIDTH;
-    r_up.h = WALL_THICKNESS;
-    
-    r_right.x = WINDOW_WIDTH-WALL_THICKNESS;
-    r_right.y = 0;
-    r_right.w = WALL_THICKNESS;
-    r_right.h = WINDOW_HEIGHT;
-    
-    r_down.x = 0;
-    r_down.y = WINDOW_HEIGHT-WALL_THICKNESS;
-    r_down.w = WINDOW_WIDTH;
-    r_down.h = WALL_THICKNESS;
     
     SDL_RenderFillRect(renderer, &r_up);
     SDL_RenderFillRect(renderer, &r_right);

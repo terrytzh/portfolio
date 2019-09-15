@@ -34,6 +34,8 @@ protected:
     SDL_Point pad_pos = SDL_Point();
     SDL_Point ball_pos = SDL_Point();
     SDL_Point ball_speed = SDL_Point();
+    SDL_Rect r_up, r_right, r_down;
+    
     
     const int WALL_THICKNESS = 20;
     const int WINDOW_WIDTH = 1024;
