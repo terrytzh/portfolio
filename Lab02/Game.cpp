@@ -26,6 +26,7 @@ bool Game::Initialize(){
         return true;
     }
     else
+        Shutdown();
         return false;
 }
 
@@ -84,26 +85,6 @@ void Game::GenerateOutput(){
     //Draw Wall
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     
-    SDL_Rect r_up, r_right, r_down;
-    r_up.x = 0;
-    r_up.y = 0;
-    r_up.w = WINDOW_WIDTH;
-    r_up.h = WALL_THICKNESS;
-    
-    r_right.x = WINDOW_WIDTH-WALL_THICKNESS;
-    r_right.y = 0;
-    r_right.w = WALL_THICKNESS;
-    r_right.h = WINDOW_HEIGHT;
-    
-    r_down.x = 0;
-    r_down.y = WINDOW_HEIGHT-WALL_THICKNESS;
-    r_down.w = WINDOW_WIDTH;
-    r_down.h = WALL_THICKNESS;
-    
-    SDL_RenderFillRect(renderer, &r_up);
-    SDL_RenderFillRect(renderer, &r_right);
-    SDL_RenderFillRect(renderer, &r_down);
-    
     for(std::vector<SpriteComponent*>::iterator i = sprites.begin(); i != sprites.end(); i++){
         if((*i)->IsVisible())
             (*i)->Draw(renderer);
@@ -125,7 +106,7 @@ void Game::UpdateGame(){
     if(temp>33)
         temp = 33;
     
-    float delta_time = static_cast<float>(temp) / 1000.0;
+    float delta_time = static_cast<float>(temp) / 1000.0f;
     
     std::vector<Actor*> a = actors;
     for(std::vector<Actor*>::iterator i = a.begin(); i != a.end(); i++)

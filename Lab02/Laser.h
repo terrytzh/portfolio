@@ -21,7 +21,10 @@ public:
 protected:
     void OnUpdate(float deltaTime) override;
     float spawn_time;
+    
     const float MAXIMUM_LIFETIME = 1.0f;
+    const float LASER_SPEED = 400.0f;
+    const float COLLIDE_RANGE = 70.0f;
 };
 
 #endif /* Laser_hpp */

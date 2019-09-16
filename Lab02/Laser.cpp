@@ -16,7 +16,7 @@ Laser::Laser(Game* g) : Actor(g) {
     sprite = new SpriteComponent(this,90);
     sprite->SetTexture(mGame->GetTexture("Assets/Laser.png"));
     move = new MoveComponent(this);
-    move->SetForwardSpeed(400.0f);
+    move->SetForwardSpeed(LASER_SPEED);
     spawn_time = 0.0f;
 }
 
@@ -26,7 +26,7 @@ void Laser::OnUpdate(float deltaTime) {
         this->SetState(ActorState::Destroy);
     
     for(std::vector<class Asteroid*>::iterator i = mGame->asteroids.begin(); i != mGame->asteroids.end(); i++){
-        if((this->mPosition-(*i)->GetPosition()).Length() < 70.0f){
+        if((this->mPosition-(*i)->GetPosition()).Length() < COLLIDE_RANGE){
             this->SetState(ActorState::Destroy);
             (*i)->SetState(ActorState::Destroy);
         }

@@ -10,8 +10,6 @@
 #include "Actor.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
-#include "Ship.h"
-#include "Asteroid.h"
 #include "Random.h"
 
 bool Game::Initialize(){
@@ -78,31 +76,12 @@ void Game::ProcessInput(){
 }
 
 void Game::GenerateOutput(){
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
     SDL_RenderClear(renderer);
     
     //Draw Wall
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     
-    SDL_Rect r_up, r_right, r_down;
-    r_up.x = 0;
-    r_up.y = 0;
-    r_up.w = WINDOW_WIDTH;
-    r_up.h = WALL_THICKNESS;
-    
-    r_right.x = WINDOW_WIDTH-WALL_THICKNESS;
-    r_right.y = 0;
-    r_right.w = WALL_THICKNESS;
-    r_right.h = WINDOW_HEIGHT;
-    
-    r_down.x = 0;
-    r_down.y = WINDOW_HEIGHT-WALL_THICKNESS;
-    r_down.w = WINDOW_WIDTH;
-    r_down.h = WALL_THICKNESS;
-    
-    SDL_RenderFillRect(renderer, &r_up);
-    SDL_RenderFillRect(renderer, &r_right);
-    SDL_RenderFillRect(renderer, &r_down);
     
     for(std::vector<SpriteComponent*>::iterator i = sprites.begin(); i != sprites.end(); i++){
         if((*i)->IsVisible())
@@ -162,32 +141,12 @@ void Game::RemoveSprite(class SpriteComponent* sprite){
         sprites.erase(temp);
 }
 
-void Game::AddAsteroid(class Asteroid *as){
-    asteroids.push_back(as);
-}
-
-void Game::RemoveAsteroid(class Asteroid *as){
-    std::vector<class Asteroid*>::iterator i = std::find(asteroids.begin(), asteroids.end(), as);
-    if(i!=asteroids.end())
-        asteroids.erase(i);
-}
 
 void Game::LoadData(){
-    // Background
-    Actor* stars = new Actor(this);
-    stars->SetPosition(Vector2(512,384));
-    SpriteComponent* s4 = new SpriteComponent(stars,0);
-    s4->SetTexture(GetTexture("Assets/Stars.png"));
-    
-    Ship* s = new Ship(this);
-    s->SetPosition(Vector2(WINDOW_WIDTH/2, WINDOW_HEIGHT/2));
-    s->move->SetAngularSpeed(0);
-    s->move->SetForwardSpeed(100);
-    
-    Asteroid* a;
-    for(int i = 0; i < 10; i++){
-        a = new Asteroid(this);
-    }
+    Actor* background = new Actor(this);
+    background->SetPosition(Vector2(WINDOW_WIDTH/2, WINDOW_HEIGHT/2));
+    SpriteComponent* background_texture = new SpriteComponent(background);
+    background_texture->SetTexture(GetTexture("Assets/Background.png"));
 }
 
 void Game::UnloadData(){

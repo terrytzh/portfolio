@@ -12,10 +12,10 @@
 
 int main(int argc, char** argv)
 {
-    Game* g = new Game();
-    if(g->Initialize()){
-        g->RunLoop();
-        g->Shutdown();
+    Game g = Game();
+    if(g.Initialize()){
+        g.RunLoop();
+        g.Shutdown();
     }
 	return 0;
 }

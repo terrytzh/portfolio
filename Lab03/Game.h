@@ -29,7 +29,6 @@ public:
     
     std::vector<class Actor*> actors;
     std::vector<class SpriteComponent*> sprites;
-    std::vector<class Asteroid*> asteroids;
     
     const static int WALL_THICKNESS = 20;
     const static int WINDOW_WIDTH = 1024;
