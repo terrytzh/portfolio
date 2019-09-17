@@ -15,7 +15,7 @@ int main(int argc, char** argv)
     Game g = Game();
     if(g.Initialize()){
         g.RunLoop();
-        g.Shutdown();
     }
+    g.Shutdown();
 	return 0;
 }
