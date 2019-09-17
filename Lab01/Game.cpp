@@ -40,7 +40,6 @@ bool Game::Initialize(){
         return true;
     }
     else
-        Shutdown();
         return false;
 }
 
