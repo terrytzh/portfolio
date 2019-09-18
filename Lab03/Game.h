@@ -8,6 +8,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <fstream>
 
 class Game{
 public:
@@ -30,9 +31,10 @@ public:
     std::vector<class Actor*> actors;
     std::vector<class SpriteComponent*> sprites;
     
-    const static int WALL_THICKNESS = 20;
-    const static int WINDOW_WIDTH = 1024;
-    const static int WINDOW_HEIGHT = 768;
+    constexpr const static float WALL_THICKNESS = 32.0f;
+    constexpr const static float WINDOW_WIDTH = 1024.0f;
+    constexpr const static float WINDOW_HEIGHT = 768.0f;
+    
 
 protected:
     void ProcessInput();

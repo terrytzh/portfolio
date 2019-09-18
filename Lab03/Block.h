@@ -19,9 +19,12 @@ enum class BlockType{
 
 class Block : public Actor {
 public:
-    Block(class Game* g, BlockType btype);
+    Block(class Game* g, char btype);
     BlockType GetType(){return type;}
     void SetType(BlockType btype){type = btype;}
+    
+    class SpriteComponent* sprite;
+    class MoveComponent* mc;
     
 protected:
     BlockType type;

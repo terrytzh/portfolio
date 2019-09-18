@@ -8,6 +8,9 @@
 
 #include "Game.h"
 #include "Actor.h"
+#include "Block.h"
+#include "Paddle.h"
+#include "Ball.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
 #include "Random.h"
@@ -147,6 +150,34 @@ void Game::LoadData(){
     background->SetPosition(Vector2(WINDOW_WIDTH/2, WINDOW_HEIGHT/2));
     SpriteComponent* background_texture = new SpriteComponent(background);
     background_texture->SetTexture(GetTexture("Assets/Background.png"));
+    
+    Paddle* paddle = new Paddle(this);
+    paddle->SetPosition(Vector2(WINDOW_WIDTH/2, 700.0f));
+    
+    Ball* ball = new Ball(this);
+    ball->SetPosition(Vector2(WINDOW_WIDTH/2.0f, 600.0f));
+    
+    
+    //Load Map
+    std::ifstream in("map.txt");
+    if(in){
+        SDL_Log("Initialized map.txt");
+        std::string line;
+        Vector2 position(64.0f,48.0f);
+        while(getline(in,line)){
+            for(auto b : line){
+                if(b != '.'){
+                    SDL_Log("Received blocktype %c", b);
+                    Block* block = new Block(this, b);
+                    block->SetPosition(position);
+                    SDL_Log("position: %f, %f", position.x, position.y);
+                }
+                position.x += 64.0f;
+            }
+            position.y += 32.0f;
+            position.x = 64.0f;
+        }
+    }
 }
 
 void Game::UnloadData(){
