@@ -23,13 +23,14 @@ public:
     void AddSprite(class SpriteComponent* sprite);
     void RemoveSprite(class SpriteComponent* sprite);
     
-    void AddAsteroid(class Asteroid* as);
-    void RemoveAsteroid(class Asteroid* as);
+    void AddBlock(class Block* block);
+    void RemoveBlock(class Block* block);
+    std::vector<class Block*> GetBlocks(){return blocks;}
+    
+    class Paddle* GetPaddle(){return paddle;}
     
     SDL_Texture* GetTexture(std::string filename);
-    
-    std::vector<class Actor*> actors;
-    std::vector<class SpriteComponent*> sprites;
+
     
     constexpr const static float WALL_THICKNESS = 32.0f;
     constexpr const static float WINDOW_WIDTH = 1024.0f;
@@ -47,6 +48,11 @@ protected:
     SDL_Window* window;
     SDL_Renderer* renderer;
     std::unordered_map<std::string, SDL_Texture*> texture_map;
+    
+    std::vector<class Actor*> actors;
+    std::vector<class SpriteComponent*> sprites;
+    std::vector<class Block*> blocks;
+    class Paddle* paddle;
     
     bool isRunning;
     

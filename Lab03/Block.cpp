@@ -11,8 +11,10 @@
 #include "Game.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
+#include "CollisionComponent.h"
 
 Block::Block(Game* g, char btype) : Actor(g) {
+    g->AddBlock(this);
     sprite = new SpriteComponent(this);
     switch (btype) {
         case 'A':
@@ -49,4 +51,10 @@ Block::Block(Game* g, char btype) : Actor(g) {
             break;
     }
     mc = new MoveComponent(this);
+    cc = new CollisionComponent(this);
+    cc->SetSize(BLOCK_WIDTH, BLOCK_HEIGHT);
+}
+
+Block::~Block(){
+    mGame->RemoveBlock(this);
 }

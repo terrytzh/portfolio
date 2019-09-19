@@ -1,4 +1,5 @@
 #pragma once
+#include "SDL/SDL.h"
 #include "Component.h"
 #include "Math.h"
 

@@ -20,13 +20,21 @@ enum class BlockType{
 class Block : public Actor {
 public:
     Block(class Game* g, char btype);
+    ~Block();
     BlockType GetType(){return type;}
     void SetType(BlockType btype){type = btype;}
     
     class SpriteComponent* sprite;
     class MoveComponent* mc;
+    class CollisionComponent* cc;
+    
+    float GetBlockWidth(){return BLOCK_WIDTH;}
+    float GetBlockHeight(){return BLOCK_HEIGHT;}
     
 protected:
     BlockType type;
+    
+    const float BLOCK_WIDTH = 64.0f;
+    const float BLOCK_HEIGHT = 32.0f;
 };
 #endif /* Block_hpp */

@@ -9,12 +9,15 @@
 #include "Paddle.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
+#include "CollisionComponent.h"
 #include "Game.h"
 
 Paddle::Paddle(Game* g) : Actor(g){
     sprite = new SpriteComponent(this);
     sprite->SetTexture(mGame->GetTexture("Assets/Paddle.png"));
     mc = new MoveComponent(this);
+    cc = new CollisionComponent(this);
+    cc->SetSize(PADDLE_WIDTH, PADDLE_HEIGHT);
 }
 
 void Paddle::OnProcessInput(const Uint8* keyState){
@@ -31,7 +34,6 @@ void Paddle::OnProcessInput(const Uint8* keyState){
 
 void Paddle::OnUpdate(float deltaTime){
     
-    SDL_Log("Position x: %f", mPosition.x);
     
     if(mPosition.x < PADDLE_WIDTH/2.0f + mGame->WALL_THICKNESS){
         mPosition.x = PADDLE_WIDTH/2.0f + mGame->WALL_THICKNESS;

@@ -16,14 +16,14 @@
 class BallMove : public MoveComponent{
 public:
     BallMove(class Actor* owner);
+    class Ball* ball;
     
     void Update(float deltaTime) override;
     
     Vector2 GetVelocity(){return velocity;}
     void SetVelocity(Vector2 v){velocity = v;}
     
-    const Vector2 BALL_INITIAL_VELOCITY = Vector2(250, -250);
-    const float BALL_RADIUS = 11.0f;
+    
     
 protected:
     Vector2 velocity;

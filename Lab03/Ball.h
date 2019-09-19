@@ -17,8 +17,14 @@ public:
     Ball(class Game* g);
     class SpriteComponent* sprite;
     class BallMove* bm;
-
-protected:
+    class CollisionComponent* cc;
+    
+    class Vector2 GetVelocity(){return BALL_INITIAL_VELOCITY;}
+    float GetRadius(){return BALL_RADIUS;}
+    
+    protected:
+    const Vector2 BALL_INITIAL_VELOCITY = Vector2(250, -250);
+    const float BALL_RADIUS = 10.0f;
     
 };
 
