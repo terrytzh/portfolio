@@ -47,8 +47,9 @@ void BallMove::Update(float deltaTime){
             velocity = Vector2::Reflect(velocity, Vector2(0,-1));
     }
     
-    Vector2 offset(0,0);
+    Vector2 offset;
     for(auto block : mOwner->GetGame()->GetBlocks()){
+        offset = Vector2(0,0);
         CollSide cs = ball->cc->GetMinOverlap(block->cc, offset);
         if(cs == CollSide::Left || cs == CollSide::Right){
             velocity.x *= -1.0f;
