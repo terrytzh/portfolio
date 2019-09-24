@@ -33,8 +33,8 @@ public:
 
     
     constexpr const static float WALL_THICKNESS = 32.0f;
-    constexpr const static float WINDOW_WIDTH = 1024.0f;
-    constexpr const static float WINDOW_HEIGHT = 768.0f;
+    constexpr const static int WINDOW_WIDTH = 1024;
+    constexpr const static int WINDOW_HEIGHT = 768;
     
 
 protected:

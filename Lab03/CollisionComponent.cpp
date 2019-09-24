@@ -19,13 +19,13 @@ CollisionComponent::~CollisionComponent()
 
 bool CollisionComponent::Intersect(const CollisionComponent* other)
 {
-	if(GetMax().x <= other->GetMin().x)
+	if(GetMax().x < other->GetMin().x)
         return false;
-    else if(GetMin().x >= other->GetMax().x)
+    else if(GetMin().x > other->GetMax().x)
         return false;
-    else if(GetMax().y <= other->GetMin().y)
+    else if(GetMax().y < other->GetMin().y)
         return false;
-    else if(GetMin().y >= other->GetMax().y)
+    else if(GetMin().y > other->GetMax().y)
         return false;
     else{
         return true;
@@ -63,6 +63,7 @@ CollSide CollisionComponent::GetMinOverlap(
         dy1 = Math::Abs(other->GetMin().y - GetMax().y); //Up
         dy2 = Math::Abs(other->GetMax().y - GetMin().y); //Down
         
+        //Use vector to sort & find the minimum of the four floats
         std::vector<float> temp;
         temp.push_back(dx1);
         temp.push_back(dx2);
@@ -72,23 +73,24 @@ CollSide CollisionComponent::GetMinOverlap(
             return a < b;
         });
         
+        //Update offset & Give collision sides
         if(temp[0] == dx1){
-//            offset.x -= dx1;
+            offset.x -= dx1;
             SDL_Log("Left");
             return CollSide::Left;
         }
         else if(temp[0] == dx2){
-//            offset.x += dx2;
+            offset.x += dx2;
             SDL_Log("Right");
             return CollSide::Right;
         }
         else if(temp[0] == dy1){
-//            offset.y -= dy1;
+            offset.y -= dy1;
             SDL_Log("Top");
             return CollSide::Top;
         }
         else{
-//            offset.y += dy2;
+            offset.y += dy2;
             SDL_Log("Bottom");
             return CollSide::Bottom;
         }

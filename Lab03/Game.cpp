@@ -107,7 +107,7 @@ void Game::UpdateGame(){
     if(temp>33)
         temp = 33;
     
-    float delta_time = static_cast<float>(temp) / 1000.0;
+    float delta_time = static_cast<float>(temp) / 1000.0f;
     
     std::vector<Actor*> a = actors;
     for(std::vector<Actor*>::iterator i = a.begin(); i != a.end(); i++)
