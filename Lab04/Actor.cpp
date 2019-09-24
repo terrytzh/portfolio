@@ -10,17 +10,26 @@ Actor::Actor(Game* game)
 	,mScale(1.0f)
 	,mRotation(0.0f)
 {
-	// TODO
+    mGame->AddActor(this);
 }
 
 Actor::~Actor()
 {
-	// TODO
+    mGame->RemoveActor(this);
+    for(std::vector<class Component*>::iterator i = mComponents.begin(); i != mComponents.end(); i++)
+        delete *i;
+    
 }
 
 void Actor::Update(float deltaTime)
 {
-	// TODO
+    if(mState == ActorState::Active){
+        for(std::vector<Component*>::iterator i = mComponents.begin(); i != mComponents.end(); i++){
+            Component* temp = *i;
+            temp->Update(deltaTime);
+        }
+        this->OnUpdate(deltaTime);
+    }
 }
 
 void Actor::OnUpdate(float deltaTime)
@@ -29,7 +38,13 @@ void Actor::OnUpdate(float deltaTime)
 
 void Actor::ProcessInput(const Uint8* keyState)
 {
-	// TODO
+    if(mState == ActorState::Active){
+        for(std::vector<Component*>::iterator i = mComponents.begin(); i != mComponents.end(); i++){
+            Component* temp = *i;
+            temp->ProcessInput(keyState);
+        }
+        this->OnProcessInput(keyState);
+    }
 }
 
 void Actor::OnProcessInput(const Uint8* keyState)
