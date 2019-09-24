@@ -14,7 +14,7 @@
 
 
 enum class BlockType{
-    A,B,C,D,E,F
+    A,B,C,D,E,F,G,H,I
 };
 
 class Block : public Actor {
@@ -34,7 +34,7 @@ public:
 protected:
     BlockType type;
     
-    const float BLOCK_WIDTH = 64.0f;
+    const float BLOCK_WIDTH = 32.0f;
     const float BLOCK_HEIGHT = 32.0f;
 };
 #endif /* Block_hpp */

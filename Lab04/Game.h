@@ -27,14 +27,13 @@ public:
     void RemoveBlock(class Block* block);
     std::vector<class Block*> GetBlocks(){return blocks;}
     
-    class Paddle* GetPaddle(){return paddle;}
     
     SDL_Texture* GetTexture(std::string filename);
 
     
     constexpr const static float WALL_THICKNESS = 32.0f;
-    constexpr const static float WINDOW_WIDTH = 600.0f;
-    constexpr const static float WINDOW_HEIGHT = 448.0f;
+    constexpr const static int WINDOW_WIDTH = 600;
+    constexpr const static int WINDOW_HEIGHT = 448;
     
 
 protected:
@@ -52,7 +51,7 @@ protected:
     std::vector<class Actor*> actors;
     std::vector<class SpriteComponent*> sprites;
     std::vector<class Block*> blocks;
-    class Paddle* paddle;
+    class Player* player;
     
     bool isRunning;
     

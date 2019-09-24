@@ -19,13 +19,13 @@ CollisionComponent::~CollisionComponent()
 
 bool CollisionComponent::Intersect(const CollisionComponent* other)
 {
-	if(GetMax().x <= other->GetMin().x)
+	if(GetMax().x < other->GetMin().x)
         return false;
-    else if(GetMin().x >= other->GetMax().x)
+    else if(GetMin().x > other->GetMax().x)
         return false;
-    else if(GetMax().y <= other->GetMin().y)
+    else if(GetMax().y < other->GetMin().y)
         return false;
-    else if(GetMin().y >= other->GetMax().y)
+    else if(GetMin().y > other->GetMax().y)
         return false;
     else{
         return true;
@@ -73,23 +73,19 @@ CollSide CollisionComponent::GetMinOverlap(
         });
         
         if(temp[0] == dx1){
-//            offset.x -= dx1;
-            SDL_Log("Left");
+            offset.x = dx1;
             return CollSide::Left;
         }
         else if(temp[0] == dx2){
-//            offset.x += dx2;
-            SDL_Log("Right");
+            offset.x = -dx2;
             return CollSide::Right;
         }
         else if(temp[0] == dy1){
-//            offset.y -= dy1;
-            SDL_Log("Top");
+            offset.y = dy1;
             return CollSide::Top;
         }
         else{
-//            offset.y += dy2;
-            SDL_Log("Bottom");
+            offset.y = -dy2;
             return CollSide::Bottom;
         }
     }

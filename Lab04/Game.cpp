@@ -8,6 +8,7 @@
 
 #include "Game.h"
 #include "Actor.h"
+#include "Player.h"
 #include "Block.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
@@ -155,26 +156,30 @@ void Game::RemoveBlock(class Block *block){
 
 void Game::LoadData(){
     Actor* background = new Actor(this);
-    background->SetPosition(Vector2(WINDOW_WIDTH/2, WINDOW_HEIGHT/2));
+    background->SetPosition(Vector2(3392,224));
     SpriteComponent* background_texture = new SpriteComponent(background);
     background_texture->SetTexture(GetTexture("Assets/Background.png"));
     
     
     //Load Map
-    std::ifstream in("map.txt");
+    std::ifstream in("Assets/Level0.txt");
     if(in){
         std::string line;
-        Vector2 position(64.0f,48.0f);
+        Vector2 position(16.0f,16.0f);
         while(getline(in,line)){
             for(auto b : line){
-                if(b != '.'){
+                if(b == 'P'){
+                    player = new Player(this);
+                    player->SetPosition(position);
+                }
+                else if(b != '.'){
                     Block* block = new Block(this, b);
                     block->SetPosition(position);
                 }
-                position.x += 64.0f;
+                position.x += 32.0f;
             }
             position.y += 32.0f;
-            position.x = 64.0f;
+            position.x = 16.0f;
         }
     }
 }

@@ -46,6 +46,21 @@ Block::Block(Game* g, char btype) : Actor(g) {
             type = BlockType::F;
             sprite->SetTexture(mGame->GetTexture("Assets/BlockF.png"));
             break;
+            
+        case 'G':
+            type = BlockType::G;
+            sprite->SetTexture(mGame->GetTexture("Assets/BlockG.png"));
+            break;
+        
+        case 'H':
+            type = BlockType::H;
+            sprite->SetTexture(mGame->GetTexture("Assets/BlockH.png"));
+            break;
+            
+        case 'I':
+            type = BlockType::I;
+            sprite->SetTexture(mGame->GetTexture("Assets/BlockI.png"));
+            break;
         
         default:
             break;
