@@ -4,6 +4,8 @@
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include "SDL/SDL_mixer.h"
+#include "Math.h"
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -27,9 +29,21 @@ public:
     void RemoveBlock(class Block* block);
     std::vector<class Block*> GetBlocks(){return blocks;}
     
+    class Player* GetPlayer(){return player;}
+    
+    void AddEnemy(class Goomba* e);
+    void RemoveEnemy(class Goomba* e);
+    std::vector<class Goomba*> GetEnemies(){return enemies;}
+    
+    Vector2 GetCamPosition(){return camPosition;}
+    void SetCamPosition(Vector2 pos){camPosition = pos;}
+    
+    int GetBGChannel(){return bgmusic_channel;}
+    
     
     SDL_Texture* GetTexture(std::string filename);
-
+    
+    Mix_Chunk* GetSound(const std::string& filename);
     
     constexpr const static float WALL_THICKNESS = 32.0f;
     constexpr const static int WINDOW_WIDTH = 600;
@@ -47,11 +61,16 @@ protected:
     SDL_Window* window;
     SDL_Renderer* renderer;
     std::unordered_map<std::string, SDL_Texture*> texture_map;
+    std::unordered_map<std::string, Mix_Chunk*> mix_map;
     
     std::vector<class Actor*> actors;
     std::vector<class SpriteComponent*> sprites;
     std::vector<class Block*> blocks;
+    std::vector<class Goomba*> enemies;
     class Player* player;
+    Vector2 camPosition;
+    
+    int bgmusic_channel;
     
     bool isRunning;
     

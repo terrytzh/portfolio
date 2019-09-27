@@ -16,15 +16,21 @@
 class Player : public Actor {
 public:
     Player(class Game* g);
-    class SpriteComponent* sprite;
+    class AnimatedSprite* asprite;
     class CollisionComponent* cc;
     class PlayerMove* pm;
     
+    void SetIsDead(bool dead){isDead = dead;}
+    bool GetIsDead(){return isDead;}
+    
     
 protected:
+    void OnUpdate(float deltaTime) override;
+    
     const float PLAYER_WIDTH = 32.0f;
     const float PLAYER_HEIGHT = 32.0f;
     
+    bool isDead = false;
     
 };
 

@@ -9,7 +9,9 @@
 #include "Game.h"
 #include "Actor.h"
 #include "Player.h"
+#include "Goomba.h"
 #include "Block.h"
+#include "Spawner.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
 #include "Random.h"
@@ -20,6 +22,7 @@ bool Game::Initialize(){
         window = SDL_CreateWindow("MAIN_WINDOW", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
         IMG_Init(IMG_INIT_PNG);
+        Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
         isRunning = true;
         LoadData();
         pre_time = SDL_GetTicks();
@@ -153,16 +156,25 @@ void Game::RemoveBlock(class Block *block){
         blocks.erase(i);
 }
 
+void Game::AddEnemy(class Goomba *e){
+    enemies.push_back(e);
+}
+
+void Game::RemoveEnemy(class Goomba *e){
+    std::vector<Goomba*>::iterator i = std::find(enemies.begin(), enemies.end(), e);
+    if(i!=enemies.end())
+        enemies.erase(i);
+}
 
 void Game::LoadData(){
     Actor* background = new Actor(this);
     background->SetPosition(Vector2(3392,224));
     SpriteComponent* background_texture = new SpriteComponent(background);
     background_texture->SetTexture(GetTexture("Assets/Background.png"));
-    
+    bgmusic_channel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
     
     //Load Map
-    std::ifstream in("Assets/Level0.txt");
+    std::ifstream in("Assets/Level1.txt");
     if(in){
         std::string line;
         Vector2 position(16.0f,16.0f);
@@ -171,6 +183,10 @@ void Game::LoadData(){
                 if(b == 'P'){
                     player = new Player(this);
                     player->SetPosition(position);
+                }
+                else if(b == 'Y'){
+                    Spawner* s = new Spawner(this);
+                    s->SetPosition(position);
                 }
                 else if(b != '.'){
                     Block* block = new Block(this, b);
@@ -190,6 +206,8 @@ void Game::UnloadData(){
     for(std::unordered_map<std::string, SDL_Texture*>::iterator i = texture_map.begin(); i != texture_map.end(); i++)
         SDL_DestroyTexture((*i).second);
     texture_map.clear();
+    for(auto m : mix_map)
+        Mix_FreeChunk(m.second);
 }
 
 SDL_Texture* Game::GetTexture(std::string filename){
@@ -209,4 +227,17 @@ SDL_Texture* Game::GetTexture(std::string filename){
     }
 }
 
-// TODO
+Mix_Chunk* Game::GetSound(const std::string& filename){
+    if(mix_map.find(filename) == mix_map.end()){
+        Mix_Chunk* mix = Mix_LoadWAV(filename.c_str());
+        if(mix == nullptr){
+            SDL_Log("[ERROR] Failed to load %s", filename.c_str());
+            return nullptr;
+        }
+        mix_map.insert(std::pair<std::string, Mix_Chunk*>(filename, mix));
+        return mix;
+    }
+    else{
+        return mix_map[filename];
+    }
+}

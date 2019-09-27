@@ -22,6 +22,9 @@
 		9645423F23398FEE004F3C99 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9645423E23398FEE004F3C99 /* Block.cpp */; };
 		964542422339CE45004F3C99 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 964542402339CE45004F3C99 /* Player.cpp */; };
 		964542452339CF2E004F3C99 /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 964542432339CF2E004F3C99 /* PlayerMove.cpp */; };
+		96454248233AE6C9004F3C99 /* Goomba.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96454246233AE6C9004F3C99 /* Goomba.cpp */; };
+		9645424B233AEF86004F3C99 /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96454249233AEF86004F3C99 /* Spawner.cpp */; };
+		9645424E233AF5C9004F3C99 /* GoombaMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9645424C233AF5C9004F3C99 /* GoombaMove.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,12 @@
 		964542412339CE45004F3C99 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		964542432339CF2E004F3C99 /* PlayerMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerMove.cpp; sourceTree = "<group>"; };
 		964542442339CF2E004F3C99 /* PlayerMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
+		96454246233AE6C9004F3C99 /* Goomba.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Goomba.cpp; sourceTree = "<group>"; };
+		96454247233AE6C9004F3C99 /* Goomba.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Goomba.h; sourceTree = "<group>"; };
+		96454249233AEF86004F3C99 /* Spawner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Spawner.cpp; sourceTree = "<group>"; };
+		9645424A233AEF86004F3C99 /* Spawner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spawner.h; sourceTree = "<group>"; };
+		9645424C233AF5C9004F3C99 /* GoombaMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GoombaMove.cpp; sourceTree = "<group>"; };
+		9645424D233AF5C9004F3C99 /* GoombaMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoombaMove.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +82,12 @@
 			children = (
 				927612BD1F466FA50069B824 /* Actor.cpp */,
 				927612BE1F466FA50069B824 /* Actor.h */,
+				96454246233AE6C9004F3C99 /* Goomba.cpp */,
+				96454247233AE6C9004F3C99 /* Goomba.h */,
+				9645424C233AF5C9004F3C99 /* GoombaMove.cpp */,
+				9645424D233AF5C9004F3C99 /* GoombaMove.h */,
+				96454249233AEF86004F3C99 /* Spawner.cpp */,
+				9645424A233AEF86004F3C99 /* Spawner.h */,
 				964542402339CE45004F3C99 /* Player.cpp */,
 				964542412339CE45004F3C99 /* Player.h */,
 				964542432339CF2E004F3C99 /* PlayerMove.cpp */,
@@ -183,8 +198,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9645424B233AEF86004F3C99 /* Spawner.cpp in Sources */,
 				9645423523397F42004F3C99 /* Random.cpp in Sources */,
 				9645423A23397F42004F3C99 /* MoveComponent.cpp in Sources */,
+				96454248233AE6C9004F3C99 /* Goomba.cpp in Sources */,
 				9645423D23397F42004F3C99 /* AnimatedSprite.cpp in Sources */,
 				927612C31F466FA50069B824 /* Actor.cpp in Sources */,
 				927612C41F466FA50069B824 /* Component.cpp in Sources */,
@@ -192,6 +209,7 @@
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
 				9645423C23397F42004F3C99 /* SpriteComponent.cpp in Sources */,
 				964542422339CE45004F3C99 /* Player.cpp in Sources */,
+				9645424E233AF5C9004F3C99 /* GoombaMove.cpp in Sources */,
 				964542452339CF2E004F3C99 /* PlayerMove.cpp in Sources */,
 				9645423723397F42004F3C99 /* CollisionComponent.cpp in Sources */,
 				9645423F23398FEE004F3C99 /* Block.cpp in Sources */,
