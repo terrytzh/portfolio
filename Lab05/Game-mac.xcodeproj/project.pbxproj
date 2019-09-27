@@ -14,6 +14,14 @@
 		92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92924F9A1EDF6DC800A740A7 /* Game.cpp */; };
 		92D324FD1B697428005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FC1B697428005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		96928F2E233DFBB3005C5DEB /* AnimatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F1F233DFBB1005C5DEB /* AnimatedSprite.cpp */; };
+		96928F2F233DFBB3005C5DEB /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F20233DFBB1005C5DEB /* MoveComponent.cpp */; };
+		96928F30233DFBB3005C5DEB /* Spawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F22233DFBB1005C5DEB /* Spawner.cpp */; };
+		96928F31233DFBB3005C5DEB /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F23233DFBB2005C5DEB /* Player.cpp */; };
+		96928F32233DFBB3005C5DEB /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F27233DFBB2005C5DEB /* PlayerMove.cpp */; };
+		96928F33233DFBB3005C5DEB /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F2A233DFBB2005C5DEB /* SpriteComponent.cpp */; };
+		96928F34233DFBB3005C5DEB /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F2B233DFBB2005C5DEB /* Random.cpp */; };
+		96928F35233DFBB3005C5DEB /* CollisionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F2C233DFBB2005C5DEB /* CollisionComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +38,22 @@
 		92D324FC1B697428005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		96928F1E233DFBB1005C5DEB /* AnimatedSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedSprite.h; sourceTree = "<group>"; };
+		96928F1F233DFBB1005C5DEB /* AnimatedSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedSprite.cpp; sourceTree = "<group>"; };
+		96928F20233DFBB1005C5DEB /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cpp; sourceTree = "<group>"; };
+		96928F21233DFBB1005C5DEB /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		96928F22233DFBB1005C5DEB /* Spawner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spawner.cpp; sourceTree = "<group>"; };
+		96928F23233DFBB2005C5DEB /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		96928F24233DFBB2005C5DEB /* MoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveComponent.h; sourceTree = "<group>"; };
+		96928F25233DFBB2005C5DEB /* PlayerMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
+		96928F26233DFBB2005C5DEB /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		96928F27233DFBB2005C5DEB /* PlayerMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerMove.cpp; sourceTree = "<group>"; };
+		96928F28233DFBB2005C5DEB /* SpriteComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteComponent.h; sourceTree = "<group>"; };
+		96928F29233DFBB2005C5DEB /* CollisionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionComponent.h; sourceTree = "<group>"; };
+		96928F2A233DFBB2005C5DEB /* SpriteComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteComponent.cpp; sourceTree = "<group>"; };
+		96928F2B233DFBB2005C5DEB /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		96928F2C233DFBB2005C5DEB /* CollisionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionComponent.cpp; sourceTree = "<group>"; };
+		96928F2D233DFBB3005C5DEB /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spawner.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +74,22 @@
 			children = (
 				927612BD1F466FA50069B824 /* Actor.cpp */,
 				927612BE1F466FA50069B824 /* Actor.h */,
+				96928F1F233DFBB1005C5DEB /* AnimatedSprite.cpp */,
+				96928F1E233DFBB1005C5DEB /* AnimatedSprite.h */,
+				96928F2C233DFBB2005C5DEB /* CollisionComponent.cpp */,
+				96928F29233DFBB2005C5DEB /* CollisionComponent.h */,
+				96928F20233DFBB1005C5DEB /* MoveComponent.cpp */,
+				96928F24233DFBB2005C5DEB /* MoveComponent.h */,
+				96928F23233DFBB2005C5DEB /* Player.cpp */,
+				96928F21233DFBB1005C5DEB /* Player.h */,
+				96928F27233DFBB2005C5DEB /* PlayerMove.cpp */,
+				96928F25233DFBB2005C5DEB /* PlayerMove.h */,
+				96928F2B233DFBB2005C5DEB /* Random.cpp */,
+				96928F26233DFBB2005C5DEB /* Random.h */,
+				96928F22233DFBB1005C5DEB /* Spawner.cpp */,
+				96928F2D233DFBB3005C5DEB /* Spawner.h */,
+				96928F2A233DFBB2005C5DEB /* SpriteComponent.cpp */,
+				96928F28233DFBB2005C5DEB /* SpriteComponent.h */,
 				927612BF1F466FA50069B824 /* Component.cpp */,
 				927612C01F466FA50069B824 /* Component.h */,
 				9210C6AF21DC136600C3E613 /* CSVHelper.h */,
@@ -98,7 +138,7 @@
 		92E46DEF1B634EA30035CD21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Sanjay Madhav";
 				TargetAttributes = {
 					92E46DF61B634EA30035CD21 = {
@@ -108,10 +148,11 @@
 			};
 			buildConfigurationList = 92E46DF21B634EA30035CD21 /* Build configuration list for PBXProject "Game-mac" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 92E46DEE1B634EA30035CD21;
 			productRefGroup = 92E46DF81B634EA30035CD21 /* Products */;
@@ -144,9 +185,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96928F34233DFBB3005C5DEB /* Random.cpp in Sources */,
 				927612C31F466FA50069B824 /* Actor.cpp in Sources */,
+				96928F2E233DFBB3005C5DEB /* AnimatedSprite.cpp in Sources */,
+				96928F31233DFBB3005C5DEB /* Player.cpp in Sources */,
+				96928F32233DFBB3005C5DEB /* PlayerMove.cpp in Sources */,
 				927612C41F466FA50069B824 /* Component.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
+				96928F33233DFBB3005C5DEB /* SpriteComponent.cpp in Sources */,
+				96928F35233DFBB3005C5DEB /* CollisionComponent.cpp in Sources */,
+				96928F30233DFBB3005C5DEB /* Spawner.cpp in Sources */,
+				96928F2F233DFBB3005C5DEB /* MoveComponent.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
 				927612C51F466FA50069B824 /* Math.cpp in Sources */,
 			);
@@ -159,6 +208,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -212,6 +262,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

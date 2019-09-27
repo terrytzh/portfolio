@@ -7,9 +7,15 @@
 //
 
 #include "Game.h"
+#include <iostream>
+
 
 int main(int argc, char** argv)
 {
-	// TODO
+    Game g = Game();
+    if(g.Initialize()){
+        g.RunLoop();
+    }
+    g.Shutdown();
 	return 0;
 }
