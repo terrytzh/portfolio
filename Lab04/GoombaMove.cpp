@@ -44,7 +44,7 @@ void GoombaMove::Update(float deltaTime){
             else if(side == CollSide::Bottom && mYSpeed < 0.0f){
                 mYSpeed = 0.0f;
             }
-            pos -= offset;
+            pos += offset;
             goomba->SetPosition(pos);
             
         }
@@ -60,7 +60,7 @@ void GoombaMove::Update(float deltaTime){
             else if(side == CollSide::Right && Math::Abs(b->GetPosition().y-goomba->GetPosition().y) < 10.0f){
                 SetForwardSpeed(GOOMBA_VELOCITY);
             }
-            pos -= offset;
+            pos += offset;
             goomba->SetPosition(pos);
             
         }
@@ -92,7 +92,7 @@ void GoombaMove::Update(float deltaTime){
                 g->gm->SetForwardSpeed(-GOOMBA_VELOCITY);
             }
             
-            pos -= offset;
+            pos += offset;
             goomba->SetPosition(pos);
         }
     }

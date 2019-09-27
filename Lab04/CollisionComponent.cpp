@@ -73,19 +73,19 @@ CollSide CollisionComponent::GetMinOverlap(
         });
         
         if(temp[0] == dx1){
-            offset.x = dx1;
+            offset.x = -dx1;
             return CollSide::Left;
         }
         else if(temp[0] == dx2){
-            offset.x = -dx2;
+            offset.x = dx2;
             return CollSide::Right;
         }
         else if(temp[0] == dy1){
-            offset.y = dy1;
+            offset.y = -dy1;
             return CollSide::Top;
         }
         else{
-            offset.y = -dy2;
+            offset.y = dy2;
             return CollSide::Bottom;
         }
     }

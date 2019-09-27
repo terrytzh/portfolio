@@ -54,13 +54,13 @@ void BallMove::Update(float deltaTime){
         if(cs == CollSide::Left || cs == CollSide::Right){
             velocity.x *= -1.0f;
             block->SetState(ActorState::Destroy);
-            temp -= offset;
+            temp += offset;
             break;
         }
         else if(cs == CollSide::Top || cs == CollSide::Bottom){
             block->SetState(ActorState::Destroy);
             velocity.y *= -1.0f;
-            temp -= offset;
+            temp += offset;
             break;
         }
     }

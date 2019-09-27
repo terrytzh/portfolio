@@ -63,7 +63,7 @@ void PlayerMove::Update(float deltaTime){
             }
             
             blockCollide = true;
-            pos -= offset;
+            pos += offset;
             player->SetPosition(pos);
         }
     }
@@ -91,7 +91,7 @@ void PlayerMove::Update(float deltaTime){
             else{
                 player->SetIsDead(true);
             }
-            pos -= offset;
+            pos += offset;
             player->SetPosition(pos);
         }
     }
