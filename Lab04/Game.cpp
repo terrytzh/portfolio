@@ -210,7 +210,7 @@ void Game::UnloadData(){
         Mix_FreeChunk(m.second);
 }
 
-SDL_Texture* Game::GetTexture(std::string filename){
+SDL_Texture* Game::GetTexture(const std::string filename){
     if(texture_map.find(filename) == texture_map.end()){
         SDL_Surface* sur  = IMG_Load(filename.c_str());
         if(sur == nullptr){

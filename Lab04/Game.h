@@ -27,21 +27,21 @@ public:
     
     void AddBlock(class Block* block);
     void RemoveBlock(class Block* block);
-    std::vector<class Block*> GetBlocks(){return blocks;}
+    const std::vector<class Block*> GetBlocks(){return blocks;}
     
     class Player* GetPlayer(){return player;}
     
     void AddEnemy(class Goomba* e);
     void RemoveEnemy(class Goomba* e);
-    std::vector<class Goomba*> GetEnemies(){return enemies;}
+    const std::vector<class Goomba*> GetEnemies(){return enemies;}
     
-    Vector2 GetCamPosition(){return camPosition;}
+    const Vector2 GetCamPosition(){return camPosition;}
     void SetCamPosition(Vector2 pos){camPosition = pos;}
     
     int GetBGChannel(){return bgmusic_channel;}
     
     
-    SDL_Texture* GetTexture(std::string filename);
+    SDL_Texture* GetTexture(const std::string filename);
     
     Mix_Chunk* GetSound(const std::string& filename);
     
