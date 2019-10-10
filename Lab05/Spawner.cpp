@@ -10,7 +10,11 @@
 #include "Game.h"
 #include "Player.h"
 
-Spawner::Spawner(Game* g) : Actor(g){
+Spawner::Spawner(Game* g, SpawnerType type) :
+Actor(g),
+mType(type),
+spawned(false)
+{
     
 }
 

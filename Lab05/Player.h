@@ -23,6 +23,9 @@ public:
     void SetIsDead(bool dead){isDead = dead;}
     bool GetIsDead(){return isDead;}
     
+    void SetKeyCount(int count){keyCount = count;}
+    int GetKeyCount(){return keyCount;}
+    
     
 protected:
     void OnUpdate(float deltaTime) override;
@@ -31,6 +34,7 @@ protected:
     const float PLAYER_HEIGHT = 20.0f;
     
     bool isDead = false;
+    int keyCount = 0;
     
 };
 

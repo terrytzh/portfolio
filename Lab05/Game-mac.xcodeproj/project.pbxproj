@@ -22,6 +22,14 @@
 		96928F33233DFBB3005C5DEB /* SpriteComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F2A233DFBB2005C5DEB /* SpriteComponent.cpp */; };
 		96928F34233DFBB3005C5DEB /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F2B233DFBB2005C5DEB /* Random.cpp */; };
 		96928F35233DFBB3005C5DEB /* CollisionComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F2C233DFBB2005C5DEB /* CollisionComponent.cpp */; };
+		96928F3823445E42005C5DEB /* TiledBGComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F3623445E42005C5DEB /* TiledBGComponent.cpp */; };
+		96928F3B23447936005C5DEB /* Collider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F3923447936005C5DEB /* Collider.cpp */; };
+		96928F3E234DC872005C5DEB /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F3C234DC872005C5DEB /* Door.cpp */; };
+		96928F41234E67D0005C5DEB /* SecretBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F3F234E67D0005C5DEB /* SecretBlock.cpp */; };
+		96928F44234E7A00005C5DEB /* Key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F42234E7A00005C5DEB /* Key.cpp */; };
+		96928F47234E8491005C5DEB /* Collectible.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F45234E8491005C5DEB /* Collectible.cpp */; };
+		96928F4A234EECF7005C5DEB /* EnemyComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F48234EECF7005C5DEB /* EnemyComponent.cpp */; };
+		96928F4D234F1EB3005C5DEB /* Bat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F4B234F1EB3005C5DEB /* Bat.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +62,22 @@
 		96928F2B233DFBB2005C5DEB /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
 		96928F2C233DFBB2005C5DEB /* CollisionComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionComponent.cpp; sourceTree = "<group>"; };
 		96928F2D233DFBB3005C5DEB /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spawner.h; sourceTree = "<group>"; };
+		96928F3623445E42005C5DEB /* TiledBGComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TiledBGComponent.cpp; sourceTree = "<group>"; };
+		96928F3723445E42005C5DEB /* TiledBGComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TiledBGComponent.h; sourceTree = "<group>"; };
+		96928F3923447936005C5DEB /* Collider.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collider.cpp; sourceTree = "<group>"; };
+		96928F3A23447936005C5DEB /* Collider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collider.h; sourceTree = "<group>"; };
+		96928F3C234DC872005C5DEB /* Door.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Door.cpp; sourceTree = "<group>"; };
+		96928F3D234DC872005C5DEB /* Door.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Door.h; sourceTree = "<group>"; };
+		96928F3F234E67D0005C5DEB /* SecretBlock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SecretBlock.cpp; sourceTree = "<group>"; };
+		96928F40234E67D0005C5DEB /* SecretBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecretBlock.h; sourceTree = "<group>"; };
+		96928F42234E7A00005C5DEB /* Key.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Key.cpp; sourceTree = "<group>"; };
+		96928F43234E7A00005C5DEB /* Key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Key.h; sourceTree = "<group>"; };
+		96928F45234E8491005C5DEB /* Collectible.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collectible.cpp; sourceTree = "<group>"; };
+		96928F46234E8491005C5DEB /* Collectible.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collectible.h; sourceTree = "<group>"; };
+		96928F48234EECF7005C5DEB /* EnemyComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyComponent.cpp; sourceTree = "<group>"; };
+		96928F49234EECF7005C5DEB /* EnemyComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnemyComponent.h; sourceTree = "<group>"; };
+		96928F4B234F1EB3005C5DEB /* Bat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bat.cpp; sourceTree = "<group>"; };
+		96928F4C234F1EB3005C5DEB /* Bat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bat.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +98,14 @@
 			children = (
 				927612BD1F466FA50069B824 /* Actor.cpp */,
 				927612BE1F466FA50069B824 /* Actor.h */,
+				96928F3923447936005C5DEB /* Collider.cpp */,
+				96928F3A23447936005C5DEB /* Collider.h */,
+				96928F3C234DC872005C5DEB /* Door.cpp */,
+				96928F3D234DC872005C5DEB /* Door.h */,
+				96928F3F234E67D0005C5DEB /* SecretBlock.cpp */,
+				96928F40234E67D0005C5DEB /* SecretBlock.h */,
+				96928F42234E7A00005C5DEB /* Key.cpp */,
+				96928F43234E7A00005C5DEB /* Key.h */,
 				96928F1F233DFBB1005C5DEB /* AnimatedSprite.cpp */,
 				96928F1E233DFBB1005C5DEB /* AnimatedSprite.h */,
 				96928F2C233DFBB2005C5DEB /* CollisionComponent.cpp */,
@@ -88,8 +120,16 @@
 				96928F26233DFBB2005C5DEB /* Random.h */,
 				96928F22233DFBB1005C5DEB /* Spawner.cpp */,
 				96928F2D233DFBB3005C5DEB /* Spawner.h */,
+				96928F4B234F1EB3005C5DEB /* Bat.cpp */,
+				96928F4C234F1EB3005C5DEB /* Bat.h */,
 				96928F2A233DFBB2005C5DEB /* SpriteComponent.cpp */,
 				96928F28233DFBB2005C5DEB /* SpriteComponent.h */,
+				96928F3623445E42005C5DEB /* TiledBGComponent.cpp */,
+				96928F3723445E42005C5DEB /* TiledBGComponent.h */,
+				96928F48234EECF7005C5DEB /* EnemyComponent.cpp */,
+				96928F49234EECF7005C5DEB /* EnemyComponent.h */,
+				96928F45234E8491005C5DEB /* Collectible.cpp */,
+				96928F46234E8491005C5DEB /* Collectible.h */,
 				927612BF1F466FA50069B824 /* Component.cpp */,
 				927612C01F466FA50069B824 /* Component.h */,
 				9210C6AF21DC136600C3E613 /* CSVHelper.h */,
@@ -185,17 +225,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96928F47234E8491005C5DEB /* Collectible.cpp in Sources */,
 				96928F34233DFBB3005C5DEB /* Random.cpp in Sources */,
+				96928F41234E67D0005C5DEB /* SecretBlock.cpp in Sources */,
+				96928F4D234F1EB3005C5DEB /* Bat.cpp in Sources */,
+				96928F3823445E42005C5DEB /* TiledBGComponent.cpp in Sources */,
+				96928F44234E7A00005C5DEB /* Key.cpp in Sources */,
 				927612C31F466FA50069B824 /* Actor.cpp in Sources */,
 				96928F2E233DFBB3005C5DEB /* AnimatedSprite.cpp in Sources */,
 				96928F31233DFBB3005C5DEB /* Player.cpp in Sources */,
+				96928F4A234EECF7005C5DEB /* EnemyComponent.cpp in Sources */,
 				96928F32233DFBB3005C5DEB /* PlayerMove.cpp in Sources */,
 				927612C41F466FA50069B824 /* Component.cpp in Sources */,
+				96928F3B23447936005C5DEB /* Collider.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
 				96928F33233DFBB3005C5DEB /* SpriteComponent.cpp in Sources */,
 				96928F35233DFBB3005C5DEB /* CollisionComponent.cpp in Sources */,
 				96928F30233DFBB3005C5DEB /* Spawner.cpp in Sources */,
 				96928F2F233DFBB3005C5DEB /* MoveComponent.cpp in Sources */,
+				96928F3E234DC872005C5DEB /* Door.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
 				927612C51F466FA50069B824 /* Math.cpp in Sources */,
 			);

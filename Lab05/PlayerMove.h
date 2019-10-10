@@ -10,8 +10,12 @@
 #define PlayerMove_hpp
 
 #include <stdio.h>
+#include "Math.h"
 #include "MoveComponent.h"
 
+enum class Direction{
+    Left,Right,Up,Down,Idle
+};
 
 class PlayerMove : public MoveComponent{
 public:
@@ -22,12 +26,12 @@ public:
 
 protected:
     class Player* player;
-    float mYSpeed = 0.0f;
+    Direction direction;
     
-    bool mSpacePressed = false;
-    bool mInAir = false;
+    void AccessDoor(class Door* d);
+    void UnlockDoor(class Door* d);
     
-    const float PLAYER_SPEED = 300.0f;
+    const float PLAYER_SPEED = 130.0f;
 };
 
 #endif /* PlayerMove_hpp */

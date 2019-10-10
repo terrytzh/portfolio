@@ -11,8 +11,15 @@
 #include "Player.h"
 #include "Block.h"
 #include "Spawner.h"
+#include "Collider.h"
+#include "Door.h"
+#include "SecretBlock.h"
+#include "Key.h"
+#include "Bat.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
+#include "TiledBGComponent.h"
+#include "CSVHelper.h"
 #include "Random.h"
 
 bool Game::Initialize(){
@@ -146,9 +153,166 @@ void Game::RemoveSprite(class SpriteComponent* sprite){
 }
 
 
+void Game::SetCurrentRoom(std::string room){
+    SDL_Log("%s Enemy Size: %i", currentRoom.c_str(), enemy_map[currentRoom].size());
+    for(auto e : enemy_map[currentRoom]){
+        e->SetState(ActorState::Paused);
+    }
+    
+    currentRoom = room;
+    
+    SDL_Log("%s Enemy Size: %i", currentRoom.c_str(), enemy_map[currentRoom].size());
+    for(auto e : enemy_map[currentRoom]){
+        e->SetState(ActorState::Active);
+    }
+    
+    SpawnerType type;
+    for(auto spawner : spawner_map[currentRoom]){
+        if(spawner->GetSpawnedState())
+            continue;
+        type = spawner->GetType();
+        if(type == SpawnerType::Key){
+            Key* k = new Key(this);
+            k->SetPosition(spawner->GetPosition());
+        }
+        else if(type == SpawnerType::Bat){
+            Bat* b = new Bat(this);
+            b->SetPosition(spawner->GetPosition());
+        }
+        
+        spawner->SetSpawnedState(true);
+    }
+}
+
 void Game::LoadData(){
     //bgmusic_channel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
-    player = new Player(this);
+    loadCSVMapFile("Assets/Dungeon/Room1.csv");
+    loadCSVMapFile("Assets/Dungeon/Room2.csv");
+    loadCSVMapFile("Assets/Dungeon/Room3.csv");
+    loadCSVMapFile("Assets/Dungeon/Room4.csv");
+    loadCSVMapFile("Assets/Dungeon/Room5.csv");
+    loadCSVMapFile("Assets/Dungeon/Room6.csv");
+    loadCSVMapFile("Assets/Dungeon/Room7.csv");
+    
+    SetCurrentRoom("Room1");
+    
+    Actor* bg = new Actor(this);
+    TiledBGComponent* bgComponent = new TiledBGComponent(bg);
+    bgComponent->LoadTileCSV("Assets/Dungeon/DungeonMapBG.csv", 32, 32);
+    bgComponent->SetTexture(GetTexture("Assets/Dungeon/DungeonTiles.png"));
+}
+
+void Game::loadCSVMapFile(std::string fileName){
+    std::ifstream ifs(fileName);
+    std::string temp;
+    std::vector<std::string> CSVTarget;
+    
+    //For addition to the map
+    std::vector<Door*> doors;
+    std::vector<Spawner*> spawners;
+    std::vector<Actor*> enemies;
+    std::string roomName = fileName.substr(fileName.length()-9,5);
+    SDL_Log("%s", roomName.c_str());
+    
+    
+    while(getline(ifs,temp)){
+        if(!temp.empty()){
+            CSVTarget = CSVHelper::Split(temp);
+            
+            if(CSVTarget[0] == "Player"){
+                player = new Player(this);
+                player->SetPosition(Vector2(std::stoi(CSVTarget[1]),std::stoi(CSVTarget[2])));
+            }
+            
+            
+            else if(CSVTarget[0] == "Collider"){
+                Collider* c = new Collider(this);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                c->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                c->setCollisionComponent(width, height);
+                colliders.push_back(c);
+            }
+            
+            
+            else if(CSVTarget[0] == "Door"){
+                Door* d = new Door(this);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                d->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                
+                if(CSVTarget[6] == "Left"){
+                    d->SetDirection(DoorDirection::Left);
+                }
+                else if(CSVTarget[6] == "Right"){
+                    d->SetDirection(DoorDirection::Right);
+                }
+                else if(CSVTarget[6] == "Up"){
+                    d->SetDirection(DoorDirection::Up);
+                }
+                else if(CSVTarget[6] == "Down"){
+                    d->SetDirection(DoorDirection::Down);
+                }
+                
+                if(CSVTarget[7] == "Open"){
+                    d->SetState(DoorState::Open);
+                }
+                else if(CSVTarget[7] == "Closed"){
+                    d->SetState(DoorState::Closed);
+                }
+                else if(CSVTarget[7] == "Locked"){
+                    d->SetState(DoorState::Locked);
+                }
+                d->UpdateComponents();
+                d->SetDestination(CSVTarget[5]);
+                
+                doors.push_back(d);
+            }
+            
+            
+            else if(CSVTarget[0] == "SecretBlock"){
+                SecretBlock* s = new SecretBlock(this);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                s->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                if(CSVTarget[6] == "Left"){
+                    s->SetDirection(SecretBlockDirection::Left);
+                }
+                else if(CSVTarget[6] == "Right"){
+                    s->SetDirection(SecretBlockDirection::Right);
+                }
+                else if(CSVTarget[6] == "Up"){
+                    s->SetDirection(SecretBlockDirection::Up);
+                }
+                else if(CSVTarget[6] == "Down"){
+                    s->SetDirection(SecretBlockDirection::Down);
+                }
+                secretBlocks.push_back(s);
+            }
+            
+            
+            else if(CSVTarget[0] == "Key"){
+                Spawner* spawner = new Spawner(this, SpawnerType::Key);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                spawner->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                spawners.push_back(spawner);
+            }
+            
+            
+            else if(CSVTarget[0] == "Bat"){
+                Spawner* spawner = new Spawner(this, SpawnerType::Bat);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                spawner->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                spawners.push_back(spawner);
+            }
+        }
+    }
+    SDL_Log("Room: %s, door: %i", roomName.c_str(), doors.size());
+    room_map.insert(std::pair<std::string, std::vector<Door*>>(roomName, doors));
+    spawner_map.insert(std::pair<std::string, std::vector<Spawner*>>(roomName, spawners));
+    enemy_map.insert(std::pair<std::string, std::vector<Actor*>>(roomName, enemies));
 }
 
 void Game::UnloadData(){
