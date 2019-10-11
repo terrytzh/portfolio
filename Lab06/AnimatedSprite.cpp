@@ -9,7 +9,14 @@ AnimatedSprite::AnimatedSprite(Actor* owner, int drawOrder)
 
 void AnimatedSprite::Update(float deltaTime)
 {
-	// TODO: Implement
+    if(!mAnimName.empty()){
+        if(!mIsPaused){
+            mAnimTimer += deltaTime * mAnimFPS;
+            while(mAnimTimer >= static_cast<float>(mAnims[mAnimName].size()))
+                mAnimTimer -= static_cast<float>(mAnims[mAnimName].size());
+        }
+        SetTexture(mAnims[mAnimName][static_cast<int>(mAnimTimer)]);
+    }
 }
 
 void AnimatedSprite::SetAnimation(const std::string& name, bool resetTimer)
