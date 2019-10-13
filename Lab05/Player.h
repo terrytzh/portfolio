@@ -37,7 +37,7 @@ protected:
     
     bool isDead = false;
     int keyCount = 0;
-    int PLAYER_HP = 100;
+    int PLAYER_HP = 10;
     float invincibilityTimer = 0.0f;
     
 };
