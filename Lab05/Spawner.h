@@ -13,7 +13,7 @@
 #include "Actor.h"
 
 enum class SpawnerType{
-    Key,Bat
+    Key,Bat,Skeleton,Boss,Triforce
 };
 
 //Just for spawning!

@@ -22,5 +22,6 @@ Key::Key(Game* g) : Actor(g){
     Collectible* collect = new Collectible(this);
     collect->SetOnCollect([this]{
         GetGame()->GetPlayer()->SetKeyCount(GetGame()->GetPlayer()->GetKeyCount()+1);
+        Mix_PlayChannel(-1, GetGame()->GetSound("Assets/Sounds/Key.wav"), 0);
     });
 }

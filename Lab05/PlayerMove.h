@@ -14,7 +14,7 @@
 #include "MoveComponent.h"
 
 enum class Direction{
-    Left,Right,Up,Down,Idle
+    Left,Right,Up,Down
 };
 
 class PlayerMove : public MoveComponent{
@@ -26,10 +26,16 @@ public:
 
 protected:
     class Player* player;
+    class Sword* sword;
     Direction direction;
+    
+    float attackTimer = 0.0f;
+    bool spacebarPressed = false;
+    bool isMoving = false;
     
     void AccessDoor(class Door* d);
     void UnlockDoor(class Door* d);
+    void UpdateSword();
     
     const float PLAYER_SPEED = 130.0f;
 };

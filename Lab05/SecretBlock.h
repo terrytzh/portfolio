@@ -30,7 +30,9 @@ protected:
     SecretBlockDirection direction;
     float moveDistance;
     
-    void UnlockDoors();
+    bool isUnlocked = false;
+    
+    void OpenClosedDoors();
 };
 
 #endif /* SecretBlock_hpp */

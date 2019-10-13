@@ -16,6 +16,10 @@
 #include "SecretBlock.h"
 #include "Key.h"
 #include "Bat.h"
+#include "Skeleton.h"
+#include "Boss.h"
+#include "Fireball.h"
+#include "TriForce.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
 #include "TiledBGComponent.h"
@@ -179,13 +183,25 @@ void Game::SetCurrentRoom(std::string room){
             Bat* b = new Bat(this);
             b->SetPosition(spawner->GetPosition());
         }
-        
+        else if(type == SpawnerType::Skeleton){
+            Skeleton* s = new Skeleton(this);
+            s->SetPosition(spawner->GetPosition());
+        }
+        else if(type == SpawnerType::Boss){
+            Boss* b = new Boss(this);
+            b->SetPosition(spawner->GetPosition());
+        }
+        else if(type == SpawnerType::Triforce){
+            TriForce* t = new TriForce(this);
+            t->SetPosition(spawner->GetPosition());
+        }
+    
         spawner->SetSpawnedState(true);
     }
 }
 
 void Game::LoadData(){
-    //bgmusic_channel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
+    bgmusic_channel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
     loadCSVMapFile("Assets/Dungeon/Room1.csv");
     loadCSVMapFile("Assets/Dungeon/Room2.csv");
     loadCSVMapFile("Assets/Dungeon/Room3.csv");
@@ -302,6 +318,33 @@ void Game::loadCSVMapFile(std::string fileName){
             
             else if(CSVTarget[0] == "Bat"){
                 Spawner* spawner = new Spawner(this, SpawnerType::Bat);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                spawner->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                spawners.push_back(spawner);
+            }
+            
+            
+            else if(CSVTarget[0] == "Skeleton"){
+                Spawner* spawner = new Spawner(this, SpawnerType::Skeleton);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                spawner->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                spawners.push_back(spawner);
+            }
+            
+            
+            else if(CSVTarget[0] == "Boss"){
+                Spawner* spawner = new Spawner(this, SpawnerType::Boss);
+                float width = std::stof(CSVTarget[3]);
+                float height = std::stof(CSVTarget[4]);
+                spawner->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));
+                spawners.push_back(spawner);
+            }
+            
+            
+            else if(CSVTarget[0] == "Triforce"){
+                Spawner* spawner = new Spawner(this, SpawnerType::Triforce);
                 float width = std::stof(CSVTarget[3]);
                 float height = std::stof(CSVTarget[4]);
                 spawner->SetPosition(Vector2(std::stoi(CSVTarget[1])+width/2.0f,std::stoi(CSVTarget[2])+height/2.0f));

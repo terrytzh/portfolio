@@ -23,10 +23,14 @@ SecretBlock::SecretBlock(Game* g) : Actor(g){
 }
 
 void SecretBlock::Move(float distance){
-    if(moveDistance > 32.0f){
-        UnlockDoors();
+    if(moveDistance > 32.0f && !isUnlocked){
+        Mix_PlayChannel(-1, GetGame()->GetSound("Assets/Sounds/Secret.wav"), 0);
+        OpenClosedDoors();
+        isUnlocked = true;
         return;
     }
+    else if(isUnlocked)
+        return;
     Vector2 pos = GetPosition();
     switch (direction) {
         case SecretBlockDirection::Left:
@@ -49,7 +53,7 @@ void SecretBlock::Move(float distance){
     moveDistance += distance;
 }
 
-void SecretBlock::UnlockDoors(){
+void SecretBlock::OpenClosedDoors(){
     for(auto d : mGame->GetDoors()){
         if(d->GetState() == DoorState::Closed){
             d->SetState(DoorState::Open);

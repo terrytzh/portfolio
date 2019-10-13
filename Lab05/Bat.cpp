@@ -28,6 +28,14 @@ Bat::Bat(Game* g) : Actor(g){
     cc->SetSize(25.0f, 25.0f);
     
     ec = new EnemyComponent(this);
+    ec->SetOnDeath([this]{
+        Mix_PlayChannel(-1, GetGame()->GetSound("Assets/Sounds/EnemyDie.wav"), 0);
+    });
+    ec->SetOnTakeDamage([this]{
+        
+    });
+    
+    direction = Vector2::Normalize(Vector2(Random::GetFloatRange(-1.0f, 1.0f),Random::GetFloatRange(-1.0f, 1.0f)));
 }
 
 void Bat::OnUpdate(float deltaTime){

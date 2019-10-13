@@ -18,3 +18,24 @@ EnemyComponent::EnemyComponent(Actor* owner) : Component(owner){
 EnemyComponent::~EnemyComponent(){
     mOwner->GetGame()->RemoveFromEnemies(currentRoom, mOwner);
 }
+
+void EnemyComponent::TakeDamage(int amount){
+    if(invinsibilityTimer <= 0.0f)
+        invinsibilityTimer = 1.0f;
+    else
+        return;
+    
+    hitPoint -= amount;
+    if(hitPoint <= 0){
+        mOnDeath();
+        mOwner->SetState(ActorState::Destroy);
+    }
+    else{
+        mOnTakeDamage();
+    }
+}
+
+void EnemyComponent::Update(float deltaTime){
+    if(invinsibilityTimer > 0.0f)
+        invinsibilityTimer -= deltaTime;
+}

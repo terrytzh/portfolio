@@ -32,10 +32,30 @@ Player::Player(Game* g) : Actor(g){
         mGame->GetTexture("Assets/Link/WalkRight1.png")
     };
     
+    std::vector<SDL_Texture*> AttackUpAnime = {
+        mGame->GetTexture("Assets/Link/AttackUp.png"),
+    };
+    
+    std::vector<SDL_Texture*> AttackDownAnime = {
+        mGame->GetTexture("Assets/Link/AttackDown.png"),
+    };
+    
+    std::vector<SDL_Texture*> AttackLeftAnime = {
+        mGame->GetTexture("Assets/Link/AttackLeft.png"),
+    };
+    
+    std::vector<SDL_Texture*> AttackRightAnime = {
+        mGame->GetTexture("Assets/Link/AttackRight.png"),
+    };
+    
     asprite->AddAnimation("walkUp", walkUpAnime);
     asprite->AddAnimation("walkDown", walkDownAnime);
     asprite->AddAnimation("walkLeft", walkLeftAnime);
     asprite->AddAnimation("walkRight", walkRightAnime);
+    asprite->AddAnimation("AttackUp", AttackUpAnime);
+    asprite->AddAnimation("AttackDown", AttackDownAnime);
+    asprite->AddAnimation("AttackLeft", AttackLeftAnime);
+    asprite->AddAnimation("AttackRight", AttackRightAnime);
     
     asprite->SetAnimation("walkUp");
     asprite->SetIsPaused(true);
@@ -45,4 +65,23 @@ Player::Player(Game* g) : Actor(g){
 }
 
 void Player::OnUpdate(float deltaTime){
+    if(invincibilityTimer > 0.0f)
+        invincibilityTimer -= deltaTime;
+}
+
+void Player::TakeDamage(int amount){
+    if(invincibilityTimer > 0.0f)
+        return;
+    else
+        invincibilityTimer = 0.5f;
+    
+    PLAYER_HP -= amount;
+    if(PLAYER_HP <= 0){
+        Mix_HaltChannel(GetGame()->GetBGChannel());
+        Mix_PlayChannel(-1, GetGame()->GetSound("Assets/Sounds/LinkDie.wav"), 0);
+        SetState(ActorState::Paused);
+    }
+    else{
+        Mix_PlayChannel(-1, GetGame()->GetSound("Assets/Sounds/LinkHit.wav"), 0);
+    }
 }

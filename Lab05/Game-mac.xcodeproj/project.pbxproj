@@ -30,6 +30,11 @@
 		96928F47234E8491005C5DEB /* Collectible.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F45234E8491005C5DEB /* Collectible.cpp */; };
 		96928F4A234EECF7005C5DEB /* EnemyComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F48234EECF7005C5DEB /* EnemyComponent.cpp */; };
 		96928F4D234F1EB3005C5DEB /* Bat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96928F4B234F1EB3005C5DEB /* Bat.cpp */; };
+		969F43F5234FE07C00A2C1E9 /* Skeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 969F43F3234FE07C00A2C1E9 /* Skeleton.cpp */; };
+		969F43F823500DC000A2C1E9 /* Sword.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 969F43F623500DC000A2C1E9 /* Sword.cpp */; };
+		969F43FB2353212700A2C1E9 /* Boss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 969F43F92353212700A2C1E9 /* Boss.cpp */; };
+		969F43FE2353AB5E00A2C1E9 /* TriForce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 969F43FC2353AB5E00A2C1E9 /* TriForce.cpp */; };
+		96F85CC5234FD92E001B698A /* Fireball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96F85CC3234FD92E001B698A /* Fireball.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +83,16 @@
 		96928F49234EECF7005C5DEB /* EnemyComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnemyComponent.h; sourceTree = "<group>"; };
 		96928F4B234F1EB3005C5DEB /* Bat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bat.cpp; sourceTree = "<group>"; };
 		96928F4C234F1EB3005C5DEB /* Bat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bat.h; sourceTree = "<group>"; };
+		969F43F3234FE07C00A2C1E9 /* Skeleton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Skeleton.cpp; sourceTree = "<group>"; };
+		969F43F4234FE07C00A2C1E9 /* Skeleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Skeleton.h; sourceTree = "<group>"; };
+		969F43F623500DC000A2C1E9 /* Sword.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sword.cpp; sourceTree = "<group>"; };
+		969F43F723500DC000A2C1E9 /* Sword.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sword.h; sourceTree = "<group>"; };
+		969F43F92353212700A2C1E9 /* Boss.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Boss.cpp; sourceTree = "<group>"; };
+		969F43FA2353212700A2C1E9 /* Boss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
+		969F43FC2353AB5E00A2C1E9 /* TriForce.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TriForce.cpp; sourceTree = "<group>"; };
+		969F43FD2353AB5E00A2C1E9 /* TriForce.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TriForce.h; sourceTree = "<group>"; };
+		96F85CC3234FD92E001B698A /* Fireball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Fireball.cpp; sourceTree = "<group>"; };
+		96F85CC4234FD92E001B698A /* Fireball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fireball.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +121,10 @@
 				96928F40234E67D0005C5DEB /* SecretBlock.h */,
 				96928F42234E7A00005C5DEB /* Key.cpp */,
 				96928F43234E7A00005C5DEB /* Key.h */,
+				96F85CC3234FD92E001B698A /* Fireball.cpp */,
+				96F85CC4234FD92E001B698A /* Fireball.h */,
+				969F43F3234FE07C00A2C1E9 /* Skeleton.cpp */,
+				969F43F4234FE07C00A2C1E9 /* Skeleton.h */,
 				96928F1F233DFBB1005C5DEB /* AnimatedSprite.cpp */,
 				96928F1E233DFBB1005C5DEB /* AnimatedSprite.h */,
 				96928F2C233DFBB2005C5DEB /* CollisionComponent.cpp */,
@@ -116,12 +135,18 @@
 				96928F21233DFBB1005C5DEB /* Player.h */,
 				96928F27233DFBB2005C5DEB /* PlayerMove.cpp */,
 				96928F25233DFBB2005C5DEB /* PlayerMove.h */,
+				969F43F623500DC000A2C1E9 /* Sword.cpp */,
+				969F43F723500DC000A2C1E9 /* Sword.h */,
 				96928F2B233DFBB2005C5DEB /* Random.cpp */,
 				96928F26233DFBB2005C5DEB /* Random.h */,
 				96928F22233DFBB1005C5DEB /* Spawner.cpp */,
 				96928F2D233DFBB3005C5DEB /* Spawner.h */,
 				96928F4B234F1EB3005C5DEB /* Bat.cpp */,
 				96928F4C234F1EB3005C5DEB /* Bat.h */,
+				969F43F92353212700A2C1E9 /* Boss.cpp */,
+				969F43FA2353212700A2C1E9 /* Boss.h */,
+				969F43FC2353AB5E00A2C1E9 /* TriForce.cpp */,
+				969F43FD2353AB5E00A2C1E9 /* TriForce.h */,
 				96928F2A233DFBB2005C5DEB /* SpriteComponent.cpp */,
 				96928F28233DFBB2005C5DEB /* SpriteComponent.h */,
 				96928F3623445E42005C5DEB /* TiledBGComponent.cpp */,
@@ -229,19 +254,24 @@
 				96928F34233DFBB3005C5DEB /* Random.cpp in Sources */,
 				96928F41234E67D0005C5DEB /* SecretBlock.cpp in Sources */,
 				96928F4D234F1EB3005C5DEB /* Bat.cpp in Sources */,
+				969F43FB2353212700A2C1E9 /* Boss.cpp in Sources */,
 				96928F3823445E42005C5DEB /* TiledBGComponent.cpp in Sources */,
 				96928F44234E7A00005C5DEB /* Key.cpp in Sources */,
 				927612C31F466FA50069B824 /* Actor.cpp in Sources */,
 				96928F2E233DFBB3005C5DEB /* AnimatedSprite.cpp in Sources */,
 				96928F31233DFBB3005C5DEB /* Player.cpp in Sources */,
 				96928F4A234EECF7005C5DEB /* EnemyComponent.cpp in Sources */,
+				96F85CC5234FD92E001B698A /* Fireball.cpp in Sources */,
+				969F43F5234FE07C00A2C1E9 /* Skeleton.cpp in Sources */,
 				96928F32233DFBB3005C5DEB /* PlayerMove.cpp in Sources */,
 				927612C41F466FA50069B824 /* Component.cpp in Sources */,
 				96928F3B23447936005C5DEB /* Collider.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
 				96928F33233DFBB3005C5DEB /* SpriteComponent.cpp in Sources */,
+				969F43F823500DC000A2C1E9 /* Sword.cpp in Sources */,
 				96928F35233DFBB3005C5DEB /* CollisionComponent.cpp in Sources */,
 				96928F30233DFBB3005C5DEB /* Spawner.cpp in Sources */,
+				969F43FE2353AB5E00A2C1E9 /* TriForce.cpp in Sources */,
 				96928F2F233DFBB3005C5DEB /* MoveComponent.cpp in Sources */,
 				96928F3E234DC872005C5DEB /* Door.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,

@@ -26,6 +26,8 @@ public:
     void SetKeyCount(int count){keyCount = count;}
     int GetKeyCount(){return keyCount;}
     
+    void TakeDamage(int amount);
+    
     
 protected:
     void OnUpdate(float deltaTime) override;
@@ -35,6 +37,8 @@ protected:
     
     bool isDead = false;
     int keyCount = 0;
+    int PLAYER_HP = 100;
+    float invincibilityTimer = 0.0f;
     
 };
 
