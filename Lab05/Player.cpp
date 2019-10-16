@@ -13,6 +13,7 @@
 #include "Game.h"
 
 Player::Player(Game* g) : Actor(g){
+    PLAYER_HP = INITIAL_PLAYER_HP;
     asprite = new AnimatedSprite(this, 200);
     
     std::vector<SDL_Texture*> walkUpAnime = {
@@ -58,7 +59,6 @@ Player::Player(Game* g) : Actor(g){
     asprite->AddAnimation("AttackRight", AttackRightAnime);
     
     asprite->SetAnimation("walkUp");
-    asprite->SetIsPaused(true);
     cc = new CollisionComponent(this);
     cc->SetSize(PLAYER_WIDTH, PLAYER_HEIGHT);
     pm = new PlayerMove(this);
@@ -73,7 +73,7 @@ void Player::TakeDamage(int amount){
     if(invincibilityTimer > 0.0f)
         return;
     else
-        invincibilityTimer = 0.5f;
+        invincibilityTimer = INVINCIBILITY_TIME;
     
     PLAYER_HP -= amount;
     if(PLAYER_HP <= 0){

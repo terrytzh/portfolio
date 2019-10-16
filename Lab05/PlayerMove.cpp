@@ -30,6 +30,7 @@ void PlayerMove::Update(float deltaTime){
     Vector2 pos = mOwner->GetPosition();
     if(attackTimer <= 0.0f){
         UpdateSword();
+        player->asprite->SetIsPaused(false);
         switch (direction) {
             case Direction::Left:
                 dir = Vector2(-1,0);
@@ -51,8 +52,10 @@ void PlayerMove::Update(float deltaTime){
                 player->asprite->SetAnimation("walkDown");
                 break;
         }
-        if(!isMoving)
+        if(!isMoving){
             dir = Vector2(0,0);
+            player->asprite->SetIsPaused(true);
+        }
         
         pos += dir * PLAYER_SPEED * deltaTime;
         mOwner->SetPosition(pos);

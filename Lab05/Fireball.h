@@ -22,6 +22,10 @@ public:
 protected:
     float lifeTime = 0.0f;
     
+    const float FORWARD_SPEED = 200.0f;
+    const float FIREBALL_WIDTH = 16.0f;
+    const float MAXIMUM_LIFETIME = 2.0f;
+    
     void OnUpdate(float deltaTime) override;
 };
 

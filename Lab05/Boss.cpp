@@ -39,7 +39,7 @@ Boss::Boss(Game* g) : Actor(g){
     as->SetAnimation("idle");
     
     cc = new CollisionComponent(this);
-    cc->SetSize(50.0f, 64.0f);
+    cc->SetSize(BOSS_WIDTH, BOSS_HEIGHT);
     
     ec = new EnemyComponent(this);
     ec->SetOnDeath([this]{
@@ -54,15 +54,15 @@ Boss::Boss(Game* g) : Actor(g){
     ec->SetOnTakeDamage([this]{
         Mix_PlayChannel(-1, GetGame()->GetSound("Assets/Sounds/BossHit.wav"), 0);
     });
-    ec->SetHP(5);
-    ec->SetCollisionDamage(2);
+    ec->SetHP(INITIAL_HP);
+    ec->SetCollisionDamage(BOSS_DAMAGE);
 }
 
 
 void Boss::OnUpdate(float deltaTime){
-    if(ec->GetHP()>2){
+    if(ec->GetHP()>ENRAGED_HP){
         if(attackTimer <= 0.0f){
-            attackTimer = 2.0f;
+            attackTimer = NORMAL_ATTACK_TIME;
             //Attack
             Fireball* up = new Fireball(mGame,true);
             up->SetRotation(Math::Pi*5.0f/6.0f);
@@ -83,7 +83,7 @@ void Boss::OnUpdate(float deltaTime){
     else{
         as->SetAnimation("enraged");
         if(attackTimer <= 0.0f){
-            attackTimer = 1.0f;
+            attackTimer = ENRAGED_ATTACK_TIME;
             //Attack
             for(int i = 0;i<9;i++){
                 Fireball* fb = new Fireball(mGame,true);

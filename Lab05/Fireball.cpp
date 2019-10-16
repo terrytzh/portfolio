@@ -21,14 +21,14 @@ Fireball::Fireball(Game* g, bool isGreen) : Actor(g){
     sprite->SetTexture(mGame->GetTexture("Assets/FireballRed.png"));
     
     mc = new MoveComponent(this);
-    mc->SetForwardSpeed(200.0f);
+    mc->SetForwardSpeed(FORWARD_SPEED);
     
     cc = new CollisionComponent(this);
-    cc->SetSize(16.0f, 16.0f);
+    cc->SetSize(FIREBALL_WIDTH, FIREBALL_WIDTH);
 }
 
 void Fireball::OnUpdate(float deltaTime){
-    if(lifeTime > 2.0f){
+    if(lifeTime > MAXIMUM_LIFETIME){
         SetState(ActorState::Destroy);
         return;
     }

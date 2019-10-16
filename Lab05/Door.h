@@ -40,6 +40,10 @@ public:
     void UpdateComponents();
     
 protected:
+    
+    const float DOOR_WIDTH = 64.0f;
+    const float DOOR_HEIGHT = 30.0f;
+    
     DoorState mState;
     DoorDirection mDirection;
     std::string mDestination;

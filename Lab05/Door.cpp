@@ -25,10 +25,10 @@ Door::Door(Game* g, DoorState state, DoorDirection direction, std::string destin
 void Door::UpdateComponents(){
     
     if(mDirection == DoorDirection::Up || mDirection == DoorDirection::Down){
-        cc->SetSize(30.0f, 64.0f);
+        cc->SetSize(DOOR_HEIGHT, DOOR_WIDTH);
     }
     else{
-        cc->SetSize(64.0f, 30.0f);
+        cc->SetSize(DOOR_WIDTH, DOOR_HEIGHT);
     }
     
     switch (mState) {

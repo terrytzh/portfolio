@@ -25,8 +25,9 @@ protected:
     Vector2 direction;
     float moveTime = 0.0f;
     
+    const float DIRECTION_CHANGE_TIME = 3.0f;
     const float BAT_SPEED = 50.0f;
-    
+    const float BAT_WIDTH = 25.0f;
 };
 
 

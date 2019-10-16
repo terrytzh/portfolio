@@ -34,10 +34,12 @@ protected:
     
     const float PLAYER_WIDTH = 20.0f;
     const float PLAYER_HEIGHT = 20.0f;
+    const float INVINCIBILITY_TIME = 0.5f;
+    const int INITIAL_PLAYER_HP = 10;
     
     bool isDead = false;
     int keyCount = 0;
-    int PLAYER_HP = 10;
+    int PLAYER_HP;
     float invincibilityTimer = 0.0f;
     
 };

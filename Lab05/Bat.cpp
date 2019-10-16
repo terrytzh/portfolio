@@ -25,7 +25,7 @@ Bat::Bat(Game* g) : Actor(g){
     as->SetAnimation("bat");
     
     cc = new CollisionComponent(this);
-    cc->SetSize(25.0f, 25.0f);
+    cc->SetSize(BAT_WIDTH, BAT_WIDTH);
     
     ec = new EnemyComponent(this);
     ec->SetOnDeath([this]{
@@ -39,7 +39,7 @@ Bat::Bat(Game* g) : Actor(g){
 }
 
 void Bat::OnUpdate(float deltaTime){
-    if(moveTime > 3.0f){
+    if(moveTime > DIRECTION_CHANGE_TIME){
         direction = Vector2::Normalize(Vector2(Random::GetFloatRange(-1.0f, 1.0f),Random::GetFloatRange(-1.0f, 1.0f)));
         moveTime = 0.0f;
     }

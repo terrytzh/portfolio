@@ -30,6 +30,8 @@ protected:
     SecretBlockDirection direction;
     float moveDistance;
     
+    const float BLOCK_WIDTH = 32.0f;
+    
     bool isUnlocked = false;
     
     void OpenClosedDoors();

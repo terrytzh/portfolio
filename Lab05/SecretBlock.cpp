@@ -15,7 +15,7 @@
 
 SecretBlock::SecretBlock(Game* g) : Actor(g){
     cc = new CollisionComponent(this);
-    cc->SetSize(32.0f, 32.0f);
+    cc->SetSize(BLOCK_WIDTH, BLOCK_WIDTH);
     sprite = new SpriteComponent(this);
     sprite->SetTexture(mGame->GetTexture("Assets/SecretBlock.png"));
     
@@ -23,7 +23,7 @@ SecretBlock::SecretBlock(Game* g) : Actor(g){
 }
 
 void SecretBlock::Move(float distance){
-    if(moveDistance > 32.0f && !isUnlocked){
+    if(moveDistance > BLOCK_WIDTH && !isUnlocked){
         Mix_PlayChannel(-1, GetGame()->GetSound("Assets/Sounds/Secret.wav"), 0);
         OpenClosedDoors();
         isUnlocked = true;
