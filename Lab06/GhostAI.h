@@ -56,6 +56,12 @@ private:
 
 	// Save the owning actor (cast to a Ghost*)
 	class Ghost* mGhost;
-
+    
 	// TODO: Add any member data/helper functions here!
+    bool GetPath(class PathNode* start, class PathNode* destination);
+    float GetHeuristic(class PathNode* start, class PathNode* end);
+    void SetDirection();
+    Vector2 direction;
+    
+    const float GHOST_SPEED = 90.0f;
 };
