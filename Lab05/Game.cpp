@@ -9,7 +9,6 @@
 #include "Game.h"
 #include "Actor.h"
 #include "Player.h"
-#include "Block.h"
 #include "Spawner.h"
 #include "Collider.h"
 #include "Door.h"
@@ -119,7 +118,7 @@ void Game::UpdateGame(){
     if(temp>33)
         temp = 33;
     
-    float delta_time = static_cast<float>(temp) / 1000.0;
+    float delta_time = static_cast<float>(temp) / 1000.0f;
     
     std::vector<Actor*> a = actors;
     for(std::vector<Actor*>::iterator i = a.begin(); i != a.end(); i++)
@@ -158,14 +157,14 @@ void Game::RemoveSprite(class SpriteComponent* sprite){
 
 
 void Game::SetCurrentRoom(std::string room){
-    SDL_Log("%s Enemy Size: %i", currentRoom.c_str(), enemy_map[currentRoom].size());
+    //SDL_Log("%s Enemy Size: %i", currentRoom.c_str(), enemy_map[currentRoom].size());
     for(auto e : enemy_map[currentRoom]){
         e->SetState(ActorState::Paused);
     }
     
     currentRoom = room;
     
-    SDL_Log("%s Enemy Size: %i", currentRoom.c_str(), enemy_map[currentRoom].size());
+    //SDL_Log("%s Enemy Size: %i", currentRoom.c_str(), enemy_map[currentRoom].size());
     for(auto e : enemy_map[currentRoom]){
         e->SetState(ActorState::Active);
     }
@@ -228,7 +227,7 @@ void Game::loadCSVMapFile(std::string fileName){
     std::vector<Spawner*> spawners;
     std::vector<Actor*> enemies;
     std::string roomName = fileName.substr(fileName.length()-9,5);
-    SDL_Log("%s", roomName.c_str());
+    //SDL_Log("%s", roomName.c_str());
     
     
     while(getline(ifs,temp)){
@@ -237,7 +236,7 @@ void Game::loadCSVMapFile(std::string fileName){
             
             if(CSVTarget[0] == "Player"){
                 player = new Player(this);
-                player->SetPosition(Vector2(std::stoi(CSVTarget[1]),std::stoi(CSVTarget[2])));
+                player->SetPosition(Vector2(std::stof(CSVTarget[1]),std::stof(CSVTarget[2])));
             }
             
             
@@ -352,7 +351,7 @@ void Game::loadCSVMapFile(std::string fileName){
             }
         }
     }
-    SDL_Log("Room: %s, door: %i", roomName.c_str(), doors.size());
+    //SDL_Log("Room: %s, door: %i", roomName.c_str(), doors.size());
     room_map.insert(std::pair<std::string, std::vector<Door*>>(roomName, doors));
     spawner_map.insert(std::pair<std::string, std::vector<Spawner*>>(roomName, spawners));
     enemy_map.insert(std::pair<std::string, std::vector<Actor*>>(roomName, enemies));

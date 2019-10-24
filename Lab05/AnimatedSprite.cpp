@@ -12,9 +12,9 @@ void AnimatedSprite::Update(float deltaTime)
     if(!mAnimName.empty()){
         if(!mIsPaused){
             mAnimTimer += deltaTime * mAnimFPS;
-            while(mAnimTimer >= static_cast<float>(mAnims[mAnimName].size()))
-                mAnimTimer -= static_cast<float>(mAnims[mAnimName].size());
         }
+        while(mAnimTimer >= static_cast<float>(mAnims[mAnimName].size()))
+            mAnimTimer -= static_cast<float>(mAnims[mAnimName].size());
         SetTexture(mAnims[mAnimName][static_cast<int>(mAnimTimer)]);
     }
 }

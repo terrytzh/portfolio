@@ -31,8 +31,8 @@ void TiledBGComponent::Draw(SDL_Renderer *renderer){
         SDL_Rect origin;
         origin.w = mTileWidth;
         origin.h = mTileHeight;
-        for(int i = 0; i < CSVData.size(); i++){
-            for(int k = 0; k < CSVData[i].size(); k++){
+        for(int i = 0; i < static_cast<int>(CSVData.size()); i++){
+            for(int k = 0; k < static_cast<int>(CSVData[i].size()); k++){
                 csvCode = CSVData[i][k];
                 if(csvCode == -1)
                     continue;
@@ -49,8 +49,8 @@ void TiledBGComponent::Draw(SDL_Renderer *renderer){
                 
                 
                 //Adjust position according to cam position
-                r.x -= mOwner->GetGame()->GetCamPosition().x;
-                r.y -= mOwner->GetGame()->GetCamPosition().y;
+                r.x -= static_cast<int>(mOwner->GetGame()->GetCamPosition().x);
+                r.y -= static_cast<int>(mOwner->GetGame()->GetCamPosition().y);
                 
                 // Draw (have to convert angle from radians to degrees, and clockwise to counter)
                 SDL_RenderCopyEx(renderer,

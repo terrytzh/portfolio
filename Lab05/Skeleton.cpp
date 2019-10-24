@@ -35,7 +35,8 @@ Skeleton::Skeleton(Game* g) : Actor(g){
     ec->SetOnTakeDamage([this]{
         
     });
-    COOLDOWN_TIMER = Random::GetFloatRange(1.0f, 3.0f);
+    COOLDOWN_TIMER = 4.0f;
+    timeCount = Random::GetFloatRange(1.0f, 3.0f);
 }
 
 void Skeleton::OnUpdate(float deltaTime){

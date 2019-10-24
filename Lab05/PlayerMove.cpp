@@ -9,7 +9,6 @@
 #include "PlayerMove.h"
 #include "Game.h"
 #include "Player.h"
-#include "Block.h"
 #include "Collider.h"
 #include "Door.h"
 #include "Sword.h"
@@ -71,7 +70,7 @@ void PlayerMove::Update(float deltaTime){
     
     for(auto e : player->GetGame()->GetEnemies(player->GetGame()->GetCurrentRoom())){
         if(attackTimer > 0.0f && sword->cc->Intersect(e->GetComponent<CollisionComponent>())){
-            SDL_Log("attack timer: %f", attackTimer);
+            //SDL_Log("attack timer: %f", attackTimer);
             e->GetComponent<EnemyComponent>()->TakeDamage(1);
         }
         else{
@@ -174,8 +173,8 @@ void PlayerMove::Update(float deltaTime){
 }
 
 void PlayerMove::ProcessInput(const Uint8 *keyState){
-    if(keyState[SDL_SCANCODE_SPACE] && !spacebarPressed){
-        if(attackTimer <= 0.0f){
+    if(keyState[SDL_SCANCODE_SPACE]){
+        if(attackTimer <= 0.0f  && !spacebarPressed){
             spacebarPressed = true;
             attackTimer = 0.25f;
             Mix_PlayChannel(-1, player->GetGame()->GetSound("Assets/Sounds/SwordSlash.wav"), 0);

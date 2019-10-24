@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <functional>
 #include "Component.h"
 
 class EnemyComponent : public Component{
