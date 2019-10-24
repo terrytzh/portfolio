@@ -61,7 +61,21 @@ private:
     bool GetPath(class PathNode* start, class PathNode* destination);
     float GetHeuristic(class PathNode* start, class PathNode* end);
     void SetDirection();
+    void SetPathWithFailsafe(class PathNode* start, class PathNode* destination);
     Vector2 direction;
     
+
+    float frightenedTimer= 0.0f;
+    float chaseTimer=0.0f;
+    float scatterTimer = 0.0f;
+    void FrightenedHelper();
+    void ScatterHelper();
+    void DeadHelper();
+    void ChaseHelper();
+    
     const float GHOST_SPEED = 90.0f;
+    const float GHOST_FRIGHTEN_SPEED = 65.0f;
+    const float GHOST_DEAD_SPEED = 125.0f;
+    const float GHOST_CHASE_TIME = 20.0f;
+    const float GHOST_SCATTER_TIME = 5.0f;
 };

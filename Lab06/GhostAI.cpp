@@ -22,63 +22,237 @@ void GhostAI::Update(float deltaTime)
 {
     if(mGhost->GetComponent<CollisionComponent>()->Intersect(mNextNode->GetComponent<CollisionComponent>())){
         mGhost->SetPosition(mNextNode->GetPosition());
-        if(mPath.empty()){
-            if(!GetPath(mNextNode, mTargetNode)){
-                PathNode* temp;
-                if(mNextNode->mAdjacent[0] == mPrevNode)
-                    temp = mNextNode->mAdjacent[1];
-                else
-                    temp = mNextNode->mAdjacent[0];
-                
-                for(auto n : mNextNode->mAdjacent){
-                    if(n == mPrevNode)
-                        continue;
-                    if(GetHeuristic(mTargetNode, n) < GetHeuristic(mTargetNode, temp))
-                        temp = n;
-                }
-                mPrevNode = mNextNode;
-                mNextNode = temp;
-                SetDirection();
-            }
-            else{
-                SetDirection();
-            }
-
+        if(mState == State::Dead){
+            DeadHelper();
         }
-        else{
-            if(mNextNode->GetType() == PathNode::Type::Tunnel){
-                mPath.pop_back();
-                mNextNode = mPath.back();
-            }
-            
-            mPrevNode = mNextNode;
-            mNextNode = mPath.back();
-            mPath.pop_back();
-            SetDirection();
-        }
+        else if(mState == State::Frightened)
+            FrightenedHelper();
+        else if(mState == State::Chase)
+            ChaseHelper();
+        else
+            ScatterHelper();
     }
     Vector2 pos = mGhost->GetPosition();
-    pos += direction * GHOST_SPEED * deltaTime;
+    if(mState == State::Dead)
+        pos += direction * GHOST_DEAD_SPEED * deltaTime;
+    else if(mState == State::Frightened)
+        pos += direction * GHOST_FRIGHTEN_SPEED * deltaTime;
+    else
+        pos += direction * GHOST_SPEED * deltaTime;
     mGhost->SetPosition(pos);
+    
+    if(frightenedTimer > 0.0f){
+        frightenedTimer -= deltaTime;
+        if(frightenedTimer <= 0.0f){
+            mState = State::Scatter;
+            scatterTimer = GHOST_SCATTER_TIME;
+            mPath.clear();
+        }
+    }
+    if(scatterTimer > 0.0f){
+        scatterTimer -= deltaTime;
+        if(scatterTimer <= 0.0f){
+            mState = State::Chase;
+            chaseTimer = GHOST_CHASE_TIME;
+        }
+    }
+    if(chaseTimer > 0.0f){
+        chaseTimer -= deltaTime;
+        if(chaseTimer <= 0.0f){
+            mState = State::Scatter;
+            scatterTimer = GHOST_SCATTER_TIME;
+            mPath.clear();
+        }
+    }
+    
+}
+
+void GhostAI::ScatterHelper(){
+    if(mPath.empty()){
+        SetPathWithFailsafe(mNextNode, mTargetNode);
+        
+    }
+    else{
+        if(mNextNode == mGhost->GetGame()->mTunnelLeft){
+            mPath.pop_back();
+            mNextNode = mPath.back();
+            mGhost->SetPosition(mGhost->GetGame()->mTunnelRight->GetPosition());
+        }
+        else if(mNextNode == mGhost->GetGame()->mTunnelRight){
+            mPath.pop_back();
+            mNextNode = mPath.back();
+            mGhost->SetPosition(mGhost->GetGame()->mTunnelLeft->GetPosition());
+        }
+        
+        mPrevNode = mNextNode;
+        mNextNode = mPath.back();
+        mPath.pop_back();
+        SetDirection();
+    }
+}
+
+void GhostAI::FrightenedHelper(){
+    if(mNextNode == mGhost->GetGame()->mTunnelLeft){
+        mGhost->SetPosition(mGhost->GetGame()->mTunnelRight->GetPosition());
+        mNextNode = mGhost->GetGame()->mTunnelRight;
+    }
+    else if(mNextNode == mGhost->GetGame()->mTunnelRight){
+        mGhost->SetPosition(mGhost->GetGame()->mTunnelLeft->GetPosition());
+        mNextNode = mGhost->GetGame()->mTunnelLeft;
+    }
+    
+    int index;
+    if(mNextNode->mAdjacent.size()<=1)
+        index = 0;
+    else{
+        index = Random::GetIntRange(0, static_cast<int>(mNextNode->mAdjacent.size())-1);
+        while(mNextNode->mAdjacent[index] == mPrevNode)
+            index = Random::GetIntRange(0, static_cast<int>(mNextNode->mAdjacent.size())-1);
+    }
+    
+    mPrevNode = mNextNode;
+    mNextNode = mNextNode->mAdjacent[index];
+    mPath.clear();
+    SetDirection();
+}
+
+void GhostAI::DeadHelper(){
+    if(mNextNode == mTargetNode){
+        mState = State::Scatter;
+        mGhost->Start();
+        return;
+    }
+    if(mPath.empty()){
+        SetPathWithFailsafe(mNextNode, mTargetNode);
+        
+    }
+    else{
+        if(mNextNode == mGhost->GetGame()->mTunnelLeft){
+            mPath.pop_back();
+            mNextNode = mPath.back();
+            mGhost->SetPosition(mGhost->GetGame()->mTunnelRight->GetPosition());
+        }
+        else if(mNextNode == mGhost->GetGame()->mTunnelRight){
+            mPath.pop_back();
+            mNextNode = mPath.back();
+            mGhost->SetPosition(mGhost->GetGame()->mTunnelLeft->GetPosition());
+        }
+        
+        mPrevNode = mNextNode;
+        mNextNode = mPath.back();
+        mPath.pop_back();
+        SetDirection();
+    }
+}
+
+void GhostAI::ChaseHelper(){
+    switch (mGhost->GetType()) {
+        case Ghost::Type::Blinky: {
+            SetPathWithFailsafe(mNextNode, mGhost->GetGame()->mPlayer->GetPrevNode());
+            break;
+        }
+            
+        case Ghost::Type::Pinky: {
+            Vector2 pos = mGhost->GetGame()->mPlayer->GetPointInFrontOf(80.0f);
+            PathNode* temp = mGhost->GetGame()->mPathNodes[0];
+            float distance = (mGhost->GetGame()->mPathNodes[0]->GetPosition()-pos).Length();
+            for(auto n : mGhost->GetGame()->mPathNodes){
+                if(n == mPrevNode)
+                    continue;
+                if((n->GetPosition()-pos).Length() < distance){
+                    distance = (n->GetPosition()-pos).Length();
+                    temp = n;
+                }
+            }
+            SetPathWithFailsafe(mNextNode, temp);
+            break;
+        }
+        case Ghost::Type::Inky: {
+            Vector2 point = mGhost->GetGame()->mPlayer->GetPointInFrontOf(40.0f);
+            Vector2 pos = mGhost->GetPosition() + 2*(point - mGhost->GetPosition());
+            PathNode* temp = mGhost->GetGame()->mPathNodes[0];
+            float distance = (mGhost->GetGame()->mPathNodes[0]->GetPosition()-pos).Length();
+            for(auto n : mGhost->GetGame()->mPathNodes){
+                if(n == mPrevNode)
+                    continue;
+                if((n->GetPosition()-pos).Length() < distance){
+                    distance = (n->GetPosition()-pos).Length();
+                    temp = n;
+                }
+            }
+            SetPathWithFailsafe(mNextNode, temp);
+            break;
+        }
+            
+        case Ghost::Type::Clyde: {
+            if((mGhost->GetPosition() - mGhost->GetGame()->mPlayer->GetPosition()).Length() > 150.0f){
+                SetPathWithFailsafe(mNextNode, mGhost->GetGame()->mPlayer->GetPrevNode());
+            }
+            else{
+                SetPathWithFailsafe(mNextNode, mGhost->GetScatterNode());
+            }
+            break;
+        }
+    }
 }
 
 void GhostAI::SetDirection(){
     AnimatedSprite* asc = mGhost->GetComponent<AnimatedSprite>();
     if(mNextNode->GetPosition().x > mGhost->GetPosition().x){
         direction = Vector2(1,0);
-        asc->SetAnimation("right");
+        if(mState == State::Dead){
+            asc->SetAnimation("deadright");
+        }
+        else if(frightenedTimer > 2.0f){
+            asc->SetAnimation("scared0");
+        }
+        else if(frightenedTimer > 0.0f){
+            asc->SetAnimation("scared1");
+        }
+        else
+            asc->SetAnimation("right");
     }
     else if(mNextNode->GetPosition().x < mGhost->GetPosition().x){
         direction = Vector2(-1,0);
-        asc->SetAnimation("left");
+        if(mState == State::Dead){
+            asc->SetAnimation("deadleft");
+        }
+        else if(frightenedTimer > 2.0f){
+            asc->SetAnimation("scared0");
+        }
+        else if(frightenedTimer > 0.0f){
+            asc->SetAnimation("scared1");
+        }
+        else
+            asc->SetAnimation("left");
     }
     else if(mNextNode->GetPosition().y > mGhost->GetPosition().y){
         direction = Vector2(0,1);
-        asc->SetAnimation("down");
+        if(mState == State::Dead){
+            asc->SetAnimation("deaddown");
+        }
+        else if(frightenedTimer > 2.0f){
+            asc->SetAnimation("scared0");
+        }
+        else if(frightenedTimer > 0.0f){
+            asc->SetAnimation("scared1");
+        }
+        else
+            asc->SetAnimation("down");
     }
     else if(mNextNode->GetPosition().y < mGhost->GetPosition().y){
         direction = Vector2(0,-1);
-        asc->SetAnimation("up");
+        if(mState == State::Dead){
+            asc->SetAnimation("deadup");
+        }
+        else if(frightenedTimer > 2.0f){
+            asc->SetAnimation("scared0");
+        }
+        else if(frightenedTimer > 0.0f){
+            asc->SetAnimation("scared1");
+        }
+        else
+            asc->SetAnimation("up");
     }
     return;
 }
@@ -86,6 +260,14 @@ void GhostAI::SetDirection(){
 void GhostAI::Frighten()
 {
 	// TODO: Implement
+    if(mState == State::Dead)
+        return;
+    frightenedTimer = 7.0f;
+    scatterTimer = 0.0f;
+    chaseTimer = 0.0f;
+    mState = State::Frightened;
+    mNextNode = mPrevNode;
+    SetDirection();
 }
 
 void GhostAI::Start(PathNode* startNode)
@@ -93,6 +275,7 @@ void GhostAI::Start(PathNode* startNode)
 	// TODO: Implement
     mOwner->SetPosition(startNode->GetPosition());
     mState = State::Scatter;
+    scatterTimer = GHOST_SCATTER_TIME;
     mPrevNode = nullptr;
     mNextNode = nullptr;
     mTargetNode = nullptr;
@@ -103,6 +286,30 @@ void GhostAI::Start(PathNode* startNode)
 void GhostAI::Die()
 {
 	// TODO: Implement
+    mState = State::Dead;
+    frightenedTimer = 0.0f;
+    SetDirection();
+    mTargetNode = mGhost->GetGame()->mGhostPen;
+}
+
+void GhostAI::SetPathWithFailsafe(PathNode *start, PathNode *destination){
+    if(!GetPath(start, destination)){
+        PathNode* temp;
+        if(mNextNode->mAdjacent[0] == mPrevNode)
+            temp = mNextNode->mAdjacent[1];
+        else
+            temp = mNextNode->mAdjacent[0];
+        
+        for(auto n : mNextNode->mAdjacent){
+            if(n == mPrevNode)
+                continue;
+            if(GetHeuristic(mTargetNode, n) < GetHeuristic(mTargetNode, temp))
+                temp = n;
+        }
+        mPrevNode = mNextNode;
+        mNextNode = temp;
+    }
+    SetDirection();
 }
 
 void GhostAI::DebugDrawPath(SDL_Renderer* render)
@@ -227,6 +434,7 @@ bool GhostAI::GetPath(PathNode* start, PathNode* destination){
     else if(nodeParentMap[temp] == NULL)
         return false;
     
+    mPath.clear();
     while(nodeParentMap[temp] != start){
         mPath.push_back(temp);
         if(nodeParentMap[nodeParentMap[temp]] == start){
