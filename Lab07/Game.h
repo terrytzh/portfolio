@@ -33,6 +33,7 @@ private:
 	std::vector<class Actor*> mActors;
 
 	class Renderer* mRenderer;
+    class Player* mPlayer;
 
 	Uint32 mTicksCount;
 	bool mIsRunning;
