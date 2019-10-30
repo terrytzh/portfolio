@@ -36,6 +36,7 @@ bool Game::Initialize(){
         LoadData();
         pre_time = SDL_GetTicks();
         return true;
+
     }
     else
         return false;

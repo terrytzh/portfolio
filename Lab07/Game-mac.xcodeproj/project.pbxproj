@@ -24,6 +24,7 @@
 		92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92924F9A1EDF6DC800A740A7 /* Game.cpp */; };
 		92D324FD1B697428005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FC1B697428005A86C7 /* CoreFoundation.framework */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		96BADCBD23690D5800F29EA3 /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96BADCBB23690D5800F29EA3 /* PlayerMove.cpp */; };
 		96BD632C23627E910018D477 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96BD632A23627E910018D477 /* Player.cpp */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		92D324FC1B697428005A86C7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		96BADCBB23690D5800F29EA3 /* PlayerMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerMove.cpp; sourceTree = "<group>"; };
+		96BADCBC23690D5800F29EA3 /* PlayerMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
 		96BD632A23627E910018D477 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		96BD632B23627E910018D477 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +89,8 @@
 				924722A21EF72947000B58FD /* Actor.h */,
 				96BD632A23627E910018D477 /* Player.cpp */,
 				96BD632B23627E910018D477 /* Player.h */,
+				96BADCBB23690D5800F29EA3 /* PlayerMove.cpp */,
+				96BADCBC23690D5800F29EA3 /* PlayerMove.h */,
 				924722BC1EF98571000B58FD /* CollisionComponent.cpp */,
 				924722BD1EF98571000B58FD /* CollisionComponent.h */,
 				924722A31EF72947000B58FD /* Component.cpp */,
@@ -213,6 +218,7 @@
 				96BD632C23627E910018D477 /* Player.cpp in Sources */,
 				924722AF1EF89CAE000B58FD /* MoveComponent.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
+				96BADCBD23690D5800F29EA3 /* PlayerMove.cpp in Sources */,
 				928A32D61F97158D00E04B24 /* Renderer.cpp in Sources */,
 				928A32D71F97158D00E04B24 /* Shader.cpp in Sources */,
 				924722AB1EF72947000B58FD /* Math.cpp in Sources */,
