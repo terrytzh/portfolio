@@ -11,13 +11,14 @@
 
 #include <stdio.h>
 #include "Actor.h"
+#include <SDL/SDL_stdinc.h>
 
 class Player : public Actor{
 public:
     Player(class Game* g);
     class MeshComponent* mc;
     class CollisionComponent* cc;
-    
+    class PlayerMove* pm;
 protected:
     
 };

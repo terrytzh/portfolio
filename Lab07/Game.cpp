@@ -13,6 +13,9 @@
 #include "Renderer.h"
 #include "Random.h"
 #include "Player.h"
+#include "SideBlock.h"
+#include "Block.h"
+#include "MeshComponent.h"
 
 Game::Game()
 :mIsRunning(true)
@@ -118,6 +121,27 @@ void Game::UpdateGame()
 	{
 		delete actor;
 	}
+    
+    //Dynamically create blocks
+    if(mPlayer->GetPosition().x + SIDEBLOCK_GENERATE_DISTANCE > LastBlockX + SIDEBLOCK_X_LENGTH){
+        SideBlock* sl = new SideBlock(this);
+        SideBlock* sr = new SideBlock(this);
+        sl->SetPosition(Vector3(LastBlockX + SIDEBLOCK_X_LENGTH,-SIDEBLOCK_Y_POSITION,0.0f));
+        sr->SetPosition(Vector3(LastBlockX + SIDEBLOCK_X_LENGTH,SIDEBLOCK_Y_POSITION,0.0f));
+        int index = (static_cast<int>(sl->GetPosition().x) / 500) % 4;
+        sl->mc->SetTextureIndex(index);
+        sr->mc->SetTextureIndex(index);
+        LastBlockX += SIDEBLOCK_X_LENGTH;
+        if(static_cast<int>(LastBlockX + SIDEBLOCK_X_LENGTH) % 1000 == 0){
+            int index = static_cast<int>(LastBlockX + SIDEBLOCK_X_LENGTH) / 1000;
+            if(index <= 20){
+                LoadBlocks("Assets/Blocks/" + std::to_string(index) + ".txt", index * 1000);
+            }
+            else{
+                LoadBlocks("Assets/Blocks/" + std::to_string(Random::GetIntRange(1, 20)) + ".txt", index * 1000);
+            }
+        }
+    }
 }
 
 void Game::GenerateOutput()
@@ -129,6 +153,22 @@ void Game::GenerateOutput()
 void Game::LoadData()
 {
     mPlayer = new Player(this);
+    for(float x = 0.0f; x < 3000.0f; x += SIDEBLOCK_X_LENGTH){
+        SideBlock* sl = new SideBlock(this);
+        SideBlock* sr = new SideBlock(this);
+        sl->SetPosition(Vector3(x,-SIDEBLOCK_Y_POSITION,0.0f));
+        sr->SetPosition(Vector3(x,SIDEBLOCK_Y_POSITION,0.0f));
+        int index = (static_cast<int>(sl->GetPosition().x) / 500) % 4;
+        sl->mc->SetTextureIndex(index);
+        sr->mc->SetTextureIndex(index);
+    }
+    for(float x = 1000.0f; x <= 3000.0f; x += BLOCK_X_LENGTH){
+        int index = static_cast<int>( x / 1000.0f);
+        LoadBlocks("Assets/Blocks/" + std::to_string(index) + ".txt", x);
+    }
+    LastBlockX = 2500.0f;
+    BGMChannel = Mix_PlayChannel(-1, mPlayer->GetGame()->GetSound("Assets/Sounds/ShipLoop.wav"), -1);
+    
     Matrix4 projectionMatrix = Matrix4::CreatePerspectiveFOV(1.22f, 1024.0f, 768.0f, 10.0f, 10000.0f);
     mRenderer->SetProjectionMatrix(projectionMatrix);
     Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
@@ -150,6 +190,16 @@ void Game::UnloadData()
 		Mix_FreeChunk(s.second);
 	}
 	mSounds.clear();
+}
+
+void Game::AddBlock(class Block* b){
+    mBlocks.push_back(b);
+}
+void Game::RemoveBlock(class Block* b){
+    std::vector<Block*>::iterator i = find(mBlocks.begin(),mBlocks.end(),b);
+    if(i != mBlocks.end()){
+        mBlocks.erase(i);
+    }
 }
 
 Mix_Chunk* Game::GetSound(const std::string& fileName)
@@ -199,4 +249,27 @@ void Game::RemoveActor(Actor* actor)
 		std::iter_swap(iter, iter2);
 		mActors.pop_back();
 	}
+}
+
+void Game::LoadBlocks(std::string filename, float x){
+    std::ifstream in(filename);
+    Vector3 pos(x, -237.5f, 237.5f);
+    if(in){
+        std::string line;
+        while(getline(in,line)){
+            for(auto b : line){
+                if(b == 'A'){
+                    Block* a = new Block(this, false);
+                    a->SetPosition(pos);
+                }
+                else if(b == 'B'){
+                    Block* b = new Block(this, true);
+                    b->SetPosition(pos);
+                }
+                pos.y += 25.0f;
+            }
+            pos.z -= 25.0f;
+            pos.y = -237.5f;
+        }
+    }
 }

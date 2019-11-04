@@ -12,5 +12,5 @@ MoveComponent::MoveComponent(class Actor* owner)
 void MoveComponent::Update(float deltaTime)
 {
     mOwner->SetRotation(mOwner->GetRotation() + mAngularSpeed * deltaTime);
-    mOwner->SetPosition(Vector3(mOwner->GetPosition().x+mOwner->GetForward().x*deltaTime*mForwardSpeed, mOwner->GetPosition().y+mOwner->GetForward().y*deltaTime*mForwardSpeed, 0.0f));
+    mOwner->SetPosition(Vector3(mOwner->GetPosition().x+mOwner->GetForward().x*deltaTime*mForwardSpeed, mOwner->GetPosition().y+mOwner->GetForward().y*deltaTime*mForwardSpeed, mOwner->GetPosition().z+mOwner->GetForward().z*deltaTime*mForwardSpeed));
 }
