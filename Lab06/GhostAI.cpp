@@ -94,11 +94,15 @@ void GhostAI::ScatterHelper(){
 void GhostAI::FrightenedHelper(){
     if(mNextNode == mGhost->GetGame()->mTunnelLeft){
         mGhost->SetPosition(mGhost->GetGame()->mTunnelRight->GetPosition());
-        mNextNode = mGhost->GetGame()->mTunnelRight;
+        mPrevNode = mGhost->GetGame()->mTunnelRight;
+        mNextNode = mGhost->GetGame()->mTunnelRight->mAdjacent[0];
+        return;
     }
     else if(mNextNode == mGhost->GetGame()->mTunnelRight){
         mGhost->SetPosition(mGhost->GetGame()->mTunnelLeft->GetPosition());
-        mNextNode = mGhost->GetGame()->mTunnelLeft;
+        mPrevNode = mGhost->GetGame()->mTunnelLeft;
+        mNextNode = mGhost->GetGame()->mTunnelLeft->mAdjacent[0];
+        return;
     }
     
     int index;
@@ -124,7 +128,17 @@ void GhostAI::DeadHelper(){
     }
     if(mPath.empty()){
         SetPathWithFailsafe(mNextNode, mTargetNode);
-        
+        if(mNextNode == mGhost->GetGame()->mTunnelLeft){
+            mPath.pop_back();
+            mNextNode = mPath.back();
+            mGhost->SetPosition(mGhost->GetGame()->mTunnelRight->GetPosition());
+            
+        }
+        else if(mNextNode == mGhost->GetGame()->mTunnelRight){
+            mPath.pop_back();
+            mNextNode = mPath.back();
+            mGhost->SetPosition(mGhost->GetGame()->mTunnelLeft->GetPosition());
+        }
     }
     else{
         if(mNextNode == mGhost->GetGame()->mTunnelLeft){
@@ -146,6 +160,27 @@ void GhostAI::DeadHelper(){
 }
 
 void GhostAI::ChaseHelper(){
+    if(mNextNode == mGhost->GetGame()->mTunnelLeft){
+        mPath.pop_back();
+        mPrevNode = mGhost->GetGame()->mTunnelRight;
+        if(mNextNode == mTargetNode){
+            mNextNode = mGhost->GetGame()->mTunnelRight->mAdjacent[0];
+            mTargetNode = mNextNode;
+        }
+        mGhost->SetPosition(mGhost->GetGame()->mTunnelRight->GetPosition());
+        return;
+    }
+    else if(mNextNode == mGhost->GetGame()->mTunnelRight){
+        mPath.pop_back();
+        mPrevNode = mGhost->GetGame()->mTunnelLeft;
+        if(mNextNode == mTargetNode){
+            mNextNode = mGhost->GetGame()->mTunnelLeft->mAdjacent[0];
+            mTargetNode = mNextNode;
+        }
+        mGhost->SetPosition(mGhost->GetGame()->mTunnelLeft->GetPosition());
+        return;
+    }
+    
     switch (mGhost->GetType()) {
         case Ghost::Type::Blinky: {
             SetPathWithFailsafe(mNextNode, mGhost->GetGame()->mPlayer->GetPrevNode());
@@ -355,7 +390,7 @@ void GhostAI::DebugDrawPath(SDL_Renderer* render)
 		SDL_RenderDrawLine(render,
 			static_cast<int>(mPath[i]->GetPosition().x),
 			static_cast<int>(mPath[i]->GetPosition().y),
-			static_cast<int>(mPath[i + 1]->GetPosition().x),
+				static_cast<int>(mPath[i + 1]->GetPosition().x),
 			static_cast<int>(mPath[i + 1]->GetPosition().y));
 	}
 }
