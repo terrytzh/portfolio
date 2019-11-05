@@ -36,7 +36,8 @@ void Bullet::OnUpdate(float deltaTime){
     
     for(auto b : mGame->GetBlocks()){
         if(cc->Intersect(b->cc)){
-            b->Destroy();
+            if(b->GetExploding())
+                b->Destroy();
             SetState(ActorState::Destroy);
         }
     }

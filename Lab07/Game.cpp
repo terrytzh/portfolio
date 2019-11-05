@@ -135,10 +135,10 @@ void Game::UpdateGame()
         if(static_cast<int>(LastBlockX + SIDEBLOCK_X_LENGTH) % 1000 == 0){
             int index = static_cast<int>(LastBlockX + SIDEBLOCK_X_LENGTH) / 1000;
             if(index <= 20){
-                LoadBlocks("Assets/Blocks/" + std::to_string(index) + ".txt", index * 1000);
+                LoadBlocks("Assets/Blocks/" + std::to_string(index) + ".txt", static_cast<float>(index) * 1000.0f);
             }
             else{
-                LoadBlocks("Assets/Blocks/" + std::to_string(Random::GetIntRange(1, 20)) + ".txt", index * 1000);
+                LoadBlocks("Assets/Blocks/" + std::to_string(Random::GetIntRange(1, 20)) + ".txt", static_cast<float>(index) * 1000.0f);
             }
         }
     }
