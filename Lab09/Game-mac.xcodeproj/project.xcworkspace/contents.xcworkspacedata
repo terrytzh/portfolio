@@ -2,6 +2,48 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Game-mac.xcodeproj">
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Actor.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Actor.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/CameraComponent.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/CameraComponent.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/CollisionComponent.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/CollisionComponent.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Game.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Game.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/MoveComponent.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/MoveComponent.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Player.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Player.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/PlayerMove.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/PlayerMove.h">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

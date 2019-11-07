@@ -20,12 +20,16 @@
 		928A32D81F97158D00E04B24 /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928A32CC1F97158C00E04B24 /* VertexArray.cpp */; };
 		928A32D91F97158D00E04B24 /* MeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 928A32D01F97158D00E04B24 /* MeshComponent.cpp */; };
 		92924F991EDF6AC900A740A7 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92924F981EDF6AC900A740A7 /* Main.cpp */; };
-		92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92924F9A1EDF6DC800A740A7 /* Game.cpp */; };
 		92B401A4223F28E5004DD285 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B401A1223F28E4004DD285 /* Random.cpp */; };
 		92B401A5223F28E5004DD285 /* SegmentCast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92B401A2223F28E4004DD285 /* SegmentCast.cpp */; };
 		92D324FD1B697428005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FC1B697428005A86C7 /* CoreFoundation.framework */; };
 		92E32AAC1F9D67450091853F /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E32AAA1F9D67450091853F /* LevelLoader.cpp */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		967F272B2374A6A000677592 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 967F27242374A6A000677592 /* Player.cpp */; };
+		967F272D2374A6A000677592 /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 967F27232374A6A000677592 /* CameraComponent.cpp */; };
+		967F272E2374A6A000677592 /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 967F271F2374A69F00677592 /* PlayerMove.cpp */; };
+		967F27302374A6A000677592 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 967F27252374A6A000677592 /* Game.cpp */; };
+		967F27332374AA0000677592 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 967F27312374AA0000677592 /* Block.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +59,6 @@
 		928A32D21F97158D00E04B24 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		928A32D31F97158D00E04B24 /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		92924F981EDF6AC900A740A7 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
-		92924F9A1EDF6DC800A740A7 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
-		92924F9B1EDF6DC800A740A7 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		92B401A0223F28E4004DD285 /* SegmentCast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentCast.h; sourceTree = "<group>"; };
 		92B401A1223F28E4004DD285 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
 		92B401A2223F28E4004DD285 /* SegmentCast.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SegmentCast.cpp; sourceTree = "<group>"; };
@@ -66,6 +68,16 @@
 		92E32AAB1F9D67450091853F /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoader.h; sourceTree = "<group>"; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		967F271C2374A69F00677592 /* CameraComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraComponent.h; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/CameraComponent.h"; sourceTree = "<absolute>"; };
+		967F271D2374A69F00677592 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Player.h; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Player.h"; sourceTree = "<absolute>"; };
+		967F271F2374A69F00677592 /* PlayerMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerMove.cpp; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/PlayerMove.cpp"; sourceTree = "<absolute>"; };
+		967F27232374A6A000677592 /* CameraComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CameraComponent.cpp; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/CameraComponent.cpp"; sourceTree = "<absolute>"; };
+		967F27242374A6A000677592 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Player.cpp"; sourceTree = "<absolute>"; };
+		967F27252374A6A000677592 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Game.cpp"; sourceTree = "<absolute>"; };
+		967F27262374A6A000677592 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Game.h; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/Game.h"; sourceTree = "<absolute>"; };
+		967F27282374A6A000677592 /* PlayerMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PlayerMove.h; path = "/Users/apple/Documents/ITP 380/labs-terrytzh/Lab09/PlayerMove.h"; sourceTree = "<absolute>"; };
+		967F27312374AA0000677592 /* Block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
+		967F27322374AA0000677592 /* Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,12 +98,20 @@
 			children = (
 				924722A11EF72947000B58FD /* Actor.cpp */,
 				924722A21EF72947000B58FD /* Actor.h */,
+				967F27312374AA0000677592 /* Block.cpp */,
+				967F27322374AA0000677592 /* Block.h */,
 				924722BC1EF98571000B58FD /* CollisionComponent.cpp */,
 				924722BD1EF98571000B58FD /* CollisionComponent.h */,
+				967F27232374A6A000677592 /* CameraComponent.cpp */,
+				967F271C2374A69F00677592 /* CameraComponent.h */,
+				967F27252374A6A000677592 /* Game.cpp */,
+				967F27262374A6A000677592 /* Game.h */,
+				967F27242374A6A000677592 /* Player.cpp */,
+				967F271D2374A69F00677592 /* Player.h */,
+				967F271F2374A69F00677592 /* PlayerMove.cpp */,
+				967F27282374A6A000677592 /* PlayerMove.h */,
 				924722A31EF72947000B58FD /* Component.cpp */,
 				924722A41EF72947000B58FD /* Component.h */,
-				92924F9A1EDF6DC800A740A7 /* Game.cpp */,
-				92924F9B1EDF6DC800A740A7 /* Game.h */,
 				92E32AAA1F9D67450091853F /* LevelLoader.cpp */,
 				92E32AAB1F9D67450091853F /* LevelLoader.h */,
 				92924F981EDF6AC900A740A7 /* Main.cpp */,
@@ -158,7 +178,7 @@
 		92E46DEF1B634EA30035CD21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Sanjay Madhav";
 				TargetAttributes = {
 					92E46DF61B634EA30035CD21 = {
@@ -168,10 +188,11 @@
 			};
 			buildConfigurationList = 92E46DF21B634EA30035CD21 /* Build configuration list for PBXProject "Game-mac" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 92E46DEE1B634EA30035CD21;
 			productRefGroup = 92E46DF81B634EA30035CD21 /* Products */;
@@ -205,22 +226,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				924722A91EF72947000B58FD /* Actor.cpp in Sources */,
+				967F27302374A6A000677592 /* Game.cpp in Sources */,
 				928A32D81F97158D00E04B24 /* VertexArray.cpp in Sources */,
 				924722AA1EF72947000B58FD /* Component.cpp in Sources */,
 				928A32D91F97158D00E04B24 /* MeshComponent.cpp in Sources */,
+				967F272E2374A6A000677592 /* PlayerMove.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
 				928A32D51F97158D00E04B24 /* Texture.cpp in Sources */,
 				9210C6A521DC107E00C3E613 /* UIComponent.cpp in Sources */,
 				924722AF1EF89CAE000B58FD /* MoveComponent.cpp in Sources */,
-				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
 				928A32D61F97158D00E04B24 /* Renderer.cpp in Sources */,
 				92B401A5223F28E5004DD285 /* SegmentCast.cpp in Sources */,
 				928A32D71F97158D00E04B24 /* Shader.cpp in Sources */,
 				924722AB1EF72947000B58FD /* Math.cpp in Sources */,
 				92B401A4223F28E5004DD285 /* Random.cpp in Sources */,
+				967F27332374AA0000677592 /* Block.cpp in Sources */,
 				928A32D41F97158D00E04B24 /* Mesh.cpp in Sources */,
+				967F272B2374A6A000677592 /* Player.cpp in Sources */,
 				924722BE1EF98571000B58FD /* CollisionComponent.cpp in Sources */,
 				92E32AAC1F9D67450091853F /* LevelLoader.cpp in Sources */,
+				967F272D2374A6A000677592 /* CameraComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +256,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -284,6 +310,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

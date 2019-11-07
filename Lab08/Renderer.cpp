@@ -82,6 +82,7 @@ bool Renderer::Initialize(float width, float height)
 
 void Renderer::Shutdown()
 {
+	UnloadData();
 	delete mSpriteVerts;
 	mSpriteShader->Unload();
 	delete mSpriteShader;

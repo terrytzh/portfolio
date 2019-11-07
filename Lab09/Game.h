@@ -16,10 +16,12 @@ public:
 
 	void AddActor(class Actor* actor);
 	void RemoveActor(class Actor* actor);
+    
+    class Player* GetPlayer(){return mPlayer;}
+    
+    int GetBGMChannel(){return BGMChannel;}
 
 	Mix_Chunk* GetSound(const std::string& fileName);
-
-	void LoadLevel(const std::string& fileName);
 
 	class Renderer* GetRenderer() {	return mRenderer; }
 private:
@@ -28,15 +30,18 @@ private:
 	void GenerateOutput();
 	void LoadData();
 	void UnloadData();
+    void LoadBlocks(std::string filename, float x);
 
-	// Map of textures loaded
-	std::unordered_map<std::string, SDL_Texture*> mTextures;
 	std::unordered_map<std::string, Mix_Chunk*> mSounds;
 
 	// All the actors in the game
 	std::vector<class Actor*> mActors;
+    std::vector<class Actor*> mObjects;
 
 	class Renderer* mRenderer;
+    class Player* mPlayer;
+    
+    int BGMChannel;
 
 	Uint32 mTicksCount;
 	bool mIsRunning;

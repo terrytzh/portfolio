@@ -24,6 +24,14 @@
 		92D324FD1B697428005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FC1B697428005A86C7 /* CoreFoundation.framework */; };
 		92D39FD6222D172500D5EA2C /* PlayerUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D39FD4222D172500D5EA2C /* PlayerUI.cpp */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		9675DA642372B3DB00BA7EED /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9675DA5E2372B3DA00BA7EED /* PlayerMove.cpp */; };
+		9675DA652372B3DB00BA7EED /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9675DA602372B3DB00BA7EED /* Player.cpp */; };
+		9675DA662372B3DB00BA7EED /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9675DA612372B3DB00BA7EED /* Random.cpp */; };
+		9675DA692372B60A00BA7EED /* VehicleMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9675DA672372B60A00BA7EED /* VehicleMove.cpp */; };
+		9675DA6C2373778F00BA7EED /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9675DA6A2373778F00BA7EED /* CameraComponent.cpp */; };
+		9675DA6F23737E8800BA7EED /* HeightMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9675DA6D23737E8800BA7EED /* HeightMap.cpp */; };
+		9675DA722373A5DC00BA7EED /* EnemyMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9675DA702373A5DC00BA7EED /* EnemyMove.cpp */; };
+		967F271B2373FBF300677592 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 967F27192373FBF300677592 /* Enemy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +69,22 @@
 		92D39FD5222D172500D5EA2C /* PlayerUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerUI.h; sourceTree = "<group>"; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		9675DA5E2372B3DA00BA7EED /* PlayerMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerMove.cpp; sourceTree = "<group>"; };
+		9675DA5F2372B3DB00BA7EED /* PlayerMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
+		9675DA602372B3DB00BA7EED /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		9675DA612372B3DB00BA7EED /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		9675DA622372B3DB00BA7EED /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		9675DA632372B3DB00BA7EED /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		9675DA672372B60A00BA7EED /* VehicleMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VehicleMove.cpp; sourceTree = "<group>"; };
+		9675DA682372B60A00BA7EED /* VehicleMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleMove.h; sourceTree = "<group>"; };
+		9675DA6A2373778F00BA7EED /* CameraComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cpp; sourceTree = "<group>"; };
+		9675DA6B2373778F00BA7EED /* CameraComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
+		9675DA6D23737E8800BA7EED /* HeightMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HeightMap.cpp; sourceTree = "<group>"; };
+		9675DA6E23737E8800BA7EED /* HeightMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeightMap.h; sourceTree = "<group>"; };
+		9675DA702373A5DC00BA7EED /* EnemyMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyMove.cpp; sourceTree = "<group>"; };
+		9675DA712373A5DC00BA7EED /* EnemyMove.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnemyMove.h; sourceTree = "<group>"; };
+		967F27192373FBF300677592 /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		967F271A2373FBF300677592 /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +109,25 @@
 				924722BD1EF98571000B58FD /* CollisionComponent.h */,
 				924722A31EF72947000B58FD /* Component.cpp */,
 				924722A41EF72947000B58FD /* Component.h */,
+				9675DA6A2373778F00BA7EED /* CameraComponent.cpp */,
+				9675DA6B2373778F00BA7EED /* CameraComponent.h */,
+				9675DA6D23737E8800BA7EED /* HeightMap.cpp */,
+				9675DA6E23737E8800BA7EED /* HeightMap.h */,
 				9210C6B121DC144A00C3E613 /* CSVHelper.h */,
 				92924F9A1EDF6DC800A740A7 /* Game.cpp */,
 				92924F9B1EDF6DC800A740A7 /* Game.h */,
+				9675DA602372B3DB00BA7EED /* Player.cpp */,
+				9675DA622372B3DB00BA7EED /* Player.h */,
+				9675DA5E2372B3DA00BA7EED /* PlayerMove.cpp */,
+				9675DA5F2372B3DB00BA7EED /* PlayerMove.h */,
+				9675DA672372B60A00BA7EED /* VehicleMove.cpp */,
+				9675DA682372B60A00BA7EED /* VehicleMove.h */,
+				9675DA702373A5DC00BA7EED /* EnemyMove.cpp */,
+				9675DA712373A5DC00BA7EED /* EnemyMove.h */,
+				967F27192373FBF300677592 /* Enemy.cpp */,
+				967F271A2373FBF300677592 /* Enemy.h */,
+				9675DA612372B3DB00BA7EED /* Random.cpp */,
+				9675DA632372B3DB00BA7EED /* Random.h */,
 				92924F981EDF6AC900A740A7 /* Main.cpp */,
 				924722A51EF72947000B58FD /* Math.cpp */,
 				924722A61EF72947000B58FD /* Math.h */,
@@ -150,7 +190,7 @@
 		92E46DEF1B634EA30035CD21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Sanjay Madhav";
 				TargetAttributes = {
 					92E46DF61B634EA30035CD21 = {
@@ -160,10 +200,11 @@
 			};
 			buildConfigurationList = 92E46DF21B634EA30035CD21 /* Build configuration list for PBXProject "Game-mac" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 92E46DEE1B634EA30035CD21;
 			productRefGroup = 92E46DF81B634EA30035CD21 /* Products */;
@@ -199,15 +240,23 @@
 				924722A91EF72947000B58FD /* Actor.cpp in Sources */,
 				928A32D81F97158D00E04B24 /* VertexArray.cpp in Sources */,
 				924722AA1EF72947000B58FD /* Component.cpp in Sources */,
+				9675DA652372B3DB00BA7EED /* Player.cpp in Sources */,
+				9675DA642372B3DB00BA7EED /* PlayerMove.cpp in Sources */,
 				9210C6A221DC105400C3E613 /* UIComponent.cpp in Sources */,
 				928A32D91F97158D00E04B24 /* MeshComponent.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
+				9675DA6F23737E8800BA7EED /* HeightMap.cpp in Sources */,
 				928A32D51F97158D00E04B24 /* Texture.cpp in Sources */,
 				924722AF1EF89CAE000B58FD /* MoveComponent.cpp in Sources */,
+				9675DA692372B60A00BA7EED /* VehicleMove.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
+				9675DA722373A5DC00BA7EED /* EnemyMove.cpp in Sources */,
 				928A32D61F97158D00E04B24 /* Renderer.cpp in Sources */,
+				9675DA662372B3DB00BA7EED /* Random.cpp in Sources */,
+				967F271B2373FBF300677592 /* Enemy.cpp in Sources */,
 				928A32D71F97158D00E04B24 /* Shader.cpp in Sources */,
 				924722AB1EF72947000B58FD /* Math.cpp in Sources */,
+				9675DA6C2373778F00BA7EED /* CameraComponent.cpp in Sources */,
 				928A32D41F97158D00E04B24 /* Mesh.cpp in Sources */,
 				924722BE1EF98571000B58FD /* CollisionComponent.cpp in Sources */,
 				92D39FD6222D172500D5EA2C /* PlayerUI.cpp in Sources */,
@@ -221,6 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -274,6 +324,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

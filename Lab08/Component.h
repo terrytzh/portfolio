@@ -1,5 +1,7 @@
 #pragma once
 #include <SDL/SDL_stdinc.h>
+#include "SDL/SDL.h"
+#include "Math.h"
 
 class Component
 {
