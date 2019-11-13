@@ -19,8 +19,10 @@ public:
     
     class Player* GetPlayer(){return mPlayer;}
     class HeightMap* GetHeightMap(){return heightMap;}
+    class Enemy* GetEnemy(){return mEnemy;}
     
     int GetBGMChannel(){return BGMChannel;}
+    void SetBGMChannel(int channel){BGMChannel = channel;}
 
 	Mix_Chunk* GetSound(const std::string& fileName);
 
@@ -43,11 +45,8 @@ private:
     class HeightMap* heightMap;
     class Enemy* mEnemy;
     
-    const float SIDEBLOCK_Y_POSITION = 500.0f;
-    const float SIDEBLOCK_X_LENGTH = 500.0f;
-    const float SIDEBLOCK_GENERATE_DISTANCE = 3000.0f;
-    const float BLOCK_X_LENGTH = 1000.0f;
-    float LastBlockX = 0.0f;
+    float startTimer = 8.5f;
+    bool started = false;
     int BGMChannel;
 
 	Uint32 mTicksCount;

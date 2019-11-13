@@ -14,6 +14,7 @@
 #include "Game.h"
 #include "PlayerMove.h"
 #include "CameraComponent.h"
+#include "PlayerUI.h"
 
 Player::Player(Game* g) : Actor(g){
     SetScale(0.75f);
@@ -21,4 +22,5 @@ Player::Player(Game* g) : Actor(g){
     mc->SetMesh(mGame->GetRenderer()->GetMesh("Assets/Kart.gpmesh"));
     pm = new PlayerMove(this);
     camc = new CameraComponent(this);
+    pu = new PlayerUI(this);
 }

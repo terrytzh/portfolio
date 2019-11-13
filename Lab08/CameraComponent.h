@@ -19,6 +19,7 @@ public:
     
 protected:
     Vector3 CalculateIdealPosition();
+    void SnapToIdeal();
     
     const float HDist = 60.0f;
     const float VDist = 70.0f;

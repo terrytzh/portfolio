@@ -12,6 +12,9 @@
 #include "Renderer.h"
 #include "CollisionComponent.h"
 #include "HeightMap.h"
+#include "PlayerUI.h"
+#include "Enemy.h"
+#include "EnemyMove.h"
 
 
 PlayerMove::PlayerMove(Player* owner) : VehicleMove(owner){
@@ -42,3 +45,29 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
     }
 }
 
+void PlayerMove::OnLapChange(int newLap) {
+    if(newLap == 5){
+        Mix_FadeOutChannel(mOwner->GetGame()->GetBGMChannel(), 250);
+        if(newLap > mOwner->GetGame()->GetEnemy()->em->GetCurrentLap()){
+            mPlayer->pu->SetRaceState(PlayerUI::Won);
+            Mix_PlayChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/Won.wav"), 0);
+        }
+        else{
+            mPlayer->pu->SetRaceState(PlayerUI::Lost);
+            Mix_PlayChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/Lost.wav"), 0);
+        }
+        mPlayer->SetState(ActorState::Paused);
+        mPlayer->GetGame()->GetEnemy()->SetState(ActorState::Paused);
+        
+            
+    }
+    else if(newLap == 4){
+        Mix_FadeOutChannel(mOwner->GetGame()->GetBGMChannel(), 250);
+        Mix_PlayChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/FinalLap.wav"), 0);
+        mOwner->GetGame()->SetBGMChannel(Mix_FadeInChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/MusicFast.ogg"), -1, 4000));
+        mPlayer->pu->OnLapChange(newLap);
+    }
+    else{
+        mPlayer->pu->OnLapChange(newLap);
+    }
+}

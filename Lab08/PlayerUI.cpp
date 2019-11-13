@@ -4,6 +4,9 @@
 #include "Game.h"
 #include "Renderer.h"
 #include "Actor.h"
+#include "VehicleMove.h"
+#include "Enemy.h"
+#include "EnemyMove.h"
 
 PlayerUI::PlayerUI(Actor* owner)
 	:UIComponent(owner)
@@ -80,7 +83,20 @@ void PlayerUI::OnLapChange(int lapNum)
 
 bool PlayerUI::IsPlayerInFirst() const
 {
-	// TODO: Implement correctly!!
-	return false;
+	if(mOwner->GetComponent<VehicleMove>()->GetCurrentLap() > mOwner->GetGame()->GetEnemy()->em->GetCurrentLap())
+        return true;
+    else if(mOwner->GetComponent<VehicleMove>()->GetCurrentLap() < mOwner->GetGame()->GetEnemy()->em->GetCurrentLap())
+        return false;
+    else{
+        if(mOwner->GetComponent<VehicleMove>()->GetCurrentCheckpoint() > mOwner->GetGame()->GetEnemy()->em->GetCurrentCheckpoint())
+            return true;
+        else if(mOwner->GetComponent<VehicleMove>()->GetCurrentCheckpoint() < mOwner->GetGame()->GetEnemy()->em->GetCurrentCheckpoint())
+            return false;
+        else
+            return mOwner->GetComponent<VehicleMove>()->GetDistanceFromNextCheckpoint() < mOwner->GetGame()->GetEnemy()->em->GetDistanceFromNextCheckpoint();
+    }
+    
+    
+    
 }
 

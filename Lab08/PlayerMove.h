@@ -18,6 +18,7 @@ public:
     PlayerMove(class Player* owner);
     void Update(float deltaTime) override;
     void ProcessInput(const Uint8* keyState) override;
+    void OnLapChange(int newLap) override;
     
 protected:
     class Player* mPlayer;

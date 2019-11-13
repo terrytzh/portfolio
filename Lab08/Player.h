@@ -19,6 +19,7 @@ public:
     class MeshComponent* mc;
     class PlayerMove* pm;
     class CameraComponent* camc;
+    class PlayerUI* pu;
 protected:
     
 };

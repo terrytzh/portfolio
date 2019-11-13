@@ -10,6 +10,7 @@
 #define VehicleMove_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "Component.h"
 
 class VehicleMove : public Component {
@@ -23,13 +24,22 @@ public:
     
     void SetPedal(bool pedal){pedalPressed = pedal;}
     void SetMoveState(MoveState ms){moveState = ms;}
+    int GetCurrentLap(){return currentLap;}
+    int GetCurrentCheckpoint(){
+        return lastCheckpoint;
+    }
+    float GetDistanceFromNextCheckpoint();
+    virtual void OnLapChange(int newLap) { }
     
 protected:
     bool pedalPressed = false;
     MoveState moveState = Idle;
     Vector3 velocity;
+    std::vector<std::vector<float>> checkpoints;
     float angularVelocity = 0.0f;
     float accelerateTimer = 0.0f;
+    int currentLap = 0;
+    int lastCheckpoint = -1;
     
     float MIN_LINEAR_ACCELERATION = 1000.0f;
     float MAX_LINEAR_ACCELERATION = 2000.0f;
@@ -38,6 +48,7 @@ protected:
     float NORMAL_DRAG_COEFFICIENT = 0.95f;
     float PEDAL_DRAG_COEFFICIENT = 0.975f;
     float ANGULER_DRAG_COEFFICIENT = 0.9f;
+    float CHECKPOINT_EXTENDTION = 20.0f;
 };
 
 #endif /* VehicleMove_hpp */

@@ -16,6 +16,7 @@
 #include "MeshComponent.h"
 #include "HeightMap.h"
 #include "Enemy.h"
+#include "CameraComponent.h"
 
 Game::Game()
 :mIsRunning(true)
@@ -122,7 +123,13 @@ void Game::UpdateGame()
 		delete actor;
 	}
     
-    
+    startTimer -= deltaTime;
+    if(startTimer <= 0.0f && !started){
+        BGMChannel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
+        mPlayer->SetState(ActorState::Active);
+        mEnemy->SetState(ActorState::Active);
+        started = true;
+    }
 }
 
 void Game::GenerateOutput()
@@ -140,12 +147,25 @@ void Game::LoadData()
     MeshComponent* meshc = new MeshComponent(track);
     meshc->SetMesh(mRenderer->GetMesh("Assets/Track.gpmesh"));
     mEnemy = new Enemy(this);
+    mEnemy->SetState(ActorState::Paused);
+    mPlayer->SetState(ActorState::Paused);
+    mPlayer->camc->Update(0.0f);
+    
+    //Initialize Get Sound
+    GetSound("Assets/Sounds/Fall.wav");
+    GetSound("Assets/Sounds/FinalLap.wav");
+    GetSound("Assets/Sounds/Lost.wav");
+    GetSound("Assets/Sounds/Music.ogg");
+    GetSound("Assets/Sounds/MusicFast.ogg");
+    GetSound("Assets/Sounds/RaceStart.wav");
+    GetSound("Assets/Sounds/Won.wav");
     
     
     Matrix4 projectionMatrix = Matrix4::CreatePerspectiveFOV(1.22f, 1024.0f, 768.0f, 10.0f, 10000.0f);
     mRenderer->SetProjectionMatrix(projectionMatrix);
     Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
     mRenderer->SetViewMatrix(viewMatrix);
+    Mix_PlayChannel(-1, GetSound("Assets/Sounds/RaceStart.wav"), 0);
 }
 
 void Game::UnloadData()

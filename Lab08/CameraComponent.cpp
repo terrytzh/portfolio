@@ -12,7 +12,7 @@
 #include "Renderer.h"
 
 CameraComponent::CameraComponent(Actor* owner) : Component(owner){
-    camPosition = CalculateIdealPosition();
+    SnapToIdeal();
     camVelocity = Vector3::Zero;
 }
 
@@ -37,4 +37,11 @@ Vector3 CameraComponent::CalculateIdealPosition(){
     Vector3 CamPos = mOwner->GetPosition() - (mOwner->GetForward() * HDist);
     CamPos.z = 70.0f;
     return CamPos;
+}
+
+void CameraComponent::SnapToIdeal(){
+    Vector3 camPos = CalculateIdealPosition();
+    Vector3 TargetPos = mOwner->GetPosition() + (mOwner->GetForward() * TargetDist);
+    Matrix4 LookMatrix = Matrix4::CreateLookAt(camPos, TargetPos, Vector3::UnitZ);
+    mOwner->GetGame()->GetRenderer()->SetViewMatrix(LookMatrix);
 }

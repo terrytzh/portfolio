@@ -10,19 +10,46 @@
 #include "Game.h"
 #include "Actor.h"
 #include "HeightMap.h"
+#include "CSVHelper.h"
+#include <fstream>
 
 VehicleMove::VehicleMove(Actor* owner, bool isEnemy) : Component(owner, 50){
     velocity = Vector3::Zero;
     if(isEnemy){
         MAX_LINEAR_ACCELERATION = 3000.0f;
+        NORMAL_DRAG_COEFFICIENT = 0.88f;
         ANGULER_DRAG_COEFFICIENT = 0.8f;
-        ACCELERATION_RAMP_TIME = 1.5f;
-        ANGULER_ACCELERATION = 8.0f * Math::Pi;
+        ACCELERATION_RAMP_TIME = 2.5f;
+        ANGULER_ACCELERATION = 6.0f * Math::Pi;
+        CHECKPOINT_EXTENDTION = 100.0f;
+    }
+    
+    std::ifstream ifs("Assets/HeightMap/Checkpoints.csv");
+    std::string temp;
+    std::vector<std::string> checkpointString;
+    
+    while(getline(ifs,temp)){
+        if(!temp.empty()){
+            checkpointString = CSVHelper::Split(temp);
+            if(checkpointString[0] == "Type")
+                continue;
+            std::vector<int> cellData;
+            for(auto s : checkpointString){
+                if(s != "Checkpoint")
+                    cellData.push_back(std::stoi(s));
+            }
+            Vector3 minCellCoor = mOwner->GetGame()->GetHeightMap()->CellToWorld(cellData[0], cellData[2]);
+            Vector3 maxCellCoor = mOwner->GetGame()->GetHeightMap()->CellToWorld(cellData[1], cellData[3]);
+            std::vector<float> checkpointData = {minCellCoor.x, maxCellCoor.x, minCellCoor.y, maxCellCoor.y};
+            checkpoints.push_back(checkpointData);
+            checkpointString.clear();
+        }
     }
 }
 
 void VehicleMove::Update(float deltaTime){
     Vector3 pos = mOwner->GetPosition();
+    //For checkpoint detecting
     if(pedalPressed){
         accelerateTimer += deltaTime;
         float lerpCoefficient = accelerateTimer / ACCELERATION_RAMP_TIME;
@@ -64,4 +91,50 @@ void VehicleMove::Update(float deltaTime){
     angle += angularVelocity * deltaTime;
     mOwner->SetRotation(angle);
     angularVelocity *= ANGULER_DRAG_COEFFICIENT;
+    
+    int expectedIndex = lastCheckpoint + 1;
+    if(expectedIndex >= checkpoints.size())
+        expectedIndex = 0;
+    
+    if(checkpoints[expectedIndex][0] == checkpoints[expectedIndex][1]){
+        if(pos.y > checkpoints[expectedIndex][2] - CHECKPOINT_EXTENDTION
+           && pos.y < checkpoints[expectedIndex][3] + CHECKPOINT_EXTENDTION
+           && Math::Abs(pos.x - checkpoints[expectedIndex][0]) < 20.0f
+           ){
+            //Passed checkpoint
+            lastCheckpoint++;
+            if(lastCheckpoint == 0){
+                currentLap++;
+                OnLapChange(currentLap);
+            }
+            else if(lastCheckpoint >= checkpoints.size()){
+                lastCheckpoint = 0;
+                currentLap++;
+                OnLapChange(currentLap);
+            }
+        }
+    }
+    else if(checkpoints[expectedIndex][2] == checkpoints[expectedIndex][3]){
+        if(pos.x < checkpoints[expectedIndex][0] + CHECKPOINT_EXTENDTION
+           && pos.x > checkpoints[expectedIndex][1] - CHECKPOINT_EXTENDTION
+           && Math::Abs(pos.y - checkpoints[expectedIndex][2]) < 20.0f
+           ){
+            //Passed checkpoint
+            lastCheckpoint++;
+            if(lastCheckpoint >= checkpoints.size()){
+                lastCheckpoint = 0;
+                currentLap++;
+                OnLapChange(currentLap);
+            }
+        }
+    }
+}
+
+float VehicleMove::GetDistanceFromNextCheckpoint(){
+    int expectedIndex = lastCheckpoint + 1;
+    if(expectedIndex >= checkpoints.size())
+        expectedIndex = 0;
+    return (mOwner->GetPosition() - Vector3((checkpoints[expectedIndex][0]+checkpoints[expectedIndex][1])/2.0f,
+                                    (checkpoints[expectedIndex][2]+checkpoints[expectedIndex][3])/2.0f,
+                                            0.0f)).Length();
 }
