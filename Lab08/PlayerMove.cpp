@@ -27,7 +27,7 @@ void PlayerMove::Update(float deltaTime){
 }
 
 void PlayerMove::ProcessInput(const Uint8 *keyState){
-    if(keyState[SDL_SCANCODE_W]){
+    if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_UP]){
         SetPedal(true);
     }
     else{
@@ -38,6 +38,12 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
         SetMoveState(MoveState::Left);
     }
     else if(!keyState[SDL_SCANCODE_A] && keyState[SDL_SCANCODE_D]){
+        SetMoveState(MoveState::Right);
+    }
+    else if(keyState[SDL_SCANCODE_LEFT] && !keyState[SDL_SCANCODE_RIGHT]){
+        SetMoveState(MoveState::Left);
+    }
+    else if(!keyState[SDL_SCANCODE_LEFT] && keyState[SDL_SCANCODE_RIGHT]){
         SetMoveState(MoveState::Right);
     }
     else{

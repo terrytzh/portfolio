@@ -22,7 +22,6 @@ public:
     
 protected:
     class Player* mPlayer;
-    
     const float PLAYER_FORWARD_SPEED = 400.0f;
     const float PLAYER_MOVE_SPEED = 300.0f;
     const float PLAYER_Y_LIMIT = 195.0f;

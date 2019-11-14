@@ -16,11 +16,11 @@
 VehicleMove::VehicleMove(Actor* owner, bool isEnemy) : Component(owner, 50){
     velocity = Vector3::Zero;
     if(isEnemy){
-        MAX_LINEAR_ACCELERATION = 3000.0f;
-        NORMAL_DRAG_COEFFICIENT = 0.88f;
-        ANGULER_DRAG_COEFFICIENT = 0.8f;
-        ACCELERATION_RAMP_TIME = 2.5f;
-        ANGULER_ACCELERATION = 6.0f * Math::Pi;
+        MAX_LINEAR_ACCELERATION = 2500.0f;
+        NORMAL_DRAG_COEFFICIENT = 0.82f;
+        ANGULER_DRAG_COEFFICIENT = 0.85f;
+        ACCELERATION_RAMP_TIME = 2.0f;
+        ANGULER_ACCELERATION = 10.0f * Math::Pi;
         CHECKPOINT_EXTENDTION = 100.0f;
     }
     

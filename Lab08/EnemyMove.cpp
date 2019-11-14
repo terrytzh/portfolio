@@ -36,7 +36,7 @@ EnemyMove::EnemyMove(Enemy* enemy) : VehicleMove(enemy, true){
 
 void EnemyMove::Update(float deltaTime){
     Vector3 v = waypoints[nextWayPointIndex] - mEnemy->GetPosition();
-    if(v.Length() < 150.0f){
+    if(v.Length() < 50.0f){
         nextWayPointIndex++;
         if(nextWayPointIndex >= waypoints.size())
             nextWayPointIndex = 0;
@@ -44,13 +44,13 @@ void EnemyMove::Update(float deltaTime){
     }
     else{
         v.Normalize();
-        if(Math::Acos(Vector3::Dot(v, mEnemy->GetForward())) < Math::Pi / 8.0f){
+        if(Math::Acos(Vector3::Dot(v, mEnemy->GetForward())) < Math::Pi / 10.0f){
             SetPedal(true);
         }
         else{
             SetPedal(false);
         }
-        if(Math::Acos(Vector3::Dot(v, mEnemy->GetForward())) > Math::Pi / 16.0f){
+        if(Math::Acos(Vector3::Dot(v, mEnemy->GetForward())) > Math::Pi / 20.0f){
             Vector3 crossProduct = Vector3::Cross(mEnemy->GetForward(), v);
             if(crossProduct.z > 0.0f){
                 SetMoveState(Right);

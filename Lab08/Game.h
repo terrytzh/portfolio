@@ -45,7 +45,7 @@ private:
     class HeightMap* heightMap;
     class Enemy* mEnemy;
     
-    float startTimer = 8.5f;
+    float startTimer = 0.5f;
     bool started = false;
     int BGMChannel;
 

@@ -149,7 +149,6 @@ void Game::LoadData()
     mEnemy = new Enemy(this);
     mEnemy->SetState(ActorState::Paused);
     mPlayer->SetState(ActorState::Paused);
-    mPlayer->camc->Update(0.0f);
     
     //Initialize Get Sound
     GetSound("Assets/Sounds/Fall.wav");
@@ -163,8 +162,8 @@ void Game::LoadData()
     
     Matrix4 projectionMatrix = Matrix4::CreatePerspectiveFOV(1.22f, 1024.0f, 768.0f, 10.0f, 10000.0f);
     mRenderer->SetProjectionMatrix(projectionMatrix);
-    Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
-    mRenderer->SetViewMatrix(viewMatrix);
+    //Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
+    //mRenderer->SetViewMatrix(viewMatrix);
     Mix_PlayChannel(-1, GetSound("Assets/Sounds/RaceStart.wav"), 0);
 }
 

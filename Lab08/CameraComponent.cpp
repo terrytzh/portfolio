@@ -40,8 +40,8 @@ Vector3 CameraComponent::CalculateIdealPosition(){
 }
 
 void CameraComponent::SnapToIdeal(){
-    Vector3 camPos = CalculateIdealPosition();
+    camPosition = CalculateIdealPosition();
     Vector3 TargetPos = mOwner->GetPosition() + (mOwner->GetForward() * TargetDist);
-    Matrix4 LookMatrix = Matrix4::CreateLookAt(camPos, TargetPos, Vector3::UnitZ);
+    Matrix4 LookMatrix = Matrix4::CreateLookAt(camPosition, TargetPos, Vector3::UnitZ);
     mOwner->GetGame()->GetRenderer()->SetViewMatrix(LookMatrix);
 }
