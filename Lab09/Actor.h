@@ -32,6 +32,9 @@ public:
     Vector3 GetForward() const {
         return Vector3(cos(mRotation), sin(mRotation), 0.0f);
     }
+    Vector3 GetRight() const {
+        return Vector3(cos(mRotation+Math::PiOver2), sin(mRotation+Math::PiOver2), 0.0f);
+    }
     const Matrix4& GetWorldTransform() const { return mWorldTransform; }
 	
 	ActorState GetState() const { return mState; }

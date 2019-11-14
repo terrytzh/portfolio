@@ -18,6 +18,8 @@ public:
 	void RemoveActor(class Actor* actor);
     
     class Player* GetPlayer(){return mPlayer;}
+    void SetPlayer(class Player* p){mPlayer = p;}
+    std::vector<Actor*>& GetObjects(){return mObjects;}
     
     int GetBGMChannel(){return BGMChannel;}
 

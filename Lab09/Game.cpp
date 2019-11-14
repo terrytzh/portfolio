@@ -14,6 +14,7 @@
 #include "Random.h"
 #include "Player.h"
 #include "MeshComponent.h"
+#include "LevelLoader.h"
 
 Game::Game()
 :mIsRunning(true)
@@ -37,6 +38,9 @@ bool Game::Initialize()
         return false;
 
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_GetRelativeMouseState(nullptr, nullptr);
 
 	LoadData();
 
@@ -131,12 +135,11 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
-    
-    
     Matrix4 projectionMatrix = Matrix4::CreatePerspectiveFOV(1.22f, 1024.0f, 768.0f, 10.0f, 10000.0f);
     mRenderer->SetProjectionMatrix(projectionMatrix);
     Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
     mRenderer->SetViewMatrix(viewMatrix);
+    LevelLoader::Load(this, "Assets/Level00.json");
 }
 
 void Game::UnloadData()
