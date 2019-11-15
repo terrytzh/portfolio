@@ -36,8 +36,8 @@ protected:
     Vector3 mAcceleration;
     Vector3 mPendingForces;
     float mMass = 1.0f;
-    Vector3 GRAVITY = Vector3(0.0f,0.0f,-980.0f);
-    Vector3 JUMP_FORCE = Vector3(0.f,0.f,35000.0f);
+    Vector3 mGravity = Vector3(0.0f,0.0f,-980.0f);
+    Vector3 mJumpForce = Vector3(0.f,0.f,35000.0f);
     
     //const float GRAVITY_ACCELERATION = -980.0f;
     //const float JUMP_SPEED = 500.0f;

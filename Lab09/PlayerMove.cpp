@@ -54,34 +54,35 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
     mPlayer->camc->SetPitchSpeed(yValue);
     
     if(keyState[SDL_SCANCODE_W] && !keyState[SDL_SCANCODE_S]){
-        SetForwardSpeed(350.0f);
+        AddForce(mOwner->GetForward() * 700.0f);
     }
     else if(!keyState[SDL_SCANCODE_W] && keyState[SDL_SCANCODE_S]){
-        SetForwardSpeed(-350.0f);
+        AddForce(mOwner->GetForward() * -700.0f);
     }
     else{
-        SetForwardSpeed(0.0f);
+//        SetForwardSpeed(0.0f);
     }
     
     if(keyState[SDL_SCANCODE_D] && !keyState[SDL_SCANCODE_A]){
-        SetStrafeSpeed(350.0f);
+        AddForce(mOwner->GetRight() * 700.0f);
     }
     else if(!keyState[SDL_SCANCODE_D] && keyState[SDL_SCANCODE_A]){
-        SetStrafeSpeed(-350.0f);
+        AddForce(mOwner->GetRight() * -700.0f);
     }
     else{
-        SetStrafeSpeed(0.0f);
+//        SetStrafeSpeed(0.0f);
     }
     
     if(keyState[SDL_SCANCODE_SPACE] && !SpacebarPressed){
-        mZSpeed = JUMP_SPEED;
+        AddForce(mJumpForce);
         ChangeState(MoveState::Jump);
     }
     SpacebarPressed = keyState[SDL_SCANCODE_SPACE];
 }
 
 void PlayerMove::UpdateOnGround(float deltaTime){
-    MoveComponent::Update(deltaTime);
+    //MoveComponent::Update(deltaTime);
+    PhysicsUpdate(deltaTime);
     CollSide cs;
     bool isOnTop = false;
     for(auto b : mOwner->GetGame()->GetObjects()){
@@ -95,35 +96,29 @@ void PlayerMove::UpdateOnGround(float deltaTime){
 }
 
 void PlayerMove::UpdateJump(float deltaTime){
-    MoveComponent::Update(deltaTime);
-    mZSpeed += GRAVITY_ACCELERATION * deltaTime;
-    Vector3 pos = mOwner->GetPosition();
-    pos.z += mZSpeed * deltaTime;
-    mOwner->SetPosition(pos);
+    AddForce(mGravity);
+    PhysicsUpdate(deltaTime);
     
     CollSide cs;
     for(auto b : mOwner->GetGame()->GetObjects()){
         cs = FixCollision(mPlayer->cc, b->GetComponent<CollisionComponent>());
         if(cs == CollSide::Bottom){
-            mZSpeed = 0.0f;
+            mVelocity.z = 0.0f;
         }
     }
-    if(mZSpeed <= 0.0f)
+    if(mVelocity.z <= 0.0f)
         ChangeState(MoveState::Falling);
 }
 
 void PlayerMove::UpdateFalling(float deltaTime){
-    MoveComponent::Update(deltaTime);
-    mZSpeed += GRAVITY_ACCELERATION * deltaTime;
-    Vector3 pos = mOwner->GetPosition();
-    pos.z += mZSpeed * deltaTime;
-    mOwner->SetPosition(pos);
+    AddForce(mGravity);
+    PhysicsUpdate(deltaTime);
     
     CollSide cs;
     for(auto b : mOwner->GetGame()->GetObjects()){
         cs = FixCollision(mPlayer->cc, b->GetComponent<CollisionComponent>());
         if(cs == CollSide::Top){
-            mZSpeed = 0.0f;
+            mVelocity.z = 0.0f;
             ChangeState(MoveState::OnGround);
         }
     }
@@ -141,5 +136,10 @@ CollSide PlayerMove::FixCollision(class CollisionComponent* self, class Collisio
 }
 
 void PlayerMove::PhysicsUpdate(float deltaTime){
-    
+    mAcceleration = mPendingForces * (1.0f / mMass);
+    mVelocity += mAcceleration * deltaTime;
+    float rotation = mOwner->GetRotation();
+    rotation += GetAngularSpeed() * deltaTime;
+    mOwner->SetRotation(rotation);
+    mPendingForces = Vector3::Zero;
 }
