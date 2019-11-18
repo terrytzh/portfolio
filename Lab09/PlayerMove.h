@@ -38,6 +38,8 @@ protected:
     float mMass = 1.0f;
     Vector3 mGravity = Vector3(0.0f,0.0f,-980.0f);
     Vector3 mJumpForce = Vector3(0.f,0.f,35000.0f);
+    const float MAX_SPEED = 400.0f;
+    const float BRAKE_FACTOR = 0.9f;
     
     //const float GRAVITY_ACCELERATION = -980.0f;
     //const float JUMP_SPEED = 500.0f;
@@ -46,6 +48,7 @@ protected:
     void UpdateOnGround(float deltaTime);
     void UpdateJump(float deltaTime);
     void UpdateFalling(float deltaTime);
+    void FixXYVelocity();
     
     void PhysicsUpdate(float deltaTime);
     void AddForce(const Vector3& force){

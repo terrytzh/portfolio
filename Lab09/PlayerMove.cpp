@@ -75,6 +75,7 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
     
     if(keyState[SDL_SCANCODE_SPACE] && !SpacebarPressed){
         AddForce(mJumpForce);
+        
         ChangeState(MoveState::Jump);
     }
     SpacebarPressed = keyState[SDL_SCANCODE_SPACE];
@@ -138,8 +139,38 @@ CollSide PlayerMove::FixCollision(class CollisionComponent* self, class Collisio
 void PlayerMove::PhysicsUpdate(float deltaTime){
     mAcceleration = mPendingForces * (1.0f / mMass);
     mVelocity += mAcceleration * deltaTime;
+    FixXYVelocity();
+    
+    Vector3 pos = mOwner->GetPosition();
+    pos += mVelocity * deltaTime;
+    mOwner->SetPosition(pos);
+    
     float rotation = mOwner->GetRotation();
     rotation += GetAngularSpeed() * deltaTime;
     mOwner->SetRotation(rotation);
     mPendingForces = Vector3::Zero;
+}
+
+void PlayerMove::FixXYVelocity(){
+    Vector2 xyVelocity(mVelocity.x, mVelocity.y);
+    if(xyVelocity.Length() > MAX_SPEED){
+        xyVelocity.Normalize();
+        xyVelocity *= MAX_SPEED;
+    }
+    if(mCurrentState == MoveState::OnGround){
+        if(Math::NearZero(mAcceleration.x) ||
+           (mAcceleration.x > 0 && xyVelocity.x < 0) ||
+           (mAcceleration.x < 0 && xyVelocity.x > 0)
+           ){
+            xyVelocity.x *= BRAKE_FACTOR;
+        }
+        if(Math::NearZero(mAcceleration.y) ||
+           (mAcceleration.y > 0 && xyVelocity.y < 0) ||
+           (mAcceleration.y < 0 && xyVelocity.y > 0)
+           ){
+            xyVelocity.y *= BRAKE_FACTOR;
+        }
+    }
+    mVelocity.x = xyVelocity.x;
+    mVelocity.y = xyVelocity.y;
 }
