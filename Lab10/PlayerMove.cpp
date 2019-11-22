@@ -40,6 +40,12 @@ void PlayerMove::Update(float deltaTime){
             UpdateFalling(deltaTime);
             break;
         }
+            
+        case PlayerMove::MoveState::WallClimb:
+        {
+            UpdateWallClimb(deltaTime);
+            break;
+        }
     }
 }
 
@@ -79,6 +85,35 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
         ChangeState(MoveState::Jump);
     }
     SpacebarPressed = keyState[SDL_SCANCODE_SPACE];
+}
+
+bool PlayerMove::CanWallClimb(CollSide cs){
+    switch (cs) {
+        case CollSide::SideX1:{
+            
+            break;
+        }
+            
+        case CollSide::SideX2:{
+            
+            break;
+        }
+            
+        case CollSide::SideY1:{
+            
+            break;
+        }
+            
+        case CollSide::SideY2:{
+            
+            break;
+        }
+            
+            
+        default:
+            return false;
+            break;
+    }
 }
 
 void PlayerMove::UpdateOnGround(float deltaTime){
@@ -123,6 +158,10 @@ void PlayerMove::UpdateFalling(float deltaTime){
             ChangeState(MoveState::OnGround);
         }
     }
+}
+
+void PlayerMove::UpdateWallClimb(float deltaTime){
+    
 }
 
 CollSide PlayerMove::FixCollision(class CollisionComponent* self, class CollisionComponent* block){

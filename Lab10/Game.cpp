@@ -139,7 +139,7 @@ void Game::LoadData()
     mRenderer->SetProjectionMatrix(projectionMatrix);
     Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
     mRenderer->SetViewMatrix(viewMatrix);
-    LevelLoader::Load(this, "Assets/Level00.json");
+    LevelLoader::Load(this, "Assets/Level01.json");
 }
 
 void Game::UnloadData()

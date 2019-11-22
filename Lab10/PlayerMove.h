@@ -17,13 +17,14 @@
 class PlayerMove : public MoveComponent{
 public:
     enum MoveState{
-        OnGround,Jump,Falling
+        OnGround,Jump,Falling,WallClimb
     };
     
     PlayerMove(class Player* owner);
     void Update(float deltaTime) override;
     void ProcessInput(const Uint8* keyState) override;
     void ChangeState(MoveState ms){mCurrentState = ms;}
+    bool CanWallClimb(CollSide cs);
     
     
     
@@ -50,6 +51,7 @@ protected:
     void UpdateOnGround(float deltaTime);
     void UpdateJump(float deltaTime);
     void UpdateFalling(float deltaTime);
+    void UpdateWallClimb(float deltaTime);
     void FixXYVelocity();
     
     void PhysicsUpdate(float deltaTime);
