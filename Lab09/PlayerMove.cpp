@@ -46,28 +46,28 @@ void PlayerMove::Update(float deltaTime){
 void PlayerMove::ProcessInput(const Uint8 *keyState){
     int x,y;
     SDL_GetRelativeMouseState(&x, &y);
-    float xValue = static_cast<float>(x) / 500.0f;
-    float yValue = static_cast<float>(y) / 500.0f;
+    float xValue = static_cast<float>(x) / MOUSE_CONVERSION_FACTOR;
+    float yValue = static_cast<float>(y) / MOUSE_CONVERSION_FACTOR;
     xValue *= Math::Pi * 10.0f;
     yValue *= Math::Pi * 10.0f;
     SetAngularSpeed(xValue);
     mPlayer->camc->SetPitchSpeed(yValue);
     
     if(keyState[SDL_SCANCODE_W] && !keyState[SDL_SCANCODE_S]){
-        AddForce(mOwner->GetForward() * 700.0f);
+        AddForce(mOwner->GetForward() * MOVE_FORCE);
     }
     else if(!keyState[SDL_SCANCODE_W] && keyState[SDL_SCANCODE_S]){
-        AddForce(mOwner->GetForward() * -700.0f);
+        AddForce(mOwner->GetForward() * -MOVE_FORCE);
     }
     else{
 //        SetForwardSpeed(0.0f);
     }
     
     if(keyState[SDL_SCANCODE_D] && !keyState[SDL_SCANCODE_A]){
-        AddForce(mOwner->GetRight() * 700.0f);
+        AddForce(mOwner->GetRight() * MOVE_FORCE);
     }
     else if(!keyState[SDL_SCANCODE_D] && keyState[SDL_SCANCODE_A]){
-        AddForce(mOwner->GetRight() * -700.0f);
+        AddForce(mOwner->GetRight() * -MOVE_FORCE);
     }
     else{
 //        SetStrafeSpeed(0.0f);

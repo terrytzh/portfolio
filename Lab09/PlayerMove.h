@@ -40,6 +40,8 @@ protected:
     Vector3 mJumpForce = Vector3(0.f,0.f,35000.0f);
     const float MAX_SPEED = 400.0f;
     const float BRAKE_FACTOR = 0.9f;
+    const float MOUSE_CONVERSION_FACTOR = 500.0f;
+    const float MOVE_FORCE = 700.0f;
     
     //const float GRAVITY_ACCELERATION = -980.0f;
     //const float JUMP_SPEED = 500.0f;
