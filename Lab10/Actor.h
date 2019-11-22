@@ -3,6 +3,7 @@
 #include <SDL/SDL_stdinc.h>
 #include "Math.h"
 
+
 enum class ActorState
 {
 	Active,
@@ -22,12 +23,19 @@ public:
 	void ProcessInput(const Uint8* keyState);
 
 	// Getters/setters
-	const Vector2& GetPosition() const { return mPosition; }
-	void SetPosition(const Vector2& pos) { mPosition = pos; }
+	const Vector3& GetPosition() const { return mPosition; }
+	void SetPosition(const Vector3& pos) { mPosition = pos; }
 	float GetScale() const { return mScale; }
 	void SetScale(float scale) { mScale = scale; }
 	float GetRotation() const { return mRotation; }
 	void SetRotation(float rotation) { mRotation = rotation; }
+    Vector3 GetForward() const {
+        return Vector3(cos(mRotation), sin(mRotation), 0.0f);
+    }
+    Vector3 GetRight() const {
+        return Vector3(cos(mRotation+Math::PiOver2), sin(mRotation+Math::PiOver2), 0.0f);
+    }
+    const Matrix4& GetWorldTransform() const { return mWorldTransform; }
 	
 	ActorState GetState() const { return mState; }
 	void SetState(ActorState state) { mState = state; }
@@ -64,7 +72,8 @@ protected:
 	ActorState mState;
 
 	// Transform
-	Vector2 mPosition;
+	Vector3 mPosition;
+    Matrix4 mWorldTransform;
 	float mScale;
 	float mRotation;
 	
