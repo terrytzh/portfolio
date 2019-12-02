@@ -10,11 +10,8 @@
 #include "Player.h"
 #include "Game.h"
 #include "Renderer.h"
-//#include "CollisionComponent.h"
 #include "MoveComponent.h"
 #include "CameraComponent.h"
-
-
 
 PlayerMove::PlayerMove(Player* owner) : MoveComponent(owner){
     mPlayer = owner;
@@ -59,18 +56,12 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
     else if(!keyState[SDL_SCANCODE_W] && keyState[SDL_SCANCODE_S]){
         AddForce(mOwner->GetForward() * -MOVE_FORCE);
     }
-    else{
-//        SetForwardSpeed(0.0f);
-    }
     
     if(keyState[SDL_SCANCODE_D] && !keyState[SDL_SCANCODE_A]){
         AddForce(mOwner->GetRight() * MOVE_FORCE);
     }
     else if(!keyState[SDL_SCANCODE_D] && keyState[SDL_SCANCODE_A]){
         AddForce(mOwner->GetRight() * -MOVE_FORCE);
-    }
-    else{
-//        SetStrafeSpeed(0.0f);
     }
     
     if(keyState[SDL_SCANCODE_SPACE] && !SpacebarPressed){
@@ -82,7 +73,6 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
 }
 
 void PlayerMove::UpdateOnGround(float deltaTime){
-    //MoveComponent::Update(deltaTime);
     PhysicsUpdate(deltaTime);
     CollSide cs;
     bool isOnTop = false;
