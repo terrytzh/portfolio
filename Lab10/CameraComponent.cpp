@@ -19,6 +19,10 @@ CameraComponent::CameraComponent(Actor* owner) : Component(owner){
 
 void CameraComponent::Update(float deltaTime){
     mPitchAngle += mPitchSpeed * deltaTime;
+    mRight.x = Math::Lerp(mRight.x, idealRight.x, 0.1f);
+    mRight.y = Math::Lerp(mRight.y, idealRight.y, 0.1f);
+    mRight.z = Math::Lerp(mRight.z, idealRight.z, 0.1f);
+    
     if(mPitchAngle < -Math::PiOver2 / 2.0f){
         mPitchAngle = -Math::PiOver2 / 2.0f;
     }
@@ -32,7 +36,7 @@ void CameraComponent::Update(float deltaTime){
     Vector3 forward = Vector3::Transform(Vector3(1,0,0), combinedRotation);
 
     Vector3 TargetPos = mOwner->GetPosition() + (forward * TargetDist);
-    Matrix4 LookMatrix = Matrix4::CreateLookAt(mOwner->GetPosition(), TargetPos, Vector3::UnitZ);
+    Matrix4 LookMatrix = Matrix4::CreateLookAt(mOwner->GetPosition(), TargetPos, mRight);
     mOwner->GetGame()->GetRenderer()->SetViewMatrix(LookMatrix);
 }
 

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Component.h"
+#include "Math.h"
 
 class CameraComponent : public Component{
 public:
@@ -18,6 +19,7 @@ public:
     void Update(float deltaTime) override;
     void SetPitchSpeed(float speed) {mPitchSpeed = speed;}
     float GetPitchSpeed() {return mPitchSpeed;}
+    void SetIdealRight(Vector3 right){idealRight = right;}
     
 protected:
     
@@ -26,6 +28,8 @@ protected:
     const float TargetDist = 50.0f;
     float mPitchAngle = 0.0f;
     float mPitchSpeed = 0.0f;
+    Vector3 idealRight = Vector3::UnitZ;
+    Vector3 mRight = Vector3::UnitZ;
     
 };
 

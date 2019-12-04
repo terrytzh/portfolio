@@ -17,7 +17,7 @@
 class PlayerMove : public MoveComponent{
 public:
     enum MoveState{
-        OnGround,Jump,Falling,WallClimb
+        OnGround,Jump,Falling,WallClimb,WallRun
     };
     
     PlayerMove(class Player* owner);
@@ -25,6 +25,7 @@ public:
     void ProcessInput(const Uint8* keyState) override;
     void ChangeState(MoveState ms){mCurrentState = ms;}
     bool CanWallClimb(CollSide cs);
+    bool CanWallRun(CollSide cs);
     
     
     
@@ -37,12 +38,22 @@ protected:
     Vector3 mAcceleration;
     Vector3 mPendingForces;
     float mMass = 1.0f;
+    float mWallClimbTimer = 0.0f;
+    float mWallRunTimer = 0.0f;
     Vector3 mGravity = Vector3(0.0f,0.0f,-980.0f);
-    Vector3 mJumpForce = Vector3(0.f,0.f,35000.0f);
+    Vector3 mJumpForce = Vector3(0.0f,0.0f,35000.0f);
+    Vector3 mClimbForce = Vector3(0.0f,0.0f,1800.0f);
+    Vector3 mWallRunForce = Vector3(0.0f,0.0f,1200.0f);
     const float MAX_SPEED = 400.0f;
     const float BRAKE_FACTOR = 0.9f;
     const float MOUSE_CONVERSION_FACTOR = 500.0f;
     const float MOVE_FORCE = 700.0f;
+    const float WALL_CLIMB_TIME = 0.4f;
+    const float WALL_RUN_TIME = 0.4f;
+    
+    //Angle with vertical wall surface
+    const float WALL_RUN_VIEW_ANGLE = Math::PiOver2/1.7f;
+    
     
     //const float GRAVITY_ACCELERATION = -980.0f;
     //const float JUMP_SPEED = 500.0f;
@@ -52,6 +63,7 @@ protected:
     void UpdateJump(float deltaTime);
     void UpdateFalling(float deltaTime);
     void UpdateWallClimb(float deltaTime);
+    void UpdateWallRun(float deltaTime);
     void FixXYVelocity();
     
     void PhysicsUpdate(float deltaTime);

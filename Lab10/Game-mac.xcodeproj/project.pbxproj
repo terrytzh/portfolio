@@ -26,10 +26,12 @@
 		92D324FD1B697428005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FC1B697428005A86C7 /* CoreFoundation.framework */; };
 		92E32AAC1F9D67450091853F /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E32AAA1F9D67450091853F /* LevelLoader.cpp */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		963CFE162394F0630094027A /* LaserMine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 963CFE142394F0630094027A /* LaserMine.cpp */; };
 		9653171D23876A000023946E /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96531715238769FF0023946E /* CameraComponent.cpp */; };
 		9653171E23876A000023946E /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96531716238769FF0023946E /* Player.cpp */; };
 		9653171F23876A000023946E /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96531717238769FF0023946E /* PlayerMove.cpp */; };
 		9653172023876A000023946E /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9653171B23876A000023946E /* Block.cpp */; };
+		9671D6F32394FEF4009A5120 /* LaserComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9671D6F12394FEF4009A5120 /* LaserComponent.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		92E32AAB1F9D67450091853F /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoader.h; sourceTree = "<group>"; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		963CFE142394F0630094027A /* LaserMine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LaserMine.cpp; sourceTree = "<group>"; };
+		963CFE152394F0630094027A /* LaserMine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaserMine.h; sourceTree = "<group>"; };
 		96531715238769FF0023946E /* CameraComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cpp; sourceTree = "<group>"; };
 		96531716238769FF0023946E /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		96531717238769FF0023946E /* PlayerMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerMove.cpp; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 		9653171A23876A000023946E /* PlayerMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
 		9653171B23876A000023946E /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
 		9653171C23876A000023946E /* CameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
+		9671D6F12394FEF4009A5120 /* LaserComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LaserComponent.cpp; sourceTree = "<group>"; };
+		9671D6F22394FEF4009A5120 /* LaserComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaserComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,8 @@
 				924722A21EF72947000B58FD /* Actor.h */,
 				9653171B23876A000023946E /* Block.cpp */,
 				96531718238769FF0023946E /* Block.h */,
+				963CFE142394F0630094027A /* LaserMine.cpp */,
+				963CFE152394F0630094027A /* LaserMine.h */,
 				96531715238769FF0023946E /* CameraComponent.cpp */,
 				9653171C23876A000023946E /* CameraComponent.h */,
 				96531716238769FF0023946E /* Player.cpp */,
@@ -121,6 +129,8 @@
 				928A32D31F97158D00E04B24 /* Mesh.h */,
 				928A32D01F97158D00E04B24 /* MeshComponent.cpp */,
 				928A32CF1F97158C00E04B24 /* MeshComponent.h */,
+				9671D6F12394FEF4009A5120 /* LaserComponent.cpp */,
+				9671D6F22394FEF4009A5120 /* LaserComponent.h */,
 				924722AD1EF89CAE000B58FD /* MoveComponent.cpp */,
 				924722AE1EF89CAE000B58FD /* MoveComponent.h */,
 				92B401A6223F2906004DD285 /* Random.cpp */,
@@ -235,6 +245,8 @@
 				928A32D51F97158D00E04B24 /* Texture.cpp in Sources */,
 				9210C6A821DC111E00C3E613 /* UIComponent.cpp in Sources */,
 				924722AF1EF89CAE000B58FD /* MoveComponent.cpp in Sources */,
+				9671D6F32394FEF4009A5120 /* LaserComponent.cpp in Sources */,
+				963CFE162394F0630094027A /* LaserMine.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
 				928A32D61F97158D00E04B24 /* Renderer.cpp in Sources */,
 				92B401AB223F2906004DD285 /* SegmentCast.cpp in Sources */,

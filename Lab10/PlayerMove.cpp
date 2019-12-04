@@ -46,6 +46,12 @@ void PlayerMove::Update(float deltaTime){
             UpdateWallClimb(deltaTime);
             break;
         }
+            
+        case PlayerMove::MoveState::WallRun:
+        {
+            UpdateWallRun(deltaTime);
+            break;
+        }
     }
 }
 
@@ -80,7 +86,8 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
     }
     
     if(keyState[SDL_SCANCODE_SPACE] && !SpacebarPressed){
-        AddForce(mJumpForce);
+        if(mCurrentState == OnGround)
+            AddForce(mJumpForce);
         
         ChangeState(MoveState::Jump);
     }
@@ -88,24 +95,135 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
 }
 
 bool PlayerMove::CanWallClimb(CollSide cs){
+    Vector2 xyVelocity(mVelocity.x, mVelocity.y);
     switch (cs) {
         case CollSide::SideX1:{
-            
+            Vector3 faceNorm = Vector3::UnitX;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > Math::Sqrt(3.0)/3.0f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(faceNorm.x,faceNorm.y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
             break;
         }
             
         case CollSide::SideX2:{
-            
+            Vector3 faceNorm = Vector3::UnitX * -1.0f;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > Math::Sqrt(3.0)/3.0f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(faceNorm.x,faceNorm.y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
             break;
         }
             
         case CollSide::SideY1:{
-            
+            Vector3 faceNorm = Vector3::UnitY;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > Math::Sqrt(3.0)/3.0f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(faceNorm.x,faceNorm.y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
             break;
         }
             
         case CollSide::SideY2:{
+            Vector3 faceNorm = Vector3::UnitY * -1.0f;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > Math::Sqrt(3.0)/3.0f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(faceNorm.x,faceNorm.y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
+            break;
+        }
             
+            
+        default:
+            return false;
+            break;
+    }
+}
+
+bool PlayerMove::CanWallRun(CollSide cs){
+    Vector2 xyVelocity(mVelocity.x, mVelocity.y);
+    switch (cs) {
+        case CollSide::SideX1:{
+            Vector3 faceNorm = Vector3::UnitX;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > -0.5f && Vector3::Dot(faceNorm, mPlayer->GetForward()) < 0.5f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(mPlayer->GetForward().x,mPlayer->GetForward().y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
+            break;
+        }
+            
+        case CollSide::SideX2:{
+            Vector3 faceNorm = Vector3::UnitX * -1.0f;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > -0.5f && Vector3::Dot(faceNorm, mPlayer->GetForward()) < 0.5f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(mPlayer->GetForward().x,mPlayer->GetForward().y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
+            break;
+        }
+            
+        case CollSide::SideY1:{
+            Vector3 faceNorm = Vector3::UnitY;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > -0.5f && Vector3::Dot(faceNorm, mPlayer->GetForward()) < 0.5f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(mPlayer->GetForward().x,mPlayer->GetForward().y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
+            break;
+        }
+            
+        case CollSide::SideY2:{
+            Vector3 faceNorm = Vector3::UnitY * -1.0f;
+            if(Vector3::Dot(faceNorm, mPlayer->GetForward()) > -0.5f && Vector3::Dot(faceNorm, mPlayer->GetForward()) < 0.5f){
+                if(xyVelocity.Length() > 35.0f){
+                    xyVelocity.Normalize();
+                    if(Vector2::Dot(xyVelocity, Vector2(mPlayer->GetForward().x,mPlayer->GetForward().y)) > Math::Sqrt(3.0)/2.0f){
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
             break;
         }
             
@@ -126,6 +244,11 @@ void PlayerMove::UpdateOnGround(float deltaTime){
         if(cs == CollSide::Top){
             isOnTop = true;
         }
+        if(CanWallClimb(cs)){
+            ChangeState(WallClimb);
+            mWallClimbTimer = 0.0f;
+            return;
+        }
     }
     if(!isOnTop)
         ChangeState(MoveState::Falling);
@@ -140,6 +263,41 @@ void PlayerMove::UpdateJump(float deltaTime){
         cs = FixCollision(mPlayer->cc, b->GetComponent<CollisionComponent>());
         if(cs == CollSide::Bottom){
             mVelocity.z = 0.0f;
+        }
+        if(CanWallClimb(cs)){
+            ChangeState(WallClimb);
+            mWallClimbTimer = 0.0f;
+            return;
+        }
+        else if(CanWallRun(cs)){
+            ChangeState(WallRun);
+            mWallRunTimer = 0.0f;
+            if(cs == CollSide::SideY1){
+                if(mPlayer->GetForward().x > 0)
+                    mPlayer->camc->SetIdealRight(Vector3(Math::Sin(WALL_RUN_VIEW_ANGLE),0.0f,Math::Cos(WALL_RUN_VIEW_ANGLE)));
+                else
+                    mPlayer->camc->SetIdealRight(Vector3(Math::Sin(-WALL_RUN_VIEW_ANGLE),0.0f,Math::Cos(-WALL_RUN_VIEW_ANGLE)));
+            }
+            else if(cs == CollSide::SideY2){
+                if(mPlayer->GetForward().x > 0)
+                    mPlayer->camc->SetIdealRight(Vector3(Math::Sin(WALL_RUN_VIEW_ANGLE),0.0f,Math::Cos(WALL_RUN_VIEW_ANGLE)));
+                else
+                    mPlayer->camc->SetIdealRight(Vector3(Math::Sin(-WALL_RUN_VIEW_ANGLE),0.0f,Math::Cos(-WALL_RUN_VIEW_ANGLE)));
+                }
+            else if(cs == CollSide::SideX1){
+                if(mPlayer->GetForward().y > 0)
+                    mPlayer->camc->SetIdealRight(Vector3(0.0f,Math::Sin(WALL_RUN_VIEW_ANGLE),Math::Cos(WALL_RUN_VIEW_ANGLE)));
+                else
+                    mPlayer->camc->SetIdealRight(Vector3(0.0f,Math::Sin(-WALL_RUN_VIEW_ANGLE),Math::Cos(-WALL_RUN_VIEW_ANGLE)));
+                }
+            else if(cs == CollSide::SideX2){
+                if(mPlayer->GetForward().y > 0)
+                    mPlayer->camc->SetIdealRight(Vector3(0.0f,Math::Sin(WALL_RUN_VIEW_ANGLE),Math::Cos(WALL_RUN_VIEW_ANGLE)));
+                else
+                    mPlayer->camc->SetIdealRight(Vector3(0.0f,Math::Sin(-WALL_RUN_VIEW_ANGLE),Math::Cos(-WALL_RUN_VIEW_ANGLE)));
+                }
+            
+            return;
         }
     }
     if(mVelocity.z <= 0.0f)
@@ -161,7 +319,58 @@ void PlayerMove::UpdateFalling(float deltaTime){
 }
 
 void PlayerMove::UpdateWallClimb(float deltaTime){
+    if(mWallClimbTimer < WALL_CLIMB_TIME){
+        AddForce(mClimbForce);
+    }
+    AddForce(mGravity);
     
+    PhysicsUpdate(deltaTime);
+    
+    CollSide cs;
+    bool collideWithSide = false;
+    for(auto b : mOwner->GetGame()->GetObjects()){
+        cs = FixCollision(mPlayer->cc, b->GetComponent<CollisionComponent>());
+        if(cs == CollSide::SideX1 ||
+           cs == CollSide::SideX2 ||
+           cs == CollSide::SideY1 ||
+           cs == CollSide::SideY2){
+            collideWithSide = true;
+        }
+    }
+    if(!collideWithSide || mVelocity.z <= 0.0f){
+        mVelocity.z = 0.0f;
+        ChangeState(Falling);
+    }
+    
+    mWallClimbTimer += deltaTime;
+}
+
+void PlayerMove::UpdateWallRun(float deltaTime){
+    if(mWallRunTimer < WALL_RUN_TIME){
+        AddForce(mWallRunForce);
+    }
+    AddForce(mGravity);
+    
+    PhysicsUpdate(deltaTime);
+    
+    CollSide cs;
+    bool collideWithSide = false;
+    for(auto b : mOwner->GetGame()->GetObjects()){
+        cs = FixCollision(mPlayer->cc, b->GetComponent<CollisionComponent>());
+        if(cs == CollSide::SideX1 ||
+           cs == CollSide::SideX2 ||
+           cs == CollSide::SideY1 ||
+           cs == CollSide::SideY2){
+            collideWithSide = true;
+        }
+    }
+    if(mVelocity.z <= 0.0f){
+        mVelocity.z = 0.0f;
+        ChangeState(Falling);
+        mPlayer->camc->SetIdealRight(Vector3::UnitZ);
+    }
+    
+    mWallRunTimer += deltaTime;
 }
 
 CollSide PlayerMove::FixCollision(class CollisionComponent* self, class CollisionComponent* block){
@@ -171,6 +380,18 @@ CollSide PlayerMove::FixCollision(class CollisionComponent* self, class Collisio
         Vector3 pos = mOwner->GetPosition();
         pos += offset;
         mOwner->SetPosition(pos);
+    }
+    if(cs == CollSide::SideX1){
+        AddForce(Vector3(-MOVE_FORCE,0.0f,0.0f));
+    }
+    else if(cs == CollSide::SideX2){
+        AddForce(Vector3(MOVE_FORCE,0.0f,0.0f));
+    }
+    else if(cs == CollSide::SideY1){
+        AddForce(Vector3(0.0f,-MOVE_FORCE,0.0f));
+    }
+    else if(cs == CollSide::SideY2){
+        AddForce(Vector3(0.0f,MOVE_FORCE,0.0f));
     }
     return cs;
 }
@@ -196,7 +417,7 @@ void PlayerMove::FixXYVelocity(){
         xyVelocity.Normalize();
         xyVelocity *= MAX_SPEED;
     }
-    if(mCurrentState == MoveState::OnGround){
+    if(mCurrentState == MoveState::OnGround || mCurrentState == MoveState::WallClimb){
         if(Math::NearZero(mAcceleration.x) ||
            (mAcceleration.x > 0 && xyVelocity.x < 0) ||
            (mAcceleration.x < 0 && xyVelocity.x > 0)

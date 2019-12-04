@@ -9,6 +9,7 @@
 #include "Block.h"
 #include "Player.h"
 #include "Game.h"
+#include "LaserMine.h"
 
 namespace
 {
@@ -41,7 +42,11 @@ void LoadActor(const rapidjson::Value& actorValue, Game* game, Actor* parent)
             actor = player;
             game->SetPlayer(player);
 		}
-		// TODO: Add else ifs for other actor types
+        else if (type == "LaserMine")
+        {
+            LaserMine* lm = new LaserMine(game);
+            actor = lm;
+        }
 
 		// Set properties of actor
 		if (actor)
