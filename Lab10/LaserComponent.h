@@ -23,7 +23,7 @@ public:
 protected:
     Matrix4 GetWorldTransformFromLine(LineSegment ls);
     
-    LineSegment ls;
+    std::vector<LineSegment> lines;
     const float LASER_LENGTH = 500.0f;
     
 };

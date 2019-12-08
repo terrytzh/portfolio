@@ -15,7 +15,7 @@
 
 class Player : public Actor{
 public:
-    Player(class Game* g);
+    Player(class Game* g, Actor* parent);
     class CollisionComponent* cc;
     class PlayerMove* pm;
     class CameraComponent* camc;

@@ -12,7 +12,7 @@
 #include "CollisionComponent.h"
 #include "Renderer.h"
 
-Block::Block(Game* g) : Actor(g){
+Block::Block(Game* g, Actor* parent) : Actor(g,parent){
     SetScale(64.0f);
     meshc = new MeshComponent(this);
     meshc->SetMesh(mGame->GetRenderer()->GetMesh("Assets/Cube.gpmesh"));
@@ -27,5 +27,11 @@ Block::~Block(){
             mGame->GetObjects().erase(i);
             break;
         }
+    }
+}
+
+void Block::OnUpdate(float deltaTime){
+    if(isRotating){
+        SetRotation(GetRotation()+ROTATE_SPEED * deltaTime);
     }
 }

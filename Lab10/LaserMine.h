@@ -14,10 +14,12 @@
 
 class LaserMine : public Actor{
 public:
-    LaserMine(class Game* g);
+    LaserMine(class Game* g, Actor* parent);
+    class MeshComponent* mc;
+    class LaserComponent* lc;
     
 protected:
-    class MeshComponent* mc;
+    
 };
 
 #endif /* LaserMine_hpp */

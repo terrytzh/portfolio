@@ -32,19 +32,26 @@ void LoadActor(const rapidjson::Value& actorValue, Game* game, Actor* parent)
 
 		if (type == "Block")
 		{
-			Block* block = new Block(game);
+			Block* block = new Block(game,parent);
 			actor = block;
+            bool temp;
+            if(GetBoolFromJSON(actorValue, "mirror", temp)){
+                block->SetIsMirror(temp);
+            }
+            if(GetBoolFromJSON(actorValue, "rotates", temp)){
+                block->SetIsRotating(temp);
+            }
 		}
 		else if (type == "Player")
 		{
 			// TODO: Handle construction of a player!
-            Player* player = new Player(game);
+            Player* player = new Player(game,parent);
             actor = player;
             game->SetPlayer(player);
 		}
         else if (type == "LaserMine")
         {
-            LaserMine* lm = new LaserMine(game);
+            LaserMine* lm = new LaserMine(game,parent);
             actor = lm;
         }
 
@@ -72,7 +79,7 @@ void LoadActor(const rapidjson::Value& actorValue, Game* game, Actor* parent)
 			Quaternion q;
 			if (GetQuaternionFromJSON(actorValue, "quat", q))
 			{
-				// TODO: Set actor's quaternion member to q
+                actor->SetQuaternion(q);
 			}
 
 			int textureIdx = 0;

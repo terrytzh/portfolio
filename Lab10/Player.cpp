@@ -15,7 +15,7 @@
 #include "PlayerMove.h"
 #include "CameraComponent.h"
 
-Player::Player(Game* g) : Actor(g){
+Player::Player(Game* g, Actor* parent) : Actor(g,parent){
     pm = new PlayerMove(this);
     camc = new CameraComponent(this);
     cc = new CollisionComponent(this);
