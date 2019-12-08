@@ -26,6 +26,13 @@
 		92D324FD1B697428005A86C7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D324FC1B697428005A86C7 /* CoreFoundation.framework */; };
 		92E32AAC1F9D67450091853F /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E32AAA1F9D67450091853F /* LevelLoader.cpp */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
+		9635E239239CBB9A00D786A5 /* LaserComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E230239CBB9900D786A5 /* LaserComponent.cpp */; };
+		9635E23A239CBB9A00D786A5 /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E231239CBB9900D786A5 /* CameraComponent.cpp */; };
+		9635E23B239CBB9A00D786A5 /* LaserMine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E232239CBB9900D786A5 /* LaserMine.cpp */; };
+		9635E23C239CBB9A00D786A5 /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E235239CBB9900D786A5 /* PlayerMove.cpp */; };
+		9635E23D239CBB9A00D786A5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E236239CBB9900D786A5 /* Player.cpp */; };
+		9635E23E239CBB9A00D786A5 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E237239CBB9900D786A5 /* Block.cpp */; };
+		9635E241239CBD7C00D786A5 /* Checkpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E23F239CBD7C00D786A5 /* Checkpoint.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +73,20 @@
 		92E32AAB1F9D67450091853F /* LevelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLoader.h; sourceTree = "<group>"; };
 		92E46DF71B634EA30035CD21 /* Game-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Game-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		9635E22D239CBB9800D786A5 /* LaserComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaserComponent.h; sourceTree = "<group>"; };
+		9635E22E239CBB9900D786A5 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		9635E22F239CBB9900D786A5 /* CameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
+		9635E230239CBB9900D786A5 /* LaserComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserComponent.cpp; sourceTree = "<group>"; };
+		9635E231239CBB9900D786A5 /* CameraComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cpp; sourceTree = "<group>"; };
+		9635E232239CBB9900D786A5 /* LaserMine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserMine.cpp; sourceTree = "<group>"; };
+		9635E233239CBB9900D786A5 /* LaserMine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaserMine.h; sourceTree = "<group>"; };
+		9635E234239CBB9900D786A5 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		9635E235239CBB9900D786A5 /* PlayerMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerMove.cpp; sourceTree = "<group>"; };
+		9635E236239CBB9900D786A5 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		9635E237239CBB9900D786A5 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
+		9635E238239CBB9A00D786A5 /* PlayerMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
+		9635E23F239CBD7C00D786A5 /* Checkpoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Checkpoint.cpp; sourceTree = "<group>"; };
+		9635E240239CBD7C00D786A5 /* Checkpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checkpoint.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +112,20 @@
 				924722A31EF72947000B58FD /* Component.cpp */,
 				924722A41EF72947000B58FD /* Component.h */,
 				92924F9A1EDF6DC800A740A7 /* Game.cpp */,
+				9635E237239CBB9900D786A5 /* Block.cpp */,
+				9635E22E239CBB9900D786A5 /* Block.h */,
+				9635E23F239CBD7C00D786A5 /* Checkpoint.cpp */,
+				9635E240239CBD7C00D786A5 /* Checkpoint.h */,
+				9635E231239CBB9900D786A5 /* CameraComponent.cpp */,
+				9635E22F239CBB9900D786A5 /* CameraComponent.h */,
+				9635E230239CBB9900D786A5 /* LaserComponent.cpp */,
+				9635E22D239CBB9800D786A5 /* LaserComponent.h */,
+				9635E232239CBB9900D786A5 /* LaserMine.cpp */,
+				9635E233239CBB9900D786A5 /* LaserMine.h */,
+				9635E236239CBB9900D786A5 /* Player.cpp */,
+				9635E234239CBB9900D786A5 /* Player.h */,
+				9635E235239CBB9900D786A5 /* PlayerMove.cpp */,
+				9635E238239CBB9A00D786A5 /* PlayerMove.h */,
 				92924F9B1EDF6DC800A740A7 /* Game.h */,
 				92E32AAA1F9D67450091853F /* LevelLoader.cpp */,
 				92E32AAB1F9D67450091853F /* LevelLoader.h */,
@@ -158,7 +193,7 @@
 		92E46DEF1B634EA30035CD21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Sanjay Madhav";
 				TargetAttributes = {
 					92E46DF61B634EA30035CD21 = {
@@ -168,10 +203,11 @@
 			};
 			buildConfigurationList = 92E46DF21B634EA30035CD21 /* Build configuration list for PBXProject "Game-mac" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 92E46DEE1B634EA30035CD21;
 			productRefGroup = 92E46DF81B634EA30035CD21 /* Products */;
@@ -211,15 +247,22 @@
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
 				928A32D51F97158D00E04B24 /* Texture.cpp in Sources */,
 				9210C6AB21DC115600C3E613 /* UIComponent.cpp in Sources */,
+				9635E241239CBD7C00D786A5 /* Checkpoint.cpp in Sources */,
 				924722AF1EF89CAE000B58FD /* MoveComponent.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
+				9635E23A239CBB9A00D786A5 /* CameraComponent.cpp in Sources */,
 				928A32D61F97158D00E04B24 /* Renderer.cpp in Sources */,
 				928A32D71F97158D00E04B24 /* Shader.cpp in Sources */,
 				924722AB1EF72947000B58FD /* Math.cpp in Sources */,
 				92B401B1223F2925004DD285 /* Random.cpp in Sources */,
 				928A32D41F97158D00E04B24 /* Mesh.cpp in Sources */,
+				9635E23C239CBB9A00D786A5 /* PlayerMove.cpp in Sources */,
+				9635E23D239CBB9A00D786A5 /* Player.cpp in Sources */,
+				9635E23E239CBB9A00D786A5 /* Block.cpp in Sources */,
 				924722BE1EF98571000B58FD /* CollisionComponent.cpp in Sources */,
+				9635E239239CBB9A00D786A5 /* LaserComponent.cpp in Sources */,
 				92B401B0223F2925004DD285 /* SegmentCast.cpp in Sources */,
+				9635E23B239CBB9A00D786A5 /* LaserMine.cpp in Sources */,
 				92E32AAC1F9D67450091853F /* LevelLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -284,6 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

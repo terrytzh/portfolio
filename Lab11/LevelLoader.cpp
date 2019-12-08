@@ -9,6 +9,7 @@
 #include "Block.h"
 #include "Player.h"
 #include "Game.h"
+#include "LaserMine.h"
 
 namespace
 {
@@ -31,14 +32,33 @@ void LoadActor(const rapidjson::Value& actorValue, Game* game, Actor* parent)
 
 		if (type == "Block")
 		{
-			Block* block = new Block(game);
+			Block* block = new Block(game,parent);
 			actor = block;
+            bool temp;
+            if(GetBoolFromJSON(actorValue, "mirror", temp)){
+                block->SetIsMirror(temp);
+            }
+            if(GetBoolFromJSON(actorValue, "rotates", temp)){
+                block->SetIsRotating(temp);
+            }
 		}
 		else if (type == "Player")
 		{
 			// TODO: Handle construction of a player!
+            Player* player = new Player(game,parent);
+            actor = player;
+            game->SetPlayer(player);
+            Vector3 pos;
+            if (GetVectorFromJSON(actorValue, "pos", pos))
+            {
+                player->SetRespawnPos(pos);
+            }
 		}
-		// TODO: Add else ifs for other actor types
+        else if (type == "LaserMine")
+        {
+            LaserMine* lm = new LaserMine(game,parent);
+            actor = lm;
+        }
 
 		// Set properties of actor
 		if (actor)
@@ -64,7 +84,7 @@ void LoadActor(const rapidjson::Value& actorValue, Game* game, Actor* parent)
 			Quaternion q;
 			if (GetQuaternionFromJSON(actorValue, "quat", q))
 			{
-				// TODO: Set actor's quaternion member to q
+                actor->SetQuaternion(q);
 			}
 
 			int textureIdx = 0;
