@@ -21,12 +21,13 @@ public:
     };
     
     PlayerMove(class Player* owner);
+    ~PlayerMove();
     void Update(float deltaTime) override;
     void ProcessInput(const Uint8* keyState) override;
     void ChangeState(MoveState ms){mCurrentState = ms;}
     bool CanWallClimb(CollSide cs);
     bool CanWallRun(CollSide cs);
-    
+    void Respawn();
     
     
 protected:
@@ -40,6 +41,7 @@ protected:
     float mMass = 1.0f;
     float mWallClimbTimer = 0.0f;
     float mWallRunTimer = 0.0f;
+    int mRunningSFX = -1;
     Vector3 mGravity = Vector3(0.0f,0.0f,-980.0f);
     Vector3 mJumpForce = Vector3(0.0f,0.0f,35000.0f);
     Vector3 mClimbForce = Vector3(0.0f,0.0f,1800.0f);

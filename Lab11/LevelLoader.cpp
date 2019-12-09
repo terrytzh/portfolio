@@ -4,12 +4,16 @@
 #include <SDL/SDL.h>
 #include <fstream>
 #include <sstream>
+#include <queue>
 #include "Actor.h"
 #include "MeshComponent.h"
 #include "Block.h"
 #include "Player.h"
 #include "Game.h"
 #include "LaserMine.h"
+#include "Checkpoint.h"
+#include "Coin.h"
+#include "SecurityCamera.h"
 
 namespace
 {
@@ -58,6 +62,45 @@ void LoadActor(const rapidjson::Value& actorValue, Game* game, Actor* parent)
         {
             LaserMine* lm = new LaserMine(game,parent);
             actor = lm;
+        }
+        else if (type == "Checkpoint")
+        {
+            Checkpoint* cp = new Checkpoint(game,parent);
+            actor = cp;
+            game->GetCheckpoints().push(cp);
+            std::string s;
+            if (GetStringFromJSON(actorValue, "level", s))
+            {
+                cp->SetLevelString(s);
+            }
+        }
+        else if (type == "Coin")
+        {
+            Coin* coin = new Coin(game,parent);
+            actor = coin;
+        }
+        else if (type == "SecurityCamera")
+        {
+            SecurityCamera* sc = new SecurityCamera(game,parent);
+            actor = sc;
+            Quaternion q;
+            if (GetQuaternionFromJSON(actorValue, "startQ", q))
+            {
+                sc->SetStartQuat(q);
+            }
+            if (GetQuaternionFromJSON(actorValue, "endQ", q))
+            {
+                sc->SetEndQuat(q);
+            }
+            float f;
+            if (GetFloatFromJSON(actorValue, "interpTime", f))
+            {
+                sc->SetInterpTime(f);
+            }
+            if (GetFloatFromJSON(actorValue, "pausedTime", f))
+            {
+                sc->SetPausedTime(f);
+            }
         }
 
 		// Set properties of actor

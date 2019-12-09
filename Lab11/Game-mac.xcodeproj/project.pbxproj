@@ -33,6 +33,10 @@
 		9635E23D239CBB9A00D786A5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E236239CBB9900D786A5 /* Player.cpp */; };
 		9635E23E239CBB9A00D786A5 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E237239CBB9900D786A5 /* Block.cpp */; };
 		9635E241239CBD7C00D786A5 /* Checkpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9635E23F239CBD7C00D786A5 /* Checkpoint.cpp */; };
+		966AD43B239DF25A00BDD002 /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 966AD439239DF25A00BDD002 /* Coin.cpp */; };
+		966AD43E239E18E500BDD002 /* SecurityCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 966AD43C239E18E500BDD002 /* SecurityCamera.cpp */; };
+		966AD441239E1C0F00BDD002 /* SecurityCone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 966AD43F239E1C0F00BDD002 /* SecurityCone.cpp */; };
+		96809DEC239CCE41001E6C49 /* Arrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96809DEA239CCE41001E6C49 /* Arrow.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +91,14 @@
 		9635E238239CBB9A00D786A5 /* PlayerMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
 		9635E23F239CBD7C00D786A5 /* Checkpoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Checkpoint.cpp; sourceTree = "<group>"; };
 		9635E240239CBD7C00D786A5 /* Checkpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checkpoint.h; sourceTree = "<group>"; };
+		966AD439239DF25A00BDD002 /* Coin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Coin.cpp; sourceTree = "<group>"; };
+		966AD43A239DF25A00BDD002 /* Coin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
+		966AD43C239E18E500BDD002 /* SecurityCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SecurityCamera.cpp; sourceTree = "<group>"; };
+		966AD43D239E18E500BDD002 /* SecurityCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityCamera.h; sourceTree = "<group>"; };
+		966AD43F239E1C0F00BDD002 /* SecurityCone.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SecurityCone.cpp; sourceTree = "<group>"; };
+		966AD440239E1C0F00BDD002 /* SecurityCone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityCone.h; sourceTree = "<group>"; };
+		96809DEA239CCE41001E6C49 /* Arrow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Arrow.cpp; sourceTree = "<group>"; };
+		96809DEB239CCE41001E6C49 /* Arrow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,11 +123,20 @@
 				924722BD1EF98571000B58FD /* CollisionComponent.h */,
 				924722A31EF72947000B58FD /* Component.cpp */,
 				924722A41EF72947000B58FD /* Component.h */,
+				92924F9B1EDF6DC800A740A7 /* Game.h */,
 				92924F9A1EDF6DC800A740A7 /* Game.cpp */,
 				9635E237239CBB9900D786A5 /* Block.cpp */,
 				9635E22E239CBB9900D786A5 /* Block.h */,
+				96809DEA239CCE41001E6C49 /* Arrow.cpp */,
+				96809DEB239CCE41001E6C49 /* Arrow.h */,
 				9635E23F239CBD7C00D786A5 /* Checkpoint.cpp */,
 				9635E240239CBD7C00D786A5 /* Checkpoint.h */,
+				966AD439239DF25A00BDD002 /* Coin.cpp */,
+				966AD43A239DF25A00BDD002 /* Coin.h */,
+				966AD43C239E18E500BDD002 /* SecurityCamera.cpp */,
+				966AD43D239E18E500BDD002 /* SecurityCamera.h */,
+				966AD43F239E1C0F00BDD002 /* SecurityCone.cpp */,
+				966AD440239E1C0F00BDD002 /* SecurityCone.h */,
 				9635E231239CBB9900D786A5 /* CameraComponent.cpp */,
 				9635E22F239CBB9900D786A5 /* CameraComponent.h */,
 				9635E230239CBB9900D786A5 /* LaserComponent.cpp */,
@@ -126,7 +147,6 @@
 				9635E234239CBB9900D786A5 /* Player.h */,
 				9635E235239CBB9900D786A5 /* PlayerMove.cpp */,
 				9635E238239CBB9A00D786A5 /* PlayerMove.h */,
-				92924F9B1EDF6DC800A740A7 /* Game.h */,
 				92E32AAA1F9D67450091853F /* LevelLoader.cpp */,
 				92E32AAB1F9D67450091853F /* LevelLoader.h */,
 				92924F981EDF6AC900A740A7 /* Main.cpp */,
@@ -242,15 +262,19 @@
 			files = (
 				924722A91EF72947000B58FD /* Actor.cpp in Sources */,
 				928A32D81F97158D00E04B24 /* VertexArray.cpp in Sources */,
+				966AD441239E1C0F00BDD002 /* SecurityCone.cpp in Sources */,
 				924722AA1EF72947000B58FD /* Component.cpp in Sources */,
 				928A32D91F97158D00E04B24 /* MeshComponent.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
 				928A32D51F97158D00E04B24 /* Texture.cpp in Sources */,
 				9210C6AB21DC115600C3E613 /* UIComponent.cpp in Sources */,
 				9635E241239CBD7C00D786A5 /* Checkpoint.cpp in Sources */,
+				966AD43B239DF25A00BDD002 /* Coin.cpp in Sources */,
+				96809DEC239CCE41001E6C49 /* Arrow.cpp in Sources */,
 				924722AF1EF89CAE000B58FD /* MoveComponent.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
 				9635E23A239CBB9A00D786A5 /* CameraComponent.cpp in Sources */,
+				966AD43E239E18E500BDD002 /* SecurityCamera.cpp in Sources */,
 				928A32D61F97158D00E04B24 /* Renderer.cpp in Sources */,
 				928A32D71F97158D00E04B24 /* Shader.cpp in Sources */,
 				924722AB1EF72947000B58FD /* Math.cpp in Sources */,

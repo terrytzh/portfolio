@@ -9,6 +9,7 @@
 #include "LaserComponent.h"
 #include "Actor.h"
 #include "Player.h"
+#include "PlayerMove.h"
 #include "Block.h"
 #include "Mesh.h"
 #include "Shader.h"
@@ -55,7 +56,9 @@ void LaserComponent::Update(float deltaTime){
     bool lineReflected = false;
     if(SegmentCast(mOwner->GetGame()->GetPlayer(), ls, outinfo)){
         ls.mEnd = outinfo.mPoint;
+        mOwner->GetGame()->GetPlayer()->pm->Respawn();
         lines.push_back(ls);
+        Mix_PlayChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/Laser.wav"), 0);
     }
     else{
         do {

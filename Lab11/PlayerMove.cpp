@@ -18,6 +18,12 @@
 PlayerMove::PlayerMove(Player* owner) : MoveComponent(owner){
     mPlayer = owner;
     ChangeState(MoveState::Falling);
+    mRunningSFX = Mix_PlayChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/Running.wav"), -1);
+    Mix_Pause(mRunningSFX);
+}
+
+PlayerMove::~PlayerMove(){
+    Mix_HaltChannel(mRunningSFX);
 }
 
 void PlayerMove::Update(float deltaTime){
@@ -25,40 +31,52 @@ void PlayerMove::Update(float deltaTime){
         case PlayerMove::MoveState::OnGround:
         {
             UpdateOnGround(deltaTime);
+            if(mVelocity.Length() > 50.0f)
+                Mix_Resume(mRunningSFX);
+            else
+                Mix_Pause(mRunningSFX);
             break;
         }
             
         case PlayerMove::MoveState::Jump:
         {
             UpdateJump(deltaTime);
+            Mix_Pause(mRunningSFX);
             break;
         }
         
         case PlayerMove::MoveState::Falling:
         {
             UpdateFalling(deltaTime);
+            Mix_Pause(mRunningSFX);
             break;
         }
             
         case PlayerMove::MoveState::WallClimb:
         {
             UpdateWallClimb(deltaTime);
+            Mix_Resume(mRunningSFX);
             break;
         }
             
         case PlayerMove::MoveState::WallRun:
         {
             UpdateWallRun(deltaTime);
+            Mix_Resume(mRunningSFX);
             break;
         }
     }
     if(mPlayer->GetPosition().z < -750.0f){
-        mPlayer->SetPosition(mPlayer->GetRespawnPos());
-        mPlayer->SetRotation(0.0f);
-        mVelocity = Vector3::Zero;
-        mPendingForces = Vector3::Zero;
-        mCurrentState = Falling;
+        Respawn();
     }
+}
+
+void PlayerMove::Respawn(){
+    mPlayer->SetPosition(mPlayer->GetRespawnPos());
+    mPlayer->SetRotation(0.0f);
+    mVelocity = Vector3::Zero;
+    mPendingForces = Vector3::Zero;
+    mCurrentState = Falling;
 }
 
 void PlayerMove::ProcessInput(const Uint8 *keyState){
@@ -96,6 +114,7 @@ void PlayerMove::ProcessInput(const Uint8 *keyState){
             AddForce(mJumpForce);
         
         ChangeState(MoveState::Jump);
+        Mix_PlayChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/Jump.wav"), 0);
     }
     SpacebarPressed = keyState[SDL_SCANCODE_SPACE];
 }
@@ -320,6 +339,7 @@ void PlayerMove::UpdateFalling(float deltaTime){
         if(cs == CollSide::Top){
             mVelocity.z = 0.0f;
             ChangeState(MoveState::OnGround);
+            Mix_PlayChannel(-1, mOwner->GetGame()->GetSound("Assets/Sounds/Land.wav"), 0);
         }
     }
 }

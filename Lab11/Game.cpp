@@ -13,8 +13,10 @@
 #include "Renderer.h"
 #include "Random.h"
 #include "Player.h"
+#include "Arrow.h"
 #include "MeshComponent.h"
 #include "LevelLoader.h"
+#include "Checkpoint.h"
 
 Game::Game()
 :mIsRunning(true)
@@ -38,6 +40,8 @@ bool Game::Initialize()
         return false;
 
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    Mix_AllocateChannels(32);
+    Mix_GroupChannels(22, 31, 1);
     
     SDL_SetRelativeMouseMode(SDL_TRUE);
     SDL_GetRelativeMouseState(nullptr, nullptr);
@@ -56,6 +60,9 @@ void Game::RunLoop()
 		ProcessInput();
 		UpdateGame();
 		GenerateOutput();
+        if(!mNextLevel.empty()){
+            LoadNextLevel();
+        }
 	}
 }
 
@@ -140,6 +147,23 @@ void Game::LoadData()
     Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
     mRenderer->SetViewMatrix(viewMatrix);
     LevelLoader::Load(this, "Assets/Tutorial.json");
+    mArrow = new Arrow(this, nullptr);
+    BGMChannel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
+}
+
+void Game::LoadNextLevel(){
+    while (!mActors.empty())
+    {
+        delete mActors.back();
+    }
+    while (!mCheckpoints.empty())
+    {
+        mCheckpoints.pop();
+    }
+    
+    LevelLoader::Load(this, mNextLevel);
+    mArrow = new Arrow(this, nullptr);
+    mNextLevel.clear();
 }
 
 void Game::UnloadData()
@@ -157,6 +181,7 @@ void Game::UnloadData()
 		Mix_FreeChunk(s.second);
 	}
 	mSounds.clear();
+    Mix_HaltChannel(BGMChannel);
 }
 
 
