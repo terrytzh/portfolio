@@ -11,6 +11,12 @@
 #include "Actor.h"
 #include <fstream>
 #include "Renderer.h"
+#include "Random.h"
+#include "Player.h"
+#include "Arrow.h"
+#include "MeshComponent.h"
+#include "LevelLoader.h"
+#include "Checkpoint.h"
 
 Game::Game()
 :mIsRunning(true)
@@ -20,6 +26,8 @@ Game::Game()
 
 bool Game::Initialize()
 {
+	Random::Init();
+
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0)
 	{
 		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
@@ -27,8 +35,16 @@ bool Game::Initialize()
 	}
 
 	// TODO: Create renderer
+    mRenderer = new Renderer(this);
+    if(!mRenderer->Initialize(1024.0f, 768.0f))
+        return false;
 
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    Mix_AllocateChannels(32);
+    Mix_GroupChannels(22, 31, 1);
+    
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_GetRelativeMouseState(nullptr, nullptr);
 
 	LoadData();
 
@@ -44,6 +60,9 @@ void Game::RunLoop()
 		ProcessInput();
 		UpdateGame();
 		GenerateOutput();
+        if(!mNextLevel.empty()){
+            LoadNextLevel();
+        }
 	}
 }
 
@@ -111,55 +130,40 @@ void Game::UpdateGame()
 	{
 		delete actor;
 	}
+    
+    
 }
 
 void Game::GenerateOutput()
 {
 	// TODO: tell renderer to draw
+    mRenderer->Draw();
 }
 
 void Game::LoadData()
 {
-	LoadLevel("Assets/Level.txt");
+    Matrix4 projectionMatrix = Matrix4::CreatePerspectiveFOV(1.22f, 1024.0f, 768.0f, 10.0f, 10000.0f);
+    mRenderer->SetProjectionMatrix(projectionMatrix);
+    Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
+    mRenderer->SetViewMatrix(viewMatrix);
+    LevelLoader::Load(this, "Assets/Tutorial.json");
+    mArrow = new Arrow(this, nullptr);
+    BGMChannel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
 }
 
-void Game::LoadLevel(const std::string& fileName)
-{
-	std::ifstream file(fileName);
-	if (!file.is_open())
-	{
-		SDL_Log("Failed to load level: %s", fileName.c_str());
-	}
-
-	const float topLeftX = -512.0f + 32.0f;
-	const float topLeftY = -384.0f + 32.0f;
-	size_t row = 0;
-	std::string line;
-	while (!file.eof())
-	{
-		std::getline(file, line);
-		for (size_t col = 0; col < line.size(); col++)
-		{
-			// Calculate position at this row/column
-			Vector3 pos;
-			pos.x = topLeftX + 64.0f * col;
-			pos.y = topLeftY + 64.0f * row;
-
-			if (line[col] == 'B')
-			{
-				// TODO: Create block
-			}
-			else if (line[col] == 'P')
-			{
-				// TODO: Create player 1
-			}
-			else if (line[col] == 'Q')
-			{
-				// TODO: Create player 2
-			}
-		}
-		row++;
-	}
+void Game::LoadNextLevel(){
+    while (!mActors.empty())
+    {
+        delete mActors.back();
+    }
+    while (!mCheckpoints.empty())
+    {
+        mCheckpoints.pop();
+    }
+    
+    LevelLoader::Load(this, mNextLevel);
+    mArrow = new Arrow(this, nullptr);
+    mNextLevel.clear();
 }
 
 void Game::UnloadData()
@@ -171,20 +175,15 @@ void Game::UnloadData()
 		delete mActors.back();
 	}
 
-	// Destroy textures
-	for (auto i : mTextures)
-	{
-		SDL_DestroyTexture(i.second);
-	}
-	mTextures.clear();
-
 	// Destroy sounds
 	for (auto s : mSounds)
 	{
 		Mix_FreeChunk(s.second);
 	}
 	mSounds.clear();
+    Mix_HaltChannel(BGMChannel);
 }
+
 
 Mix_Chunk* Game::GetSound(const std::string& fileName)
 {
@@ -213,6 +212,8 @@ void Game::Shutdown()
 	UnloadData();
 	Mix_CloseAudio();
 	// TODO: Delete renderer
+    mRenderer->Shutdown();
+    delete mRenderer;
 	SDL_Quit();
 }
 

@@ -27,6 +27,17 @@
 		92E32AAC1F9D67450091853F /* LevelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92E32AAA1F9D67450091853F /* LevelLoader.cpp */; };
 		92E46E941B6353E50035CD21 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E46E931B6353E50035CD21 /* OpenGL.framework */; };
 		92F7A9301FB806050057BFBD /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F7A92C1FB806040057BFBD /* Font.cpp */; };
+		9603DDB923A0B03200C0715B /* Checkpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDA323A0B03000C0715B /* Checkpoint.cpp */; };
+		9603DDBA23A0B03200C0715B /* SecurityCone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDA523A0B03100C0715B /* SecurityCone.cpp */; };
+		9603DDBB23A0B03200C0715B /* LaserComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDA723A0B03100C0715B /* LaserComponent.cpp */; };
+		9603DDBC23A0B03200C0715B /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDAA23A0B03100C0715B /* Block.cpp */; };
+		9603DDBD23A0B03200C0715B /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDAC23A0B03100C0715B /* CameraComponent.cpp */; };
+		9603DDBE23A0B03200C0715B /* Arrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB123A0B03200C0715B /* Arrow.cpp */; };
+		9603DDBF23A0B03200C0715B /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB223A0B03200C0715B /* Coin.cpp */; };
+		9603DDC023A0B03200C0715B /* PlayerMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB423A0B03200C0715B /* PlayerMove.cpp */; };
+		9603DDC123A0B03200C0715B /* LaserMine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB623A0B03200C0715B /* LaserMine.cpp */; };
+		9603DDC223A0B03200C0715B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB723A0B03200C0715B /* Player.cpp */; };
+		9603DDC323A0B03200C0715B /* SecurityCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB823A0B03200C0715B /* SecurityCamera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +80,28 @@
 		92E46E931B6353E50035CD21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		92F7A92C1FB806040057BFBD /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		92F7A92D1FB806050057BFBD /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		9603DDA323A0B03000C0715B /* Checkpoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Checkpoint.cpp; sourceTree = "<group>"; };
+		9603DDA423A0B03100C0715B /* SecurityCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityCamera.h; sourceTree = "<group>"; };
+		9603DDA523A0B03100C0715B /* SecurityCone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SecurityCone.cpp; sourceTree = "<group>"; };
+		9603DDA623A0B03100C0715B /* SecurityCone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityCone.h; sourceTree = "<group>"; };
+		9603DDA723A0B03100C0715B /* LaserComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserComponent.cpp; sourceTree = "<group>"; };
+		9603DDA823A0B03100C0715B /* LaserComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaserComponent.h; sourceTree = "<group>"; };
+		9603DDA923A0B03100C0715B /* LaserMine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaserMine.h; sourceTree = "<group>"; };
+		9603DDAA23A0B03100C0715B /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Block.cpp; sourceTree = "<group>"; };
+		9603DDAB23A0B03100C0715B /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
+		9603DDAC23A0B03100C0715B /* CameraComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cpp; sourceTree = "<group>"; };
+		9603DDAD23A0B03100C0715B /* CameraComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraComponent.h; sourceTree = "<group>"; };
+		9603DDAE23A0B03100C0715B /* Checkpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkpoint.h; sourceTree = "<group>"; };
+		9603DDAF23A0B03200C0715B /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
+		9603DDB023A0B03200C0715B /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Block.h; sourceTree = "<group>"; };
+		9603DDB123A0B03200C0715B /* Arrow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arrow.cpp; sourceTree = "<group>"; };
+		9603DDB223A0B03200C0715B /* Coin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coin.cpp; sourceTree = "<group>"; };
+		9603DDB323A0B03200C0715B /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		9603DDB423A0B03200C0715B /* PlayerMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerMove.cpp; sourceTree = "<group>"; };
+		9603DDB523A0B03200C0715B /* PlayerMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMove.h; sourceTree = "<group>"; };
+		9603DDB623A0B03200C0715B /* LaserMine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserMine.cpp; sourceTree = "<group>"; };
+		9603DDB723A0B03200C0715B /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		9603DDB823A0B03200C0715B /* SecurityCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SecurityCamera.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +124,28 @@
 				924722A21EF72947000B58FD /* Actor.h */,
 				924722BC1EF98571000B58FD /* CollisionComponent.cpp */,
 				924722BD1EF98571000B58FD /* CollisionComponent.h */,
+				9603DDB123A0B03200C0715B /* Arrow.cpp */,
+				9603DDAF23A0B03200C0715B /* Arrow.h */,
+				9603DDAA23A0B03100C0715B /* Block.cpp */,
+				9603DDB023A0B03200C0715B /* Block.h */,
+				9603DDAC23A0B03100C0715B /* CameraComponent.cpp */,
+				9603DDAD23A0B03100C0715B /* CameraComponent.h */,
+				9603DDA323A0B03000C0715B /* Checkpoint.cpp */,
+				9603DDAE23A0B03100C0715B /* Checkpoint.h */,
+				9603DDB223A0B03200C0715B /* Coin.cpp */,
+				9603DDAB23A0B03100C0715B /* Coin.h */,
+				9603DDA723A0B03100C0715B /* LaserComponent.cpp */,
+				9603DDA823A0B03100C0715B /* LaserComponent.h */,
+				9603DDB623A0B03200C0715B /* LaserMine.cpp */,
+				9603DDA923A0B03100C0715B /* LaserMine.h */,
+				9603DDB723A0B03200C0715B /* Player.cpp */,
+				9603DDB323A0B03200C0715B /* Player.h */,
+				9603DDB423A0B03200C0715B /* PlayerMove.cpp */,
+				9603DDB523A0B03200C0715B /* PlayerMove.h */,
+				9603DDB823A0B03200C0715B /* SecurityCamera.cpp */,
+				9603DDA423A0B03100C0715B /* SecurityCamera.h */,
+				9603DDA523A0B03100C0715B /* SecurityCone.cpp */,
+				9603DDA623A0B03100C0715B /* SecurityCone.h */,
 				924722A31EF72947000B58FD /* Component.cpp */,
 				924722A41EF72947000B58FD /* Component.h */,
 				92F7A92C1FB806040057BFBD /* Font.cpp */,
@@ -176,6 +231,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 92E46DEE1B634EA30035CD21;
@@ -211,12 +267,23 @@
 			files = (
 				92F7A9301FB806050057BFBD /* Font.cpp in Sources */,
 				9210C6AE21DC117200C3E613 /* UIComponent.cpp in Sources */,
+				9603DDBA23A0B03200C0715B /* SecurityCone.cpp in Sources */,
+				9603DDC123A0B03200C0715B /* LaserMine.cpp in Sources */,
+				9603DDBB23A0B03200C0715B /* LaserComponent.cpp in Sources */,
 				924722A91EF72947000B58FD /* Actor.cpp in Sources */,
+				9603DDBE23A0B03200C0715B /* Arrow.cpp in Sources */,
+				9603DDBD23A0B03200C0715B /* CameraComponent.cpp in Sources */,
+				9603DDC223A0B03200C0715B /* Player.cpp in Sources */,
 				928A32D81F97158D00E04B24 /* VertexArray.cpp in Sources */,
 				924722AA1EF72947000B58FD /* Component.cpp in Sources */,
+				9603DDC023A0B03200C0715B /* PlayerMove.cpp in Sources */,
+				9603DDBF23A0B03200C0715B /* Coin.cpp in Sources */,
 				928A32D91F97158D00E04B24 /* MeshComponent.cpp in Sources */,
 				92B401B7223F2943004DD285 /* SegmentCast.cpp in Sources */,
+				9603DDBC23A0B03200C0715B /* Block.cpp in Sources */,
 				92924F991EDF6AC900A740A7 /* Main.cpp in Sources */,
+				9603DDC323A0B03200C0715B /* SecurityCamera.cpp in Sources */,
+				9603DDB923A0B03200C0715B /* Checkpoint.cpp in Sources */,
 				928A32D51F97158D00E04B24 /* Texture.cpp in Sources */,
 				924722AF1EF89CAE000B58FD /* MoveComponent.cpp in Sources */,
 				92924F9C1EDF6DC800A740A7 /* Game.cpp in Sources */,
