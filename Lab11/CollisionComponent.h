@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Math.h"
+#include <algorithm>
 
 enum class CollSide
 {
