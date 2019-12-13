@@ -23,6 +23,7 @@ Coin::Coin(Game* g, Actor* parent) : Actor(g, parent){
 
 void Coin::OnUpdate(float deltaTime){
     if(cc->Intersect(mGame->GetPlayer()->cc)){
+        GetGame()->GetCoinCount()++;
         Mix_PlayChannel(-1, mGame->GetSound("Assets/Sounds/Coin.wav"), 0);
         SetState(ActorState::Destroy);
     }

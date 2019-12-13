@@ -19,6 +19,7 @@ public:
     class CollisionComponent* cc;
     class PlayerMove* pm;
     class CameraComponent* camc;
+    class HUD* hud;
     void SetRespawnPos(Vector3 pos) {mRespawnPosition = pos;}
     Vector3 GetRespawnPos() {return mRespawnPosition;}
 protected:

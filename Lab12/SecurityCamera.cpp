@@ -18,11 +18,15 @@ SecurityCamera::SecurityCamera(Game* g, Actor* parent) : Actor(g, parent){
     mc = new MeshComponent(this);
     mc->SetMesh(g->GetRenderer()->GetMesh("Assets/Camera.gpmesh"));
     mCone = new SecurityCone(g, this);
+    g->GetSecurityCameras().push_back(this);
 }
 
 SecurityCamera::~SecurityCamera(){
     if(mMotorSFX != -1)
         Mix_HaltChannel(mMotorSFX);
+    std::vector<SecurityCamera*>::iterator i = std::find(mGame->GetSecurityCameras().begin(), mGame->GetSecurityCameras().end(), this);
+    if(i != mGame->GetSecurityCameras().end())
+        mGame->GetSecurityCameras().erase(i);
 }
 
 void SecurityCamera::OnUpdate(float deltaTime){

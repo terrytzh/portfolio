@@ -10,6 +10,7 @@
 #define SecurityCamera_hpp
 
 #include <stdio.h>
+#include <algorithm>
 #include "Actor.h"
 
 class SecurityCamera : public Actor{

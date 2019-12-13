@@ -43,6 +43,8 @@ bool Game::Initialize()
     Mix_AllocateChannels(32);
     Mix_GroupChannels(22, 31, 1);
     
+    TTF_Init();
+    
     SDL_SetRelativeMouseMode(SDL_TRUE);
     SDL_GetRelativeMouseState(nullptr, nullptr);
 
@@ -146,7 +148,7 @@ void Game::LoadData()
     mRenderer->SetProjectionMatrix(projectionMatrix);
     Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
     mRenderer->SetViewMatrix(viewMatrix);
-    LevelLoader::Load(this, "Assets/Tutorial.json");
+    LevelLoader::Load(this, "Assets/Stage03.json");
     mArrow = new Arrow(this, nullptr);
     BGMChannel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
 }

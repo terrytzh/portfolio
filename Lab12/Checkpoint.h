@@ -20,12 +20,15 @@ public:
     class CollisionComponent* cc;
     void SetIsActivated(bool b) {isActivated = b;}
     void SetLevelString(std::string s) {mLevelString = s;}
+    void SetTextString(std::string s) {mText = s;}
+    std::string GetTextString() {return mText;}
     
 protected:
     void OnUpdate(float deltaTime) override;
     
     bool isActivated = false;
     std::string mLevelString;
+    std::string mText;
 };
 
 #endif /* Checkpoint_hpp */

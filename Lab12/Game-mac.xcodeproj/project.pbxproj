@@ -38,6 +38,7 @@
 		9603DDC123A0B03200C0715B /* LaserMine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB623A0B03200C0715B /* LaserMine.cpp */; };
 		9603DDC223A0B03200C0715B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB723A0B03200C0715B /* Player.cpp */; };
 		9603DDC323A0B03200C0715B /* SecurityCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDB823A0B03200C0715B /* SecurityCamera.cpp */; };
+		9603DDC623A0B56A00C0715B /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9603DDC423A0B56A00C0715B /* HUD.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,8 @@
 		9603DDB623A0B03200C0715B /* LaserMine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserMine.cpp; sourceTree = "<group>"; };
 		9603DDB723A0B03200C0715B /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		9603DDB823A0B03200C0715B /* SecurityCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SecurityCamera.cpp; sourceTree = "<group>"; };
+		9603DDC423A0B56A00C0715B /* HUD.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HUD.cpp; sourceTree = "<group>"; };
+		9603DDC523A0B56A00C0715B /* HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				928A32CD1F97158C00E04B24 /* Texture.h */,
 				9210C6AD21DC117200C3E613 /* UIComponent.cpp */,
 				9210C6AC21DC117200C3E613 /* UIComponent.h */,
+				9603DDC423A0B56A00C0715B /* HUD.cpp */,
+				9603DDC523A0B56A00C0715B /* HUD.h */,
 				928A32CC1F97158C00E04B24 /* VertexArray.cpp */,
 				928A32CE1F97158C00E04B24 /* VertexArray.h */,
 				928A32D11F97158D00E04B24 /* Shaders */,
@@ -218,7 +223,7 @@
 		92E46DEF1B634EA30035CD21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Sanjay Madhav";
 				TargetAttributes = {
 					92E46DF61B634EA30035CD21 = {
@@ -228,11 +233,11 @@
 			};
 			buildConfigurationList = 92E46DF21B634EA30035CD21 /* Build configuration list for PBXProject "Game-mac" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 92E46DEE1B634EA30035CD21;
 			productRefGroup = 92E46DF81B634EA30035CD21 /* Products */;
@@ -274,6 +279,7 @@
 				9603DDBE23A0B03200C0715B /* Arrow.cpp in Sources */,
 				9603DDBD23A0B03200C0715B /* CameraComponent.cpp in Sources */,
 				9603DDC223A0B03200C0715B /* Player.cpp in Sources */,
+				9603DDC623A0B56A00C0715B /* HUD.cpp in Sources */,
 				928A32D81F97158D00E04B24 /* VertexArray.cpp in Sources */,
 				924722AA1EF72947000B58FD /* Component.cpp in Sources */,
 				9603DDC023A0B03200C0715B /* PlayerMove.cpp in Sources */,
@@ -304,6 +310,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -357,6 +364,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -401,6 +409,7 @@
 		92E46DFF1B634EA40035CD21 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = (
@@ -431,6 +440,7 @@
 		92E46E001B634EA40035CD21 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = (

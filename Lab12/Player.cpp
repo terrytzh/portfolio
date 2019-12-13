@@ -15,10 +15,12 @@
 #include "PlayerMove.h"
 #include "CameraComponent.h"
 #include "Arrow.h"
+#include "HUD.h"
 
 Player::Player(Game* g, Actor* parent) : Actor(g,parent){
     pm = new PlayerMove(this);
     camc = new CameraComponent(this);
     cc = new CollisionComponent(this);
     cc->SetSize(50.0f, 175.0f, 50.0f);
+    hud = new HUD(this);
 }

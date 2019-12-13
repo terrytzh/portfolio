@@ -36,6 +36,8 @@ void Checkpoint::OnUpdate(float deltaTime){
                 SetState(ActorState::Destroy);
                 mGame->GetCheckpoints().pop();
             }
+            mGame->SetCurrCheckpointText(mText);
+            mGame->GetCheckpointTimer() = 0.0f;
             Mix_PlayChannel(-1, mGame->GetSound("Assets/Sounds/Checkpoint.wav"), 0);
         }
     }

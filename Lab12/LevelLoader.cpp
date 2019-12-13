@@ -73,6 +73,10 @@ void LoadActor(const rapidjson::Value& actorValue, Game* game, Actor* parent)
             {
                 cp->SetLevelString(s);
             }
+            if (GetStringFromJSON(actorValue, "text", s))
+            {
+                cp->SetTextString(s);
+            }
         }
         else if (type == "Coin")
         {
