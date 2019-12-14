@@ -148,7 +148,7 @@ void Game::LoadData()
     mRenderer->SetProjectionMatrix(projectionMatrix);
     Matrix4 viewMatrix = Matrix4::CreateLookAt(Vector3(-300.0f,0.0f,100.0f), Vector3(20.0f,0.0f,0.0f), Vector3::UnitZ);
     mRenderer->SetViewMatrix(viewMatrix);
-    LevelLoader::Load(this, "Assets/Stage03.json");
+    LevelLoader::Load(this, "Assets/Tutorial.json");
     mArrow = new Arrow(this, nullptr);
     BGMChannel = Mix_PlayChannel(-1, GetSound("Assets/Sounds/Music.ogg"), -1);
 }

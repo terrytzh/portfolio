@@ -33,8 +33,8 @@ HUD::~HUD(){
 }
 
 void HUD::Draw(class Shader *shader){
-    DrawTexture(shader, mTimerText, Vector2(-420.0f, -325.0f));
-    DrawTexture(shader, mCoinCountText, Vector2(-420.0f, -275.0f));
+    DrawTexture(shader, mTimerText, TIMER_POSITION);
+    DrawTexture(shader, mCoinCountText, COINCOUNT_POSITION);
     DrawTexture(shader, mCheckpointText, Vector2::Zero);
     
     DrawTexture(shader, mRadar, RADAR_POSITION);
@@ -44,38 +44,7 @@ void HUD::Draw(class Shader *shader){
     }
 }
 
-void HUD::Update(float deltaTime){
-    mOwner->GetGame()->GetTime() += deltaTime;
-    if(mOwner->GetGame()->GetCheckpointTimer() < 5.0f)
-        mOwner->GetGame()->GetCheckpointTimer() += deltaTime;
-    mTimerText->Unload();
-    delete mTimerText;
-    
-    mCoinCountText->Unload();
-    delete mCoinCountText;
-    
-    mCheckpointText->Unload();
-    delete mCheckpointText;
-    
-    int min = (int)(mOwner->GetGame()->GetTime() / 60.0f);
-    int sec = (int)(mOwner->GetGame()->GetTime()) % 60;
-    int msec = (int)(mOwner->GetGame()->GetTime() * 100.0f) % 100;
-    char buffer[9];
-    snprintf(buffer, 9, "%02d:%02d:%02d", min, sec, msec);
-    std::string output = buffer;
-    mTimerText = mFont->RenderText(output);
-    
-    std::ostringstream ss;
-    ss << mOwner->GetGame()->GetCoinCount() << "/55";
-    mCoinCountText = mFont->RenderText(ss.str());
-    
-    if(!mOwner->GetGame()->GetCheckpoints().empty() && mOwner->GetGame()->GetCheckpointTimer() < 5.0f){
-        mCheckpointText = mFont->RenderText(mOwner->GetGame()->GetCurrCheckpointText());
-    }
-    else{
-        mCheckpointText = mFont->RenderText(" ");
-    }
-    
+void HUD::UpdateBlips(){
     mBlips.clear();
     Vector2 playerForward2D = Vector2(mOwner->GetGame()->GetPlayer()->GetForward().x, mOwner->GetGame()->GetPlayer()->GetForward().y);
     float angle = Math::Atan2(playerForward2D.y, playerForward2D.x);
@@ -99,4 +68,39 @@ void HUD::Update(float deltaTime){
             mBlips.push_back(b);
         }
     }
+}
+
+void HUD::Update(float deltaTime){
+    mOwner->GetGame()->GetTime() += deltaTime;
+    if(mOwner->GetGame()->GetCheckpointTimer() < CHECKPOINT_TEXT_TIME)
+        mOwner->GetGame()->GetCheckpointTimer() += deltaTime;
+    mTimerText->Unload();
+    delete mTimerText;
+    
+    mCoinCountText->Unload();
+    delete mCoinCountText;
+    
+    mCheckpointText->Unload();
+    delete mCheckpointText;
+    
+    int min = (int)(mOwner->GetGame()->GetTime() / 60.0f);
+    int sec = (int)(mOwner->GetGame()->GetTime()) % 60;
+    int msec = (int)(mOwner->GetGame()->GetTime() * 100.0f) % 100;
+    char buffer[9];
+    snprintf(buffer, 9, "%02d:%02d:%02d", min, sec, msec);
+    std::string output = buffer;
+    mTimerText = mFont->RenderText(output);
+    
+    std::ostringstream ss;
+    ss << mOwner->GetGame()->GetCoinCount() << "/55";
+    mCoinCountText = mFont->RenderText(ss.str());
+    
+    if(!mOwner->GetGame()->GetCheckpoints().empty() && mOwner->GetGame()->GetCheckpointTimer() < CHECKPOINT_TEXT_TIME){
+        mCheckpointText = mFont->RenderText(mOwner->GetGame()->GetCurrCheckpointText());
+    }
+    else{
+        mCheckpointText = mFont->RenderText(" ");
+    }
+    
+    UpdateBlips();
 }

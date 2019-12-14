@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include "Component.h"
 #include "Math.h"
 

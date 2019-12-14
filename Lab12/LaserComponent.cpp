@@ -102,7 +102,7 @@ Matrix4 LaserComponent::GetWorldTransformFromLine(LineSegment ls){
     }
     else{
         Vector3 axis = Vector3::Cross(Vector3::UnitX, dir);
-        axis *= 1.0 / axis.Length();
+        axis *= 1.0f / axis.Length();
         q = Quaternion(axis, angle);
     }
     

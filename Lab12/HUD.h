@@ -28,6 +28,8 @@ public:
     };
     
 protected:
+    void UpdateBlips();
+    
     class Font* mFont;
     class Texture* mTimerText;
     class Texture* mCoinCountText;
@@ -39,6 +41,9 @@ protected:
     
     float checkpointTimer = 0.0f;
     const Vector2 RADAR_POSITION = Vector2(400.0f, -275.0f);
+    const Vector2 TIMER_POSITION = Vector2(-420.0f, -325.0f);
+    const Vector2 COINCOUNT_POSITION = Vector2(-420.0f, -275.0f);
+    const float CHECKPOINT_TEXT_TIME = 5.0f;
     const float RADAR_RANGE = 1500.0f;
     const float RADAR_RADIUS = 92.0f;
 };
