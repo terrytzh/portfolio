@@ -1,10 +1,3 @@
-# ITP 380 Labs - Fall 2019 #
+# Video Game Profolio #
 
-### EDIT BELOW ###
-Name: Zihang Tang
-
-Email: terrytan@usc.edu
-
-Section: T/Th [5:00pm - 6:50pm]
-
-Platform: [PC and MAC]
+This is Zihang Tang's profolio for showcase of programmed video game projects.
